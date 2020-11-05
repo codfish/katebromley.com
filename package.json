@@ -1,0 +1,44 @@
+{
+  "name": "katebromley.com",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "NODE_OPTIONS='--inspect' next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.3.6",
+    "@babel/runtime": "^7.12.5",
+    "clsx": "^1.1.1",
+    "deepmerge": "^4.2.2",
+    "graphql": "^15.4.0",
+    "next": "^10.0.3",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-markdown": "^5.0.3",
+    "react-slick": "^0.27.13",
+    "slick-carousel": "^1.8.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.2.1",
+    "autoprefixer": "^10.1.0",
+    "cod-scripts": "^6.0.0",
+    "postcss": "^8.2.1",
+    "postcss-preset-env": "^6.7.0",
+    "stylelint-config-recommended": "^3.0.0",
+    "tailwindcss": "^2.0.2"
+  },
+  "eslintConfig": {
+    "extends": [
+      "./node_modules/cod-scripts/eslint.js"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "cod-scripts pre-commit",
+      "commit-msg": "cod-scripts commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}

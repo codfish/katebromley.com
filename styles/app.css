@@ -1,0 +1,246 @@
+:root {
+  /* Pink */
+  --color-primary-main: #ed6d90;
+  --color-primary-light: #faeaef;
+  --color-primary-dark: #661733;
+  /* Teal */
+  --color-secondary-main: #4ec9cb;
+  --color-secondary-light: #c7f4f4;
+  --color-secondary-dark: #398186;
+  /* Yellow */
+  --color-tertiary-main: #ffc82e;
+  --color-tertiary-light: #fff2cc;
+  --color-tertiary-dark: #c89d24;
+  /* Gray */
+  --color-gray: #e9e9e6;
+  --color-gray-light: #f7f7f5;
+  --color-gray-dark: #161616;
+  --color-gray-border: #e0e0e0;
+  --color-gray-background: #f4f4f4;
+  /* Navy */
+  --color-navy: #21304c;
+}
+
+@font-face {
+  font-family: JosefinSans;
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Josefin Sans'), local('JosefinSans'),
+    url(/fonts/JosefinSans-SemiBoldItalic.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: JosefinSans;
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Josefin Sans'), local('JosefinSans'),
+    url(/fonts/JosefinSans-SemiBold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: MacklinSlab;
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: local('MacklinSlab'), local('Macklin Slab'),
+    url(/fonts/MacklinSlab-ExtraLight.woff) format('woff'),
+    url(/fonts/MacklinSlab-ExtraLight.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: MunkenSans;
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: local('MunkenSans'), local('Munken Sans'), url(/fonts/MunkenSans-Regular.woff) format('woff'),
+    url(/fonts/MunkenSans-Regular.woff2) format('woff2');
+}
+
+body {
+  font-family: theme('fontFamily.body2');
+  color: theme('colors.gray.dark');
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 200;
+}
+
+::selection {
+  background: var(--color-primary-light);
+}
+
+a::selection {
+  background: var(--color-secondary-light);
+}
+
+.cta-link {
+  position: relative;
+  padding-left: 2rem;
+  transition: all 0.3s;
+}
+
+.cta-link::before {
+  background-color: var(--color-secondary-main);
+  content: '';
+  display: inline-block;
+  transition: all 0.3s;
+  width: 1rem;
+  height: 0.1875rem;
+  position: absolute;
+  top: 0.375rem;
+  left: 0;
+}
+
+.cta-link:hover::before {
+  background-color: var(--color-secondary-dark);
+}
+
+/**
+ * Slick Carousel overrides. Prefix selectors with `body` to achieve
+ * priority over the default styles.
+ */
+body .slick-prev,
+body .slick-next {
+  width: 12px;
+}
+
+body .slick-prev::before,
+body .slick-next::before {
+  display: none;
+}
+
+body .slick-dots li {
+  margin: 0;
+}
+
+body .slick-dots li button:before {
+  color: var(--color-navy);
+  font-size: 10px;
+  opacity: 1;
+}
+
+body .slick-dots li button:before {
+  color: var(--color-navy);
+  font-size: 10px;
+}
+
+body .slick-dots li button:hover:before,
+body .slick-dots li.slick-active button:before {
+  color: var(--color-primary-main);
+}
+
+/**
+ * This injects Tailwind's base styles and any base styles registered by
+ * plugins.
+ */
+@tailwind base;
+
+/**
+ * This injects Tailwind's component classes and any component classes
+ * registered by plugins.
+ */
+@tailwind components;
+
+/**
+ * This injects Tailwind's utility classes and any utility classes registered
+ * by plugins.
+ */
+@tailwind utilities;
+
+/**
+ * Text components. Using classes instead of html element selectors so we can
+ * easily target responsive variants, i.e. `className="h2 md:h1"`.
+ */
+@layer components {
+  @variants responsive {
+    .h1 {
+      @apply font-h1 text-h1 font-extralight;
+    }
+
+    .h2 {
+      @apply font-h2 text-h2 font-extralight;
+    }
+
+    .h3 {
+      @apply font-h3 text-h3 font-extralight;
+    }
+
+    .h4 {
+      @apply font-h4 text-h4 font-extralight;
+    }
+
+    .h5 {
+      @apply font-h5 text-h5 font-semibold;
+    }
+
+    .h6 {
+      @apply font-h6 text-h6 text-gray-dark font-semibold;
+    }
+
+    .body1 {
+      @apply font-body1 text-body1 text-gray-dark font-thin;
+    }
+
+    .body2 {
+      @apply font-body2 text-body2 text-gray-dark;
+    }
+
+    .body3 {
+      @apply font-body3 text-body3;
+    }
+
+    .text1 {
+      @apply font-text1 text-text1 text-gray-dark;
+    }
+
+    .text2 {
+      @apply font-text2 text-text2 text-gray-dark;
+    }
+
+    .callout {
+      @apply font-callout text-callout text-gray-dark font-thin;
+    }
+
+    .button {
+      @apply font-button text-button font-semibold uppercase;
+      transition: all 0.3s;
+    }
+
+    .nav-link {
+      @apply text-nav-link font-nav-link text-gray-dark font-semibold uppercase;
+    }
+
+    .mobile-nav-link {
+      @apply text-mobile-nav-link font-nav-link text-gray-dark font-semibold uppercase;
+    }
+
+    .link {
+      @apply font-link text-link text-secondary-main hover:text-secondary-dark font-semibold uppercase;
+    }
+
+    .caption {
+      @apply font-caption text-caption text-gray-dark;
+    }
+
+    .input {
+      @apply font-input text-input text-gray-dark w-full px-2 py-3 border-gray-border focus:ring-secondary-main focus:border-secondary-main;
+    }
+
+    .textarea {
+      @apply font-input text-input text-gray-dark w-full px-2 py-3 border-gray-border border-b-2 focus:ring-secondary-main focus:border-secondary-main;
+    }
+  }
+}
+
+@layer utilities {
+  @variants responsive {
+    .max-w-kb-prose {
+      @apply max-w-prose;
+    }
+  }
+}

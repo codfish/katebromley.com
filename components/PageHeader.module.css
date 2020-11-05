@@ -1,0 +1,14 @@
+.root {
+  height: 7.5rem;
+  margin-bottom: 2.125rem;
+}
+
+@screen lg {
+  .root {
+    background: theme('colors.primary.light') url('/page-header-background.jpg') no-repeat center
+      center;
+    background-size: cover;
+    height: 11.25rem;
+    margin-bottom: 5.5rem;
+  }
+}

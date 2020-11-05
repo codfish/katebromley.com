@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="14px" viewBox="0 0 24 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Actions / Navigation / hamburger menu</title>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="mobile-main-nav" transform="translate(-331.000000, -33.000000)" fill="#161616">
+            <g id="Actions-/-Navigation-/-hamburger-menu" transform="translate(327.000000, 24.000000)">
+                <path d="M4,15 L28,15 L28,17 L4,17 L4,15 Z M4,21 L28,21 L28,23 L4,23 L4,21 Z M4,9 L28,9 L28,11 L4,11 L4,9 Z" id="Fill"></path>
+            </g>
+        </g>
+    </g>
+</svg>

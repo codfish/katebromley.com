@@ -1,0 +1,7 @@
+@screen lg {
+  .root {
+    background: theme('colors.secondary.light') url('/newsletter-background.jpg') no-repeat center
+      center;
+    background-size: cover;
+  }
+}
