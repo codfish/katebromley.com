@@ -38,7 +38,7 @@ function Contact() {
             </a>
             .
           </p>
-          <p className="text-body2 mb-4">
+          {/* <p className="text-body2 mb-4">
             For Publicity, contact{' '}
             <a href="https://www.linkedin.com/in/justineisha/" className="link">
               Justine Sha
@@ -67,7 +67,7 @@ function Contact() {
               (212) 207-7991
             </a>
             .
-          </p>
+          </p> */}
 
           <p className="body1 mb-6">Send Kate a Message</p>
 
