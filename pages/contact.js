@@ -21,7 +21,7 @@ function Contact() {
 
       <Section noBorder>
         <div className="max-w-kb-prose mx-auto">
-          <p className="text-body2 mb-4">
+          <p className="text-body2 mb-10">
             For Agent inquiries, contact{' '}
             <a
               href="https://www.marsallyonliteraryagency.com/the-agents/kevan-lyon/"
