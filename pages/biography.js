@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
+import ReactMarkdown from 'react-markdown';
 import Section from '../components/Section';
 import { fetchAPI } from '../lib/api';
 import { calcImageHeight } from '../lib/utils';
@@ -43,10 +44,10 @@ function Biography({ biography, faqs }) {
             <h5 className="h5 text-primary-main uppercase mb-10">Frequently Asked Questions</h5>
 
             {faqs.map(faq => (
-              <>
+              <React.Fragment key={faq.id}>
                 <h6 className="text1 mb-4 font-semibold">{faq.question}</h6>
-                <p className="body3 mb-14">{faq.answer}</p>
-              </>
+                <ReactMarkdown className="body3 mb-14">{faq.answer}</ReactMarkdown>
+              </React.Fragment>
             ))}
           </div>
         </Section>
@@ -72,6 +73,7 @@ Biography.propTypes = {
   }).isRequired,
   faqs: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.number.isRequired,
       question: PropTypes.string.isRequired,
       answer: PropTypes.string.isRequired,
     }),
