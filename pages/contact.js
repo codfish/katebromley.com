@@ -117,10 +117,7 @@ function Contact() {
           </form>
 
           <div className="flex flex-col justify-center text-center">
-            <h5 className="h5 text-primary-main mb-6 uppercase">Follow along Social Media</h5>
-            <p className="text-body3 max-w-xs mx-auto mb-6">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit bibendum imperdiet.
-            </p>
+            <h5 className="h5 text-primary-main mb-6 uppercase">Follow along on social media</h5>
             <div className="flex items-center justify-center">
               <Link href="https://www.instagram.com/katebromleywrites" className="mx-4">
                 <Image width="18" height="18" src="/instagram.svg" />
