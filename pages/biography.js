@@ -83,7 +83,7 @@ Biography.propTypes = {
 export const getStaticProps = async () => {
   const [biography, faqs] = await Promise.all([
     fetchAPI(`/biography`),
-    fetchAPI(`/faqs?featured=true`),
+    fetchAPI(`/faqs?featured=true&_sort=order`),
   ]);
   return { props: { biography, faqs } };
 };
