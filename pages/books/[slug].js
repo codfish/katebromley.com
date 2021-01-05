@@ -5,11 +5,13 @@ import ReactMarkdown from 'react-markdown';
 import clsx from 'clsx';
 import { fetchAPI } from '../../lib/api';
 import { formatDateStr, isReleased, calcImageHeight } from '../../lib/utils';
+import SubscribeSection from '../../components/SubscribeSection';
+import SocialSection from '../../components/SocialSection';
 import Carousel from '../../components/Carousel';
 import Section from '../../components/Section';
 import Divider from '../../components/Divider';
-import styles from './slug.module.css';
 import Link from '../../components/Link';
+import styles from './slug.module.css';
 
 function Book({ book }) {
   const isPreRelease = !isReleased(book.release_date);
@@ -160,6 +162,10 @@ function Book({ book }) {
           </Carousel>
         </section>
       )}
+
+      <SubscribeSection />
+
+      <SocialSection />
     </article>
   );
 }
