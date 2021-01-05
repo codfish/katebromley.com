@@ -155,7 +155,12 @@ function Contact() {
               <Link href="https://www.amazon.com/Kate-Bromley/e/B08GYP6TNY" className="mx-4">
                 <Image width="18" height="18" src="/amazon.svg" />
               </Link>
-              {/* <Link href="https://www.goodreads.com/author/show/20590705.Kate_Bromley">good reads</Link> */}
+              <Link
+                href="https://www.goodreads.com/author/show/20590705.Kate_Bromley"
+                className="mx-4"
+              >
+                <Image width="21" height="21" src="/goodreads.svg" className="hover:opacity-50" />
+              </Link>
             </div>
           </div>
         </div>
