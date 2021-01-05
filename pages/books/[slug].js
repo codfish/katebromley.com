@@ -98,14 +98,14 @@ function Book({ book }) {
             {book.libro_fm_url && (
               <li className={styles.purchaseListItem}>
                 <a href={book.libro_fm_url} className="link hover:underline">
-                  Audible
+                  Libro.fm
                 </a>
               </li>
             )}
             {book.chirp_url && (
               <li className={styles.purchaseListItem}>
                 <a href={book.chirp_url} className="link hover:underline">
-                  Audible
+                  Chirp
                 </a>
               </li>
             )}
