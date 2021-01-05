@@ -56,8 +56,8 @@ function Contact() {
 
       <Section noBorder>
         <div className="max-w-kb-prose mx-auto">
-          <p className="text-body2 mb-10">
-            For Agent inquiries, contact{' '}
+          <p className="text-body2 mb-4">
+            For agent inquiries, contact{' '}
             <a
               href="https://www.marsallyonliteraryagency.com/the-agents/kevan-lyon/"
               className="link"
@@ -70,6 +70,25 @@ function Contact() {
               className="underline hover:no-underline"
             >
               Kevan@MarsalLyonLiteraryAgency.com
+            </a>
+            .
+          </p>
+          <p className="text-body2 mb-10">
+            For publicity inquiries, contact{' '}
+            <a href="https://www.linkedin.com/in/justineisha/" className="link">
+              Justine Sha
+            </a>{' '}
+            at{' '}
+            <a href="mailto:justine.sha@harpercollins.com" className="underline hover:no-underline">
+              Justine.Sha@HarperCollins.com
+            </a>{' '}
+            or{' '}
+            <a href="https://www.linkedin.com/in/lia-ferrone-b5483410b/" className="link">
+              Lia Ferrone
+            </a>{' '}
+            at{' '}
+            <a href="mailto:justine.sha@harpercollins.com" className="underline hover:no-underline">
+              Lia.Ferrone@HarperCollins.com
             </a>
             .
           </p>
