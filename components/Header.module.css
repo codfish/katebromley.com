@@ -28,9 +28,9 @@
   */
   line-height: 6.25rem !important;
   vertical-align: middle;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .latest {
-  transition: all .3s;
+  transition: all 0.3s;
 }
