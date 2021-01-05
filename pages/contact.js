@@ -147,13 +147,13 @@ function Contact() {
             <h5 className="h5 text-primary-main mb-6 uppercase">Follow along on social media</h5>
             <div className="flex items-center justify-center">
               <Link href="https://www.instagram.com/katebromleywrites" className="mx-4">
-                <Image width="18" height="18" src="/instagram.svg" />
+                <Image width="18" height="18" src="/instagram.svg" className="hover:opacity-50" />
               </Link>
               <Link href="https://www.facebook.com/katebromleywrites" className="mx-4">
-                <Image width="18" height="18" src="/facebook.svg" />
+                <Image width="18" height="18" src="/facebook.svg" className="hover:opacity-50" />
               </Link>
               <Link href="https://www.amazon.com/Kate-Bromley/e/B08GYP6TNY" className="mx-4">
-                <Image width="18" height="18" src="/amazon.svg" />
+                <Image width="18" height="18" src="/amazon.svg" className="hover:opacity-50" />
               </Link>
               <Link
                 href="https://www.goodreads.com/author/show/20590705.Kate_Bromley"
