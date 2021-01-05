@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
+import { fetchAPI } from '../lib/api';
 import PageHeader from '../components/PageHeader';
 import Section from '../components/Section';
 import SubscribeSection from '../components/SubscribeSection';
@@ -9,11 +10,45 @@ import Button from '../components/Button';
 import Link from '../components/Link';
 
 function Contact() {
+  const [submitting, setSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
+  const nameRef = React.createRef();
+  const emailRef = React.createRef();
+  const messageRef = React.createRef();
+
+  const handleSubmit = async event => {
+    event.preventDefault();
+
+    if (success) {
+      return;
+    }
+
+    setSubmitting(true);
+
+    try {
+      await fetchAPI('/api/contact', {
+        body: {
+          name: nameRef.current.value,
+          email: emailRef.current.value,
+          message: messageRef.current.value,
+        },
+      });
+      setError(false);
+      setSubmitting(false);
+      setSuccess(true);
+      event.target.reset();
+    } catch (err) {
+      setSubmitting(false);
+      setSuccess(false);
+      setError(true);
+    }
+  };
+
   return (
     <>
       <Head>
-        <title>Contact | Kate Bromley</title>
-
+        <title>Contact Kate Bromley</title>
         <meta name="description" content="Contact Kate Bromley" />
       </Head>
 
@@ -38,40 +73,10 @@ function Contact() {
             </a>
             .
           </p>
-          {/* <p className="text-body2 mb-4">
-            For Publicity, contact{' '}
-            <a href="https://www.linkedin.com/in/justineisha/" className="link">
-              Justine Sha
-            </a>{' '}
-            at{' '}
-            <a href="mailto:justine.sha@harpercollins.com" className="underline hover:no-underline">
-              Justine.Sha@HarperCollins.com
-            </a>
-            ,{' '}
-            <a href="tel:2122077384" className="underline hover:no-underline">
-              (212) 207-7384
-            </a>
-            .
-          </p>
-          <p className="text-body2 mb-10">
-            For Subsidiary Rights information, contact{' '}
-            <a href="https://www.linkedin.com/in/reka-rubin-0090137/" className="link">
-              Reka Rubin
-            </a>{' '}
-            at{' '}
-            <a href="mailto:reka.rubin@harpercollins.com" className="underline hover:no-underline">
-              Reka.Rubin@HarperCollins.com
-            </a>
-            ,{' '}
-            <a href="tel:2122077384" className="underline hover:no-underline">
-              (212) 207-7991
-            </a>
-            .
-          </p> */}
 
           <p className="body1 mb-6">Send Kate a Message</p>
 
-          <form className="mb-20">
+          <form action="/api/contact" method="post" className="mb-20" onSubmit={handleSubmit}>
             <label htmlFor="name" className="sr-only">
               Full Name *
             </label>
@@ -80,6 +85,7 @@ function Contact() {
               name="name"
               placeholder="Full Name"
               id="name"
+              ref={nameRef}
               required
               aria-required
               className="input mb-6 rounded-sm"
@@ -91,6 +97,7 @@ function Contact() {
             <input
               type="email"
               name="email"
+              ref={emailRef}
               placeholder="Your Email"
               id="email"
               required
@@ -105,15 +112,35 @@ function Contact() {
               name="message"
               placeholder="Type Your Message"
               id="message"
+              ref={messageRef}
               rows="5"
               required
               aria-required
               className="textarea mb-6 rounded-sm"
             />
 
-            <Button type="submit" primary className="w-full sm:w-auto block sm:mx-auto">
-              Send Message
-            </Button>
+            {success && (
+              <p className="body2 text-success-main">
+                Message was sent! Thanks for contacting Kate!
+              </p>
+            )}
+
+            {error && (
+              <p className="body2 text-error-main mb-6">
+                There was an issue sending the message. Please try again.
+              </p>
+            )}
+
+            {!success && (
+              <Button
+                type="submit"
+                primary
+                className="w-full sm:w-auto block sm:mx-auto"
+                disabled={submitting || success}
+              >
+                Send Message
+              </Button>
+            )}
           </form>
 
           <div className="flex flex-col justify-center text-center">

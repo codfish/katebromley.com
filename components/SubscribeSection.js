@@ -18,21 +18,39 @@ const SubscribeSection = ({ className, ...other }) => (
         Because let&apos;s just casually be bookish buddies forever!
       </p>
 
-      <form>
+      <form
+        action="https://katebromley.us7.list-manage.com/subscribe/post?u=3409d07d2655432fdaf750be0&amp;id=1792a82a63"
+        method="post"
+        id="mc-embedded-subscribe-form"
+        name="mc-embedded-subscribe-form"
+        className="validate"
+        target="_blank"
+      >
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label htmlFor="email" className="sr-only">
+        <label htmlFor="mce-EMAIL" className="sr-only">
           Your Email
         </label>
         <input
           type="email"
-          name="email"
+          name="EMAIL"
           placeholder="Your Email"
-          id="email"
+          id="mce-EMAIL"
           required
           aria-required
           className="input mb-6"
         />
-        <Button type="submit" primary className="sm:block sm:mx-auto">
+
+        <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
+          <input type="text" name="b_3409d07d2655432fdaf750be0_1792a82a63" tabIndex="-1" />
+        </div>
+
+        <Button
+          type="submit"
+          primary
+          className="sm:block sm:mx-auto"
+          name="subscribe"
+          id="mc-embedded-subscribe"
+        >
           Subscribe
         </Button>
       </form>

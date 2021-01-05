@@ -49,7 +49,6 @@ module.exports = {
     colors: {
       black: '#000',
       white: '#FFF',
-      error: '#DA1E28',
       primary: {
         main: 'var(--color-primary-main)',
         light: 'var(--color-primary-light)',
@@ -71,6 +70,22 @@ module.exports = {
         dark: 'var(--color-gray-dark)',
         border: 'var(--color-gray-border)',
         background: 'var(--color-gray-background)',
+      },
+      error: {
+        main: '#DA1E28',
+        inverse: '#FA4D56',
+      },
+      success: {
+        main: '#24A148',
+        inverse: '#42BE65',
+      },
+      info: {
+        main: '#0043CE',
+        inverse: '#4589FF',
+      },
+      warning: {
+        main: '#F1C21B',
+        inverse: '#EED375',
       },
     },
     container: {
@@ -202,7 +217,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      opacity: ['disabled'],
+    },
   },
   // eslint-disable-next-line
   plugins: [require('@tailwindcss/forms')],

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
+import Head from 'next/head';
 import ReactMarkdown from 'react-markdown';
 import Section from '../components/Section';
 import { fetchAPI } from '../lib/api';
@@ -13,6 +14,11 @@ import Divider from '../components/Divider';
 function Biography({ biography, faqs }) {
   return (
     <>
+      <Head>
+        <title>About Kate Bromley</title>
+        <meta name="description" content="More about Kate Bromley" />
+      </Head>
+
       <PageHeader>Biography</PageHeader>
 
       <Section noBorder>
