@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Head from 'next/head';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import clsx from 'clsx';
@@ -18,6 +19,11 @@ function Book({ book }) {
 
   return (
     <article>
+      <Head>
+        <title>{book.title}, a novel by Kate Bromley</title>
+        <meta name="description" content={book.tagline} />
+      </Head>
+
       <div className="border-t-8 border-solid border-primary-main lg:mb-10" />
 
       <Section noBorder>
