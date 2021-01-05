@@ -46,73 +46,66 @@ function Book({ book }) {
                 </a>
               </li>
             )}
-            {book.audible_url && (
-              <li className={styles.purchaseListItem}>
-                <a
-                  href="https://www.amazon.com/Talk-Bookish-to-Me/dp/B08PDTV12Z/"
-                  className="link hover:underline"
-                >
-                  Audible
-                </a>
-              </li>
-            )}
             {book.barnes_noble_url && (
               <li className={styles.purchaseListItem}>
-                <a
-                  href="https://www.barnesandnoble.com/w/talk-bookish-to-me-kate-bromley/1137474879"
-                  className="link hover:underline"
-                >
+                <a href={book.barnes_noble_url} className="link hover:underline">
                   B&N
-                </a>
-              </li>
-            )}
-            {book.indiebound_url && (
-              <li className={styles.purchaseListItem}>
-                <a
-                  href="https://www.indiebound.org/book/9781525806438"
-                  className="link hover:underline"
-                >
-                  IndieBound
-                </a>
-              </li>
-            )}
-            {book.indigo_url && (
-              <li className={styles.purchaseListItem}>
-                <a
-                  href="https://www.chapters.indigo.ca/en-ca/books/talk-bookish-to-me-a/9781525806438-item.html"
-                  className="link hover:underline"
-                >
-                  Indigo
-                </a>
-              </li>
-            )}
-            {book.kobo_url && (
-              <li className={styles.purchaseListItem}>
-                <a
-                  href="https://www.kobo.com/us/en/ebook/talk-bookish-to-me"
-                  className="link hover:underline"
-                >
-                  Walmart
                 </a>
               </li>
             )}
             {book.apple_books_url && (
               <li className={styles.purchaseListItem}>
-                <a
-                  href="https://books.apple.com/us/book/talk-bookish-to-me/id1527559037"
-                  className="link hover:underline"
-                >
+                <a href={book.apple_books_url} className="link hover:underline">
                   Apple Books
                 </a>
               </li>
             )}
             {book.google_play_url && (
               <li className={styles.purchaseListItem}>
-                <a
-                  href="https://play.google.com/store/books/details/Kate_Bromley_Talk_Bookish_to_Me?id=EUH3DwAAQBAJ"
-                  className="link hover:underline"
-                >
+                <a href={book.google_play_url} className="link hover:underline">
                   Google Play
+                </a>
+              </li>
+            )}
+            {book.audible_url && (
+              <li className={styles.purchaseListItem}>
+                <a href={book.audible_url} className="link hover:underline">
+                  Audible
+                </a>
+              </li>
+            )}
+            {book.indiebound_url && (
+              <li className={styles.purchaseListItem}>
+                <a href={book.indiebound_url} className="link hover:underline">
+                  IndieBound
+                </a>
+              </li>
+            )}
+            {book.indigo_url && (
+              <li className={styles.purchaseListItem}>
+                <a href={book.indigo_url} className="link hover:underline">
+                  Indigo
+                </a>
+              </li>
+            )}
+            {book.kobo_url && (
+              <li className={styles.purchaseListItem}>
+                <a href={book.kobo_url} className="link hover:underline">
+                  Kobo
+                </a>
+              </li>
+            )}
+            {book.libro_fm_url && (
+              <li className={styles.purchaseListItem}>
+                <a href={book.libro_fm_url} className="link hover:underline">
+                  Audible
+                </a>
+              </li>
+            )}
+            {book.chirp_url && (
+              <li className={styles.purchaseListItem}>
+                <a href={book.chirp_url} className="link hover:underline">
+                  Audible
                 </a>
               </li>
             )}
@@ -192,6 +185,8 @@ Book.propTypes = {
     kobo_url: PropTypes.string,
     apple_books_url: PropTypes.string,
     google_play_url: PropTypes.string,
+    libro_fm_url: PropTypes.string,
+    chirp_url: PropTypes.string,
     praise: PropTypes.arrayOf(
       PropTypes.shape({
         quote: PropTypes.string.isRequired,
