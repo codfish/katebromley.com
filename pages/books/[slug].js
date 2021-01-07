@@ -80,6 +80,13 @@ function Book({ book }) {
                 </a>
               </li>
             )}
+            {book.walmart_url && (
+              <li className={styles.purchaseListItem}>
+                <a href={book.walmart_url} className="link hover:underline">
+                  Walmart
+                </a>
+              </li>
+            )}
             {book.indiebound_url && (
               <li className={styles.purchaseListItem}>
                 <a href={book.indiebound_url} className="link hover:underline">
@@ -201,6 +208,7 @@ Book.propTypes = {
     libro_fm_url: PropTypes.string,
     chirp_url: PropTypes.string,
     bookshop_url: PropTypes.string,
+    walmart_url: PropTypes.string,
     praise: PropTypes.arrayOf(
       PropTypes.shape({
         quote: PropTypes.string.isRequired,
