@@ -1,5 +1,5 @@
 const sendgrid = require('@sendgrid/mail');
-// const axios = require('axios');
+const axios = require('axios');
 
 sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 
@@ -9,10 +9,16 @@ export default async (req, res) => {
   }
 
   // validate reCAPTCHA
-  // const recaptcha = axios.post('https://www.google.com/recaptcha/api/siteverify', {
-  //   response: req.body['g-recaptcha-response'],
-  //   secret: process.env.RECAPTCHA_SECRET_KEY
-  // })
+  const recaptcha = await axios.post(
+    `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${req.body['g-recaptcha-response']}`,
+  );
+
+  if (!recaptcha.data.success) {
+    return res.status(403).send({
+      message: 'Validation for this form failed.',
+      error: recaptcha.data['error-codes'],
+    });
+  }
 
   const msg = {
     to: process.env.CONTACT_TO_EMAIL,

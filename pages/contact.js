@@ -17,23 +17,9 @@ function Contact() {
   const emailRef = React.createRef();
   const messageRef = React.createRef();
 
-  const handleSubmit = async event => {
-    event.preventDefault();
-
-    if (success) {
-      return;
-    }
-
-    setSubmitting(true);
-
+  const sendContact = async (event, body) => {
     try {
-      await fetchAPI('/api/contact', {
-        body: {
-          name: nameRef.current.value,
-          email: emailRef.current.value,
-          message: messageRef.current.value,
-        },
-      });
+      await fetchAPI('/api/contact', { body });
       setError(false);
       setSubmitting(false);
       setSuccess(true);
@@ -43,6 +29,36 @@ function Contact() {
       setSuccess(false);
       setError(true);
     }
+  };
+
+  const handleSubmit = async event => {
+    event.preventDefault();
+    // declaring these here cause if you try and grab them from within the recaptcha
+    // callback function, the ref's won't have their values...weird js scopes
+    const values = {
+      name: nameRef.current.value,
+      email: emailRef.current.value,
+      message: messageRef.current.value,
+    };
+
+    if (success) {
+      return;
+    }
+
+    setSubmitting(true);
+
+    window.grecaptcha.ready(() => {
+      window.grecaptcha
+        .execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, { action: 'submit' })
+        .then(token => {
+          sendContact(event, { ...values, 'g-recaptcha-response': token });
+        })
+        .catch(() => {
+          setSubmitting(false);
+          setSuccess(false);
+          setError(true);
+        });
+    });
   };
 
   return (
@@ -135,8 +151,20 @@ function Contact() {
               rows="5"
               required
               aria-required
-              className="textarea mb-6 rounded-sm"
+              className="textarea mb-2 rounded-sm"
             />
+
+            <p className="caption mb-6 text-recaptcha">
+              This site is protected by reCAPTCHA and the Google{' '}
+              <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">
+                Privacy Policy
+              </a>{' '}
+              and{' '}
+              <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer">
+                Terms of Service
+              </a>{' '}
+              apply.
+            </p>
 
             {success && (
               <p className="body2 text-success-main">
