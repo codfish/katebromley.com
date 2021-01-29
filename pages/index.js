@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
+import Head from 'next/head';
 import { fetchAPI } from '../lib/api';
 import Section from '../components/Section';
 import SubscribeSection from '../components/SubscribeSection';
@@ -12,6 +13,10 @@ import { isReleased, calcImageHeight } from '../lib/utils';
 function Home({ home, featured }) {
   return (
     <>
+      <Head>
+        <link rel="canonical" href="https://www.katebromley.com" />
+      </Head>
+
       <Section backdrop={{ color: 'primary', position: 'left' }}>
         <div className="grid md:grid-cols-2 gap-10 md:gap-6">
           <div className="text-center md:text-left">
@@ -64,13 +69,19 @@ function Home({ home, featured }) {
           </div>
 
           <div className="text-center row-start-1 col-start-1 md:row-auto md:col-auto md:text-right">
-            <Image
-              src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${featured.cover_image.url}`}
-              alt={`Cover Art: ${featured.title}`}
-              width="384"
-              height={calcImageHeight(384, featured.cover_image.width, featured.cover_image.height)}
-              quality="90"
-            />
+            <Link href={`/books/${featured.slug}`}>
+              <Image
+                src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${featured.cover_image.url}`}
+                alt={`Cover Art: ${featured.title}`}
+                width="384"
+                height={calcImageHeight(
+                  384,
+                  featured.cover_image.width,
+                  featured.cover_image.height,
+                )}
+                quality="90"
+              />
+            </Link>
           </div>
         </div>
       </Section>

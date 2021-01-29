@@ -22,6 +22,7 @@ function Book({ book }) {
       <Head>
         <title>{book.title}, a novel by Kate Bromley</title>
         <meta name="description" content={book.tagline} />
+        <link rel="canonical" href={`https://www.katebromley.com/books/${book.slug}`} />
       </Head>
 
       <div className="border-t-8 border-solid border-primary-main lg:mb-10" />
@@ -37,7 +38,9 @@ function Book({ book }) {
           />
         </div>
 
-        <h1 className="h2 text-center mb-12">{book.title}</h1>
+        <h1 className="h2 text-center mb-12">
+          <Link href={`/books/${book.slug}`}>{book.title}</Link>
+        </h1>
 
         <h5 className="h6 uppercase text-center mb-5">
           {isPreRelease ? 'Now Available for Pre-order' : 'Purchase the Book'}

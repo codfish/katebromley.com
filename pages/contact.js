@@ -66,6 +66,7 @@ function Contact() {
       <Head>
         <title>Contact Kate Bromley</title>
         <meta name="description" content="Contact Kate Bromley" />
+        <link rel="canonical" href="https://www.katebromley.com/contact" />
       </Head>
 
       <PageHeader>Contact</PageHeader>

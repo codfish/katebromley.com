@@ -22,6 +22,7 @@ function Books({ books }) {
       <Head>
         <title>Books by Kate Bromley</title>
         <meta name="description" content="A list of books written by Kate Bromley" />
+        <link rel="canonical" href="https://www.katebromley.com/books" />
       </Head>
 
       <PageHeader>Books</PageHeader>
