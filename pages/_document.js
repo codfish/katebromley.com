@@ -31,6 +31,9 @@ export default class MyDocument extends Document {
               `,
             }}
           />
+          {process.env.VERCEL_ENV !== 'production' && (
+            <meta name="robots" content="noindex, nofollow" />
+          )}
         </Head>
         <body>
           <Main />
