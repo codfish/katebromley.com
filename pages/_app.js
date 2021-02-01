@@ -30,7 +30,6 @@ const App = ({ Component, pageProps }) => {
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
         />
-        <meta name="robots" content="noindex, nofollow" />
         <meta name="theme-color" content="#ED6D90" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 

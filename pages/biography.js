@@ -17,6 +17,7 @@ function Biography({ biography, faqs }) {
       <Head>
         <title>About Kate Bromley</title>
         <meta name="description" content="More about Kate Bromley" />
+        <link rel="canonical" href="https://www.katebromley.com/biography" />
       </Head>
 
       <PageHeader>Biography</PageHeader>

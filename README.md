@@ -15,9 +15,24 @@
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies:
 
-```bash
+```sh
+npm install --no-save
+```
+
+Pull down environment variables for local development:
+
+```sh
+vercel env pull .env.local
+```
+
+**Reference**:
+https://nextjs.org/docs/basic-features/environment-variables#environment-variables-on-vercel
+
+Run the development server:
+
+```sh
 npm run dev
 # or
 yarn dev
