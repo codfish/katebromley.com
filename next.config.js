@@ -1,6 +1,4 @@
-const { PHASE_PRODUCTION_SERVER } = require('next/constants');
-
-module.exports = phase => ({
+module.exports = () => ({
   images: {
     domains: ['localhost', 'res.cloudinary.com'],
   },
@@ -8,7 +6,8 @@ module.exports = phase => ({
     return [
       {
         source: '/robots.txt',
-        destination: phase === PHASE_PRODUCTION_SERVER ? '/robots.prod.txt' : '/robots.dev.txt',
+        destination:
+          process.env.VERCEL_ENV === 'production' ? '/robots.prod.txt' : '/robots.dev.txt',
       },
     ];
   },
