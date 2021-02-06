@@ -48,43 +48,45 @@ function Home({ home, featured }) {
         </div>
       </Section>
 
-      <Section backdrop={{ color: 'gray', position: 'right' }}>
-        <div className="grid md:grid-cols-2 gap-10 md:gap-6">
-          <div className="flex justify-center items-center">
-            <div>
-              <h5 className="h5 text-primary-main uppercase mb-10">
-                {isReleased(featured.release_date) ? 'Latest Release' : 'Coming Soon'}
-              </h5>
-              <h2 className="h2 mb-4">
-                <Link href={`/books/${featured.slug}`}>{featured.title}</Link>
-              </h2>
-              <p className="body2 pb-10 md:w-10/12">{featured.tagline}</p>
+      {featured && (
+        <Section backdrop={{ color: 'gray', position: 'right' }}>
+          <div className="grid md:grid-cols-2 gap-10 md:gap-6">
+            <div className="flex justify-center items-center">
+              <div>
+                <h5 className="h5 text-primary-main uppercase mb-10">
+                  {isReleased(featured.release_date) ? 'Latest Release' : 'Coming Soon'}
+                </h5>
+                <h2 className="h2 mb-4">
+                  <Link href={`/books/${featured.slug}`}>{featured.title}</Link>
+                </h2>
+                <p className="body2 pb-10 md:w-10/12">{featured.tagline}</p>
 
-              <Button href={`/books/${featured.slug}`} className="mr-4" primary>
-                Learn More
-              </Button>
+                <Button href={`/books/${featured.slug}`} className="mr-4" primary>
+                  Learn More
+                </Button>
 
-              {/* <Button href="/books">See All Books</Button> */}
+                {/* <Button href="/books">See All Books</Button> */}
+              </div>
+            </div>
+
+            <div className="text-center row-start-1 col-start-1 md:row-auto md:col-auto md:text-right">
+              <Link href={`/books/${featured.slug}`}>
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${featured.cover_image.url}`}
+                  alt={`Cover Art: ${featured.title}`}
+                  width="384"
+                  height={calcImageHeight(
+                    384,
+                    featured.cover_image.width,
+                    featured.cover_image.height,
+                  )}
+                  quality="90"
+                />
+              </Link>
             </div>
           </div>
-
-          <div className="text-center row-start-1 col-start-1 md:row-auto md:col-auto md:text-right">
-            <Link href={`/books/${featured.slug}`}>
-              <Image
-                src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${featured.cover_image.url}`}
-                alt={`Cover Art: ${featured.title}`}
-                width="384"
-                height={calcImageHeight(
-                  384,
-                  featured.cover_image.width,
-                  featured.cover_image.height,
-                )}
-                quality="90"
-              />
-            </Link>
-          </div>
-        </div>
-      </Section>
+        </Section>
+      )}
 
       <SubscribeSection />
 
@@ -114,11 +116,18 @@ Home.propTypes = {
       height: PropTypes.number.isRequired,
     }).isRequired,
     tagline: PropTypes.string.isRequired,
-  }).isRequired,
+  }),
+};
+
+Home.defaultProps = {
+  featured: null,
 };
 
 export const getStaticProps = async () => {
-  const [home, featured] = await Promise.all([fetchAPI(`/home`), fetchAPI(`/books/featured`)]);
+  const [home, featured] = await Promise.all([
+    fetchAPI(`/home`),
+    fetchAPI(`/books/featured`).catch(() => null),
+  ]);
   return { props: { home, featured } };
 };
 
