@@ -23,6 +23,15 @@ function Book({ book }) {
         <title>{book.title}, a novel by Kate Bromley</title>
         <meta name="description" content={book.tagline} />
         <link rel="canonical" href={`https://www.katebromley.com/books/${book.slug}`} />
+        <meta property="og:title" content={book.title} />
+        <meta property="og:description" content={book.tagline} />
+        <meta
+          property="og:image"
+          content={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${book.cover_image.url}`}
+        />
+        <meta property="og:url" content={`https://www.katebromley.com/books/${book.slug}`} />
+        <meta name="twitter:title" content={book.title} />
+        <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
       <div className="border-t-8 border-solid border-primary-main lg:mb-10" />
