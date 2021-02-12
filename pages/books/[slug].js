@@ -24,12 +24,21 @@ function Book({ book }) {
         <meta name="description" content={book.tagline} />
         <link rel="canonical" href={`https://www.katebromley.com/books/${book.slug}`} />
         <meta property="og:title" content={book.title} />
+        <meta property="og:site_name" content="Kate Bromley Books" />
+        <meta property="og:locale" content="en_US" />
         <meta property="og:description" content={book.tagline} />
         <meta
           property="og:image"
           content={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${book.cover_image.url}`}
         />
         <meta property="og:url" content={`https://www.katebromley.com/books/${book.slug}`} />
+        {/* https://ogp.me/#type_book */}
+        <meta property="og:type" content="book" />
+        <meta property="book:isbn" content={book.isbn} />
+        <meta property="book:release_date" content={book.release_date} />
+        <meta property="book:tag" content="romcom" />
+        <meta property="book:tag" content="Romantic Comedy" />
+        <meta property="book:tag" content="Books" />
         <meta name="twitter:title" content={book.title} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
@@ -208,6 +217,7 @@ Book.propTypes = {
     }).isRequired,
     tagline: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
+    isbn: PropTypes.string.isRequired,
     onSale: PropTypes.bool,
     amazon_url: PropTypes.string,
     audible_url: PropTypes.string,
