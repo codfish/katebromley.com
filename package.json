@@ -10,29 +10,29 @@
     "lint": "cod-scripts lint"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.15",
-    "@babel/runtime": "^7.13.17",
-    "@sendgrid/mail": "^7.4.2",
+    "@apollo/client": "^3.3.19",
+    "@babel/runtime": "^7.14.0",
+    "@sendgrid/mail": "^7.4.4",
     "axios": "^0.21.1",
     "clsx": "^1.1.1",
     "deepmerge": "^4.2.2",
     "graphql": "^15.5.0",
-    "next": "^10.1.3",
+    "next": "^10.2.3",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-markdown": "^6.0.1",
+    "react-markdown": "^6.0.2",
     "react-slick": "^0.28.1",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
-    "@tailwindcss/forms": "^0.3.2",
-    "autoprefixer": "^10.2.5",
-    "cod-scripts": "^8.0.0",
-    "postcss": "^8.2.13",
+    "@tailwindcss/forms": "^0.3.3",
+    "autoprefixer": "^10.2.6",
+    "cod-scripts": "^9.1.1",
+    "postcss": "^8.3.0",
     "postcss-preset-env": "^6.7.0",
     "stylelint-config-recommended": "^5.0.0",
-    "tailwindcss": "^2.1.2"
+    "tailwindcss": "^2.1.4"
   },
   "eslintConfig": {
     "extends": [
