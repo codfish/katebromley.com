@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import Head from 'next/head';
-import Image from 'next/image';
+import { FaInstagram, FaTwitterSquare, FaAmazon, FaGoodreads } from 'react-icons/fa';
 import { fetchAPI } from '../lib/api';
 import PageHeader from '../components/PageHeader';
 import Section from '../components/Section';
@@ -193,21 +193,21 @@ function Contact() {
 
           <div className="flex flex-col justify-center text-center">
             <h5 className="h5 text-primary-main mb-6 uppercase">Follow along on social media</h5>
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center text-2xl">
               <Link href="https://www.instagram.com/katebromleywrites" className="mx-4">
-                <Image width="18" height="18" src="/instagram.svg" className="hover:opacity-50" />
+                <FaInstagram className="hover:text-primary-main" />
               </Link>
-              <Link href="https://www.facebook.com/katebromleywrites" className="mx-4">
-                <Image width="18" height="18" src="/facebook.svg" className="hover:opacity-50" />
+              <Link href="https://twitter.com/kbromleywrites" className="mx-4">
+                <FaTwitterSquare className="hover:text-primary-main" />
               </Link>
               <Link href="https://www.amazon.com/Kate-Bromley/e/B08GYP6TNY" className="mx-4">
-                <Image width="18" height="18" src="/amazon.svg" className="hover:opacity-50" />
+                <FaAmazon className="hover:text-primary-main" />
               </Link>
               <Link
                 href="https://www.goodreads.com/author/show/20590705.Kate_Bromley"
                 className="mx-4"
               >
-                <Image width="21" height="21" src="/goodreads.svg" className="hover:opacity-50" />
+                <FaGoodreads className="hover:text-primary-main" />
               </Link>
             </div>
           </div>

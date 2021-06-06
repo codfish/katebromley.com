@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Slider from 'react-slick';
+import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 
 /**
  * Small hack to avoid console warnings.
@@ -30,12 +31,12 @@ function Carousel({ children, className, ...other }) {
       slidesToScroll={1}
       prevArrow={
         <SlickButtonFix>
-          <img src="/chevron-left.svg" alt="previous quote" width="12" height="20" />
+          <BsChevronLeft />
         </SlickButtonFix>
       }
       nextArrow={
         <SlickButtonFix>
-          <img src="/chevron-right.svg" alt="next quote" width="12" height="20" />
+          <BsChevronRight />
         </SlickButtonFix>
       }
       className={classNames}
