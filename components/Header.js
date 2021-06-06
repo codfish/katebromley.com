@@ -68,13 +68,24 @@ const Header = ({ className, ...other }) => {
 
       {/* mobile nav dropdown menu */}
       <div
-        className="w-full absolute lg:hidden bg-white z-10 py-4 border-b-8 border-primary-main"
-        hidden={!menuOpen}
+        className={clsx(
+          styles.mobileNav,
+          'w-full absolute lg:hidden bg-white z-10 py-4 border-b-8 border-primary-main flex flex-col justify-center',
+          { hidden: !menuOpen },
+        )}
       >
+        <Link
+          href="/contact"
+          onClick={hideMenu}
+          className="mobile-nav-link text-center py-5 block w-full text-secondary-main hover:text-secondary-dark"
+        >
+          Talk Bookish to Me
+        </Link>
+
         <Link
           href="/books"
           onClick={hideMenu}
-          className="mobile-nav-link text-center py-3 block hover:text-secondary-dark"
+          className="mobile-nav-link text-center py-5 block w-full hover:text-secondary-dark"
         >
           Books
         </Link>
@@ -82,15 +93,15 @@ const Header = ({ className, ...other }) => {
         <Link
           href="/biography"
           onClick={hideMenu}
-          className="mobile-nav-link text-center py-3 block hover:text-secondary-dark"
+          className="mobile-nav-link text-center py-5 block w-full hover:text-secondary-dark"
         >
-          Bio
+          Biography
         </Link>
 
         <Link
           href="/contact"
           onClick={hideMenu}
-          className="mobile-nav-link text-center py-3 block hover:text-secondary-dark"
+          className="mobile-nav-link text-center py-5 block w-full hover:text-secondary-dark"
         >
           Contact
         </Link>

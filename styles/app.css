@@ -108,9 +108,18 @@ a::selection {
  * Slick Carousel overrides. Prefix selectors with `body` to achieve
  * priority over the default styles.
  */
-body .slick-prev,
-body .slick-next {
-  width: 12px;
+body .slick-arrow {
+  margin-top: 1rem;
+  color: var(--color-navy);
+}
+
+body .slick-arrow:hover {
+  color: var(--color-secondary-dark);
+}
+
+body .slick-arrow svg {
+  height: 20px;
+  width: 20px;
 }
 
 body .slick-prev::before,

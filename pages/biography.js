@@ -16,7 +16,10 @@ function Biography({ biography, faqs }) {
     <>
       <Head>
         <title>About Kate Bromley</title>
-        <meta name="description" content="More about Kate Bromley" />
+        <meta
+          name="description"
+          content="I'm a writer of romantic comedies and contemporary romance. I live in New York City with my husband, son, and my somewhat excessive collection of romance novels."
+        />
         <link rel="canonical" href="https://www.katebromley.com/biography" />
       </Head>
 
