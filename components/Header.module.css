@@ -20,6 +20,10 @@
   }
 }
 
+.mobileNav {
+  height: calc(100vh - 5rem);
+}
+
 .navLink {
   /*
     The .nav-link tailwind class applied also has line-height which seems to be
