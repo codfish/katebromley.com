@@ -75,7 +75,7 @@ const Header = ({ className, ...other }) => {
         )}
       >
         <Link
-          href="/contact"
+          href="/books/talk-bookish-to-me"
           onClick={hideMenu}
           className="mobile-nav-link text-center py-5 block w-full text-secondary-main hover:text-secondary-dark"
         >
