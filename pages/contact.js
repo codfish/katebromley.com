@@ -67,6 +67,10 @@ function Contact() {
         <title>Contact Kate Bromley</title>
         <meta name="description" content="Contact Kate Bromley" />
         <link rel="canonical" href="https://www.katebromley.com/contact" />
+        <script
+          async
+          src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
+        />
       </Head>
 
       <PageHeader>Contact</PageHeader>
