@@ -100,10 +100,6 @@ a::selection {
   background-color: var(--color-secondary-dark);
 }
 
-.grecaptcha-badge {
-  visibility: hidden;
-}
-
 /**
  * Slick Carousel overrides. Prefix selectors with `body` to achieve
  * priority over the default styles.
@@ -256,8 +252,4 @@ body .slick-dots li.slick-active button:before {
       @apply max-w-prose;
     }
   }
-}
-
-.text-recaptcha {
-  color: #9f9f99;
 }
