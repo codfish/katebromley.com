@@ -87,7 +87,6 @@ function Books({ books }) {
 
               <div className="flex justify-center items-center">
                 <div>
-                  <h5 className="h5 uppercase mb-4">Book 2</h5>
                   <h3 className="h3 mb-4">
                     <Link href={`/books/${secondBook.slug}`}>{secondBook.title}</Link>
                   </h3>
@@ -105,7 +104,6 @@ function Books({ books }) {
             <div className="grid md:grid-cols-2 gap-10 md:gap-6">
               <div className="flex justify-center items-center">
                 <div>
-                  <h5 className="h5 uppercase mb-4">Book 3</h5>
                   <h3 className="h3 mb-4">
                     <Link href={`/books/${thirdBook.slug}`}>{thirdBook.title}</Link>
                   </h3>
@@ -137,7 +135,7 @@ function Books({ books }) {
         </Section>
       )}
 
-      {books.length > 3 && (
+      {/* {books.length > 3 && (
         <>
           <Divider maxWidth="md" className="my-6" />
 
@@ -168,7 +166,7 @@ function Books({ books }) {
             </div>
           </Section>
         </>
-      )}
+      )} */}
 
       <SubscribeSection />
 
@@ -195,11 +193,14 @@ Books.propTypes = {
 };
 
 export const getStaticProps = async () => {
-  const books = await fetchAPI(`/books`);
+  const books = await fetchAPI('/books');
+  const sortedBooks = books.sort(
+    (a, b) => Number(new Date(b.release_date)) - Number(new Date(a.release_date)),
+  );
 
   return {
     props: {
-      books,
+      books: sortedBooks,
     },
   };
 };
