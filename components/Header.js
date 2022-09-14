@@ -56,10 +56,10 @@ const Header = ({ className, ...other }) => {
           </div>
 
           <Link
-            href="/books/talk-bookish-to-me"
+            href="/books/here-for-the-drama"
             className={`nav-link p-10 border-gray-border border-l h-full hover:text-secondary-dark hover:bg-gray-background ${styles.latest}`}
           >
-            Talk Bookish to Me
+            Here for the Drama
           </Link>
         </div>
 
