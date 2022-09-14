@@ -10,12 +10,59 @@ import Link from '../components/Link';
 import Button from '../components/Button';
 import { isReleased, calcImageHeight } from '../lib/utils';
 
-function Home({ home, featured }) {
+function Home({ home, books, preOrderAvailable }) {
   return (
     <>
       <Head>
         <link rel="canonical" href="https://www.katebromley.com" />
       </Head>
+
+      {books.map((book, index) => {
+        // alternate order of book & text, starting with the book being on the left
+        const bookColClasses =
+          index % 2 === 0
+            ? 'text-center row-start-1 col-start-1 md:text-left' // book is on the left
+            : 'text-center row-start-1 col-start-1 md:row-auto md:col-auto md:text-right'; // book is on the right
+
+        return (
+          <Section backdrop={{ color: 'gray', position: index % 2 === 0 ? 'left' : 'right' }}>
+            <div className="grid md:grid-cols-2 gap-10 md:gap-6">
+              <div className="flex justify-center items-center">
+                <div>
+                  {index === 0 && (
+                    <h5 className="h5 text-primary-main uppercase mb-10">
+                      {isReleased(book.release_date) ? 'Latest Release' : 'Coming Soon'}
+                    </h5>
+                  )}
+                  {index === 1 && preOrderAvailable && isReleased(book.release_date) && (
+                    <h5 className="h5 text-primary-main uppercase mb-10">Latest Release</h5>
+                  )}
+                  <h2 className="h2 mb-4">
+                    <Link href={`/books/${book.slug}`}>{book.title}</Link>
+                  </h2>
+                  <p className="body2 pb-10 md:w-10/12">{book.tagline}</p>
+
+                  <Button href={`/books/${book.slug}`} className="mr-4" primary>
+                    Learn More
+                  </Button>
+                </div>
+              </div>
+
+              <div className={bookColClasses}>
+                <Link href={`/books/${book.slug}`}>
+                  <Image
+                    src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${book.cover_image.url}`}
+                    alt={`Cover Art: ${book.title}`}
+                    width="384"
+                    height={calcImageHeight(384, book.cover_image.width, book.cover_image.height)}
+                    quality="90"
+                  />
+                </Link>
+              </div>
+            </div>
+          </Section>
+        );
+      })}
 
       <Section backdrop={{ color: 'primary', position: 'left' }}>
         <div className="grid md:grid-cols-2 gap-10 md:gap-6">
@@ -48,46 +95,6 @@ function Home({ home, featured }) {
         </div>
       </Section>
 
-      {featured && (
-        <Section backdrop={{ color: 'gray', position: 'right' }}>
-          <div className="grid md:grid-cols-2 gap-10 md:gap-6">
-            <div className="flex justify-center items-center">
-              <div>
-                <h5 className="h5 text-primary-main uppercase mb-10">
-                  {isReleased(featured.release_date) ? 'Latest Release' : 'Coming Soon'}
-                </h5>
-                <h2 className="h2 mb-4">
-                  <Link href={`/books/${featured.slug}`}>{featured.title}</Link>
-                </h2>
-                <p className="body2 pb-10 md:w-10/12">{featured.tagline}</p>
-
-                <Button href={`/books/${featured.slug}`} className="mr-4" primary>
-                  Learn More
-                </Button>
-
-                {/* <Button href="/books">See All Books</Button> */}
-              </div>
-            </div>
-
-            <div className="text-center row-start-1 col-start-1 md:row-auto md:col-auto md:text-right">
-              <Link href={`/books/${featured.slug}`}>
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${featured.cover_image.url}`}
-                  alt={`Cover Art: ${featured.title}`}
-                  width="384"
-                  height={calcImageHeight(
-                    384,
-                    featured.cover_image.width,
-                    featured.cover_image.height,
-                  )}
-                  quality="90"
-                />
-              </Link>
-            </div>
-          </div>
-        </Section>
-      )}
-
       <SubscribeSection />
 
       <SocialSection />
@@ -106,29 +113,35 @@ Home.propTypes = {
       height: PropTypes.number.isRequired,
     }).isRequired,
   }).isRequired,
-  featured: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    release_date: PropTypes.string.isRequired,
-    slug: PropTypes.string.isRequired,
-    cover_image: PropTypes.shape({
-      url: PropTypes.string.isRequired,
-      width: PropTypes.number.isRequired,
-      height: PropTypes.number.isRequired,
-    }).isRequired,
-    tagline: PropTypes.string.isRequired,
-  }),
+  books: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      release_date: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
+      cover_image: PropTypes.shape({
+        url: PropTypes.string.isRequired,
+        width: PropTypes.number.isRequired,
+        height: PropTypes.number.isRequired,
+      }).isRequired,
+      tagline: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  preOrderAvailable: PropTypes.bool,
 };
 
 Home.defaultProps = {
-  featured: null,
+  preOrderAvailable: false,
 };
 
 export const getStaticProps = async () => {
-  const [home, featured] = await Promise.all([
+  const [home, books] = await Promise.all([
     fetchAPI(`/home`),
-    fetchAPI(`/books/featured`).catch(() => null),
+    fetchAPI(`/books`).catch(() => null), // todo, only "featured books"
   ]);
-  return { props: { home, featured } };
+  const sortedBooks = books.sort(
+    (a, b) => Number(new Date(b.release_date)) - Number(new Date(a.release_date)),
+  );
+  return { props: { home, books: sortedBooks } };
 };
 
 export default Home;
