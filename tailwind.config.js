@@ -19,7 +19,7 @@ const josefin = ['JosefinSans', ...sans];
 const munken = ['MunkenSans', ...sans];
 
 module.exports = {
-  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     screens: {
       sm: '640px', // @screen sm => @media (min-width: 640px) { ... }
@@ -28,8 +28,8 @@ module.exports = {
       xl: '1200px', // @screen xl => @media (min-width: 1280px) { ... }
     },
     fontFamily: {
-      h1: macklin,
-      h2: macklin,
+      h1: josefin,
+      h2: josefin,
       h3: macklin,
       h4: macklin,
       h5: josefin,
@@ -45,6 +45,9 @@ module.exports = {
       link: josefin,
       caption: munken,
       input: munken,
+      macklin,
+      josefin,
+      munken,
     },
     colors: {
       black: '#000',

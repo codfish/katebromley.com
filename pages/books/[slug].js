@@ -2,40 +2,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Image from 'next/image';
-import ReactMarkdown from 'react-markdown';
-import clsx from 'clsx';
-import { fetchAPI } from '../../lib/api';
+import contentful, {transformBook} from '../../lib/contentful';
 import { formatDateStr, isReleased, calcImageHeight } from '../../lib/utils';
 import SubscribeSection from '../../components/SubscribeSection';
 import SocialSection from '../../components/SocialSection';
-import Carousel from '../../components/Carousel';
 import Section from '../../components/Section';
 import Divider from '../../components/Divider';
 import Link from '../../components/Link';
 import styles from './slug.module.css';
 
 function Book({ book }) {
-  const isPreRelease = !isReleased(book.release_date);
+  const isPreRelease = !isReleased(book.releaseDate);
 
   return (
     <article>
       <Head>
-        <title>{book.title}, a novel by Kate Bromley</title>
+        <title>{`${book.title}, a novel by Kate Bromley`}</title>
         <meta name="description" content={book.tagline} />
         <link rel="canonical" href={`https://www.katebromley.com/books/${book.slug}`} />
         <meta property="og:title" content={book.title} />
         <meta property="og:site_name" content="Kate Bromley Books" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:description" content={book.tagline} />
-        <meta
-          property="og:image"
-          content={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${book.cover_image.url}`}
-        />
+        <meta property="og:image" content={book.coverImage.url} />
         <meta property="og:url" content={`https://www.katebromley.com/books/${book.slug}`} />
         {/* https://ogp.me/#type_book */}
         <meta property="og:type" content="book" />
         <meta property="book:isbn" content={book.isbn} />
-        <meta property="book:release_date" content={book.release_date} />
+        <meta property="book:release_date" content={book.releaseDate} />
+        <meta property="book:tag" content="bookstagram" />
         <meta property="book:tag" content="romcom" />
         <meta property="book:tag" content="Romantic Comedy" />
         <meta property="book:tag" content="Books" />
@@ -48,11 +43,13 @@ function Book({ book }) {
       <Section noBorder>
         <div className="text-center mb-10 lg:mb-16">
           <Image
-            src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${book.cover_image.url}`}
-            alt={book.cover_image.alternativeText || `Cover Art: ${book.title}`}
+            className='inline-block'
+            src={book.coverImage.url}
+            alt={book.coverImage.alternativeText || `Cover Art: ${book.title}`}
             width="384"
-            height={calcImageHeight(384, book.cover_image.width, book.cover_image.height)}
+            height={calcImageHeight(384, book.coverImage.width, book.coverImage.height)}
             quality="90"
+            priority
           />
         </div>
 
@@ -65,87 +62,97 @@ function Book({ book }) {
         </h5>
 
         <div className="text-center mb-8">
-          <ul className="inline-flex flex-wrap justify-center">
-            {book.amazon_url && (
+          <ul className="flex flex-wrap justify-center">
+            {book.amazonUrl && (
               <li className={styles.purchaseListItem}>
-                <a href={book.amazon_url} className="link hover:underline">
+                <a href={book.amazonUrl} className="link">
                   Amazon
                 </a>
               </li>
             )}
-            {book.barnes_noble_url && (
+            {book.barnesNobleUrl && (
               <li className={styles.purchaseListItem}>
-                <a href={book.barnes_noble_url} className="link hover:underline">
+                <a href={book.barnesNobleUrl} className="link">
                   B&N
                 </a>
               </li>
             )}
-            {book.apple_books_url && (
+            {book.appleBooksUrl && (
               <li className={styles.purchaseListItem}>
-                <a href={book.apple_books_url} className="link hover:underline">
+                <a href={book.appleBooksUrl} className="link">
                   Apple Books
                 </a>
               </li>
             )}
-            {book.google_play_url && (
+            {book.googlePlayUrl && (
               <li className={styles.purchaseListItem}>
-                <a href={book.google_play_url} className="link hover:underline">
+                <a href={book.googlePlayUrl} className="link">
                   Google Play
                 </a>
               </li>
             )}
-            {book.audible_url && (
+            {book.audibleUrl && (
               <li className={styles.purchaseListItem}>
-                <a href={book.audible_url} className="link hover:underline">
+                <a href={book.audibleUrl} className="link">
                   Audible
                 </a>
               </li>
             )}
-            {book.walmart_url && (
+            {book.targetUrl && (
               <li className={styles.purchaseListItem}>
-                <a href={book.walmart_url} className="link hover:underline">
+                <a href={book.targetUrl} className="link">
+                  Target
+                </a>
+              </li>
+            )}
+          </ul>
+
+          <ul className="flex flex-wrap justify-center md:mt-5">
+            {book.walmartUrl && (
+              <li className={styles.purchaseListItem}>
+                <a href={book.walmartUrl} className="link">
                   Walmart
                 </a>
               </li>
             )}
-            {book.indiebound_url && (
+            {book.indieboundUrl && (
               <li className={styles.purchaseListItem}>
-                <a href={book.indiebound_url} className="link hover:underline">
+                <a href={book.indieboundUrl} className="link">
                   IndieBound
                 </a>
               </li>
             )}
-            {book.indigo_url && (
+            {book.indigoUrl && (
               <li className={styles.purchaseListItem}>
-                <a href={book.indigo_url} className="link hover:underline">
+                <a href={book.indigoUrl} className="link">
                   Indigo
                 </a>
               </li>
             )}
-            {book.kobo_url && (
+            {book.koboUrl && (
               <li className={styles.purchaseListItem}>
-                <a href={book.kobo_url} className="link hover:underline">
+                <a href={book.koboUrl} className="link">
                   Kobo
                 </a>
               </li>
             )}
-            {book.libro_fm_url && (
+            {book.libroFmUrl && (
               <li className={styles.purchaseListItem}>
-                <a href={book.libro_fm_url} className="link hover:underline">
+                <a href={book.libroFmUrl} className="link">
                   Libro.fm
                 </a>
               </li>
             )}
-            {book.chirp_url && (
+            {book.chirpUrl && (
               <li className={styles.purchaseListItem}>
-                <a href={book.chirp_url} className="link hover:underline">
+                <a href={book.chirpUrl} className="link">
                   Chirp
                 </a>
               </li>
             )}
-            {book.bookshop_url && (
+            {book.bookshopUrl && (
               <li className={styles.purchaseListItem}>
-                <a href={book.bookshop_url} className="link hover:underline">
+                <a href={book.bookshopUrl} className="link">
                   Bookshop
                 </a>
               </li>
@@ -154,7 +161,7 @@ function Book({ book }) {
         </div>
 
         {isPreRelease && (
-          <p className="body1 text-center">Coming {formatDateStr(book.release_date)}</p>
+          <p className="body1 text-center">Coming {formatDateStr(book.releaseDate)}</p>
         )}
       </Section>
 
@@ -162,38 +169,37 @@ function Book({ book }) {
 
       <Section>
         <div className="max-w-kb-prose mx-auto">
-          <h5 className="h6 uppercase mb-10">More About the Book</h5>
+          {/* <h5 className="h6 uppercase mb-10">More About the Book</h5> */}
           <p className="body1 mb-6">{book.tagline}</p>
-          <ReactMarkdown className={`body2 ${styles.description}`}>
-            {book.description}
-          </ReactMarkdown>
+          <div className={`body2 ${styles.description}`} dangerouslySetInnerHTML={{
+            __html: book.description,
+          }} />
         </div>
       </Section>
 
       {book.praise && (
         <section
-          className={clsx(styles.praise, 'bg-gray-light px-10 pt-8 pb-14 md:px-32 md:pb-20')}
+          className={`${styles.praise} bg-gray-light px-10 py-10 md:py-14 md:px-32 md:pb-20`}
         >
-          <Carousel>
+            <h3 className="h5 uppercase text-primary-main md:mb-6 text-center">Praise & Press</h3>
+
             {book.praise.map(praise => (
-              <figure className="py-2 px-2 md:pt-10 md:pb-8 md:px-14 text-center" key={praise.id}>
-                <h5 className="h5 uppercase text-primary-main mb-6">{praise.type}</h5>
-                <blockquote className="body1 mb-6" cite={praise.cite}>
-                  {praise.quote}
-                </blockquote>
+              <figure className="py-8 md:px-14 text-center" key={praise.id}>
+                <blockquote className="text-lg font-body1 md:body1 mb-4" cite={praise.cite} dangerouslySetInnerHTML={{
+                  __html: praise.quote,
+                }} />
                 <figcaption>
                   <h4 className="text1 mb-2">
-                    {praise.source_url ? (
-                      <Link href={praise.source_url}>{praise.source_name}</Link>
+                    {praise.cite || praise.sourceUrl ? (
+                      <Link href={praise.cite || praise.sourceUrl} target="_blank">{praise.sourceName}</Link>
                     ) : (
-                      praise.source_name
+                      praise.sourceName
                     )}
                   </h4>
-                  <small className="text2">{praise.source_description}</small>
+                  <small className="text2">{praise.sourceDescription}</small>
                 </figcaption>
               </figure>
             ))}
-          </Carousel>
         </section>
       )}
 
@@ -207,9 +213,9 @@ function Book({ book }) {
 Book.propTypes = {
   book: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    release_date: PropTypes.string.isRequired,
+    releaseDate: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
-    cover_image: PropTypes.shape({
+    coverImage: PropTypes.shape({
       url: PropTypes.string.isRequired,
       alternativeText: PropTypes.string,
       width: PropTypes.number.isRequired,
@@ -219,25 +225,25 @@ Book.propTypes = {
     description: PropTypes.string.isRequired,
     isbn: PropTypes.string.isRequired,
     onSale: PropTypes.bool,
-    amazon_url: PropTypes.string,
-    audible_url: PropTypes.string,
-    barnes_noble_url: PropTypes.string,
-    indiebound_url: PropTypes.string,
-    indigo_url: PropTypes.string,
-    kobo_url: PropTypes.string,
-    apple_books_url: PropTypes.string,
-    google_play_url: PropTypes.string,
-    libro_fm_url: PropTypes.string,
-    chirp_url: PropTypes.string,
-    bookshop_url: PropTypes.string,
-    walmart_url: PropTypes.string,
+    amazonUrl: PropTypes.string,
+    audibleUrl: PropTypes.string,
+    barnesNobleUrl: PropTypes.string,
+    indieboundUrl: PropTypes.string,
+    indigoUrl: PropTypes.string,
+    koboUrl: PropTypes.string,
+    appleBooksUrl: PropTypes.string,
+    googlePlayUrl: PropTypes.string,
+    libroFmUrl: PropTypes.string,
+    chirpUrl: PropTypes.string,
+    bookshopUrl: PropTypes.string,
+    walmartUrl: PropTypes.string,
     praise: PropTypes.arrayOf(
       PropTypes.shape({
         quote: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired,
-        source_name: PropTypes.string.isRequired,
-        source_description: PropTypes.string.isRequired,
-        source_url: PropTypes.string,
+        sourceName: PropTypes.string.isRequired,
+        sourceDescription: PropTypes.string.isRequired,
+        sourceUrl: PropTypes.string,
         cite: PropTypes.string,
       }),
     ),
@@ -246,7 +252,13 @@ Book.propTypes = {
 
 export const getStaticProps = async ctx => {
   const { slug } = ctx.params;
-  const book = await fetchAPI(`/books/${slug}`);
+  const book = await contentful
+    .getEntries({
+      content_type: 'book',
+      'fields.slug': slug,
+    })
+    .then(entries => transformBook(entries.items[0]))
+    .catch(err => console.error(err));
 
   return {
     props: {
@@ -257,9 +269,13 @@ export const getStaticProps = async ctx => {
 };
 
 export async function getStaticPaths() {
-  const books = await fetchAPI(`/books`);
+  const books = await contentful
+    .getEntries({ content_type: 'book' })
+    .then(entries => entries.items)
+    .catch(err => console.error(err));
+
   return {
-    paths: books.map(b => ({ params: { slug: b.slug } })),
+    paths: books.map(book => ({ params: { slug: book.fields.slug } })),
     // TODO: loading screen for fallback?
     fallback: false, // See the "fallback" section below
   };

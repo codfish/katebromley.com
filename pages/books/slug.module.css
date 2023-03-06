@@ -17,11 +17,3 @@
 .description p:last-child {
   margin-bottom: 0;
 }
-
-/* Only load bg image for large screens */
-@screen lg {
-  .praise {
-    background: theme('colors.gray.light') url('/praise-background.jpg') no-repeat center center;
-    background-size: cover;
-  }
-}

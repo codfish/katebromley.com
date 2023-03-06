@@ -7,12 +7,12 @@ import NextLink from 'next/link';
 function Link({ href, children, className: classNameProp, ...other }) {
   const router = useRouter();
   const pathname = typeof href === 'string' ? href : href.pathname;
-  const className = clsx(classNameProp, {
+  const className = clsx('transition-colors duration-300', classNameProp, {
     active: router.pathname === pathname,
   });
 
   return (
-    <NextLink href={href}>
+    <NextLink href={href} legacyBehavior>
       <a className={className} {...other}>
         {children}
       </a>

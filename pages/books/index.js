@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Image from 'next/image';
-import { fetchAPI } from '../../lib/api';
-import { isReleased, calcImageHeight } from '../../lib/utils';
+import contentful, { transformBook } from '../../lib/contentful';
+import { formatDateStr, isReleased, calcImageHeight } from '../../lib/utils';
 import SubscribeSection from '../../components/SubscribeSection';
 import SocialSection from '../../components/SocialSection';
 import Divider from '../../components/Divider';
@@ -32,15 +32,15 @@ function Books({ books }) {
           <div className="flex items-center">
             <div>
               <h5 className="h5 text-primary-main uppercase mb-10">
-                {isReleased(latestRelease.release_date) ? 'Latest Release' : 'Coming Soon'}
+                {isReleased(latestRelease.releaseDate) ? 'Latest Release' : `Coming ${formatDateStr(latestRelease.releaseDate)}`}
               </h5>
-              <h2 className="h2 mb-4">
-                <Link href={`/books/${latestRelease.slug}`}>{latestRelease.title}</Link>
+              <h2 className="title text-5xl mb-4">
+                <Link href={`/books/${latestRelease.slug}`} className="hover:text-secondary-dark">{latestRelease.title}</Link>
               </h2>
               <p className="body2 pb-10 md:w-10/12">{latestRelease.tagline}</p>
 
               <Button href={`/books/${latestRelease.slug}`} className="mr-4" primary>
-                Learn More
+                {isReleased(latestRelease.releaseDate) ? 'Buy Now' : 'Pre-order Now'}
               </Button>
             </div>
           </div>
@@ -48,13 +48,13 @@ function Books({ books }) {
           <div className="text-center row-start-1 col-start-1 md:row-auto md:col-auto md:text-right">
             <Link href={`/books/${latestRelease.slug}`}>
               <Image
-                src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${latestRelease.cover_image.url}`}
+                src={latestRelease.coverImage.url}
                 alt={`Cover Art: ${latestRelease.title}`}
                 width="384"
                 height={calcImageHeight(
                   384,
-                  latestRelease.cover_image.width,
-                  latestRelease.cover_image.height,
+                  latestRelease.coverImage.width,
+                  latestRelease.coverImage.height,
                 )}
                 quality="90"
               />
@@ -72,13 +72,13 @@ function Books({ books }) {
               <div className="text-center md:text-left md:row-auto md:col-auto">
                 <Link href={`/books/${secondBook.slug}`}>
                   <Image
-                    src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${secondBook.cover_image.url}`}
+                    src={secondBook.coverImage.url}
                     alt={`Cover Art: ${secondBook.title}`}
                     width="282"
                     height={calcImageHeight(
                       282,
-                      secondBook.cover_image.width,
-                      secondBook.cover_image.height,
+                      secondBook.coverImage.width,
+                      secondBook.coverImage.height,
                     )}
                     quality="90"
                   />
@@ -87,13 +87,13 @@ function Books({ books }) {
 
               <div className="flex justify-center items-center">
                 <div>
-                  <h3 className="h3 mb-4">
-                    <Link href={`/books/${secondBook.slug}`}>{secondBook.title}</Link>
+                  <h3 className="title text-3xl mb-4">
+                    <Link href={`/books/${secondBook.slug}`} className="hover:text-secondary-dark">{secondBook.title}</Link>
                   </h3>
                   <p className="body2 mb-8">{secondBook.tagline}</p>
 
                   <Link href={`/books/${secondBook.slug}`} className="cta-link link block">
-                    Learn More
+                    Buy Now
                   </Link>
                 </div>
               </div>
@@ -104,13 +104,13 @@ function Books({ books }) {
             <div className="grid md:grid-cols-2 gap-10 md:gap-6">
               <div className="flex justify-center items-center">
                 <div>
-                  <h3 className="h3 mb-4">
-                    <Link href={`/books/${thirdBook.slug}`}>{thirdBook.title}</Link>
+                  <h3 className="title text-3xl mb-4">
+                    <Link href={`/books/${thirdBook.slug}`} className="hover:text-secondary-dark">{thirdBook.title}</Link>
                   </h3>
                   <p className="body2 mb-8">{thirdBook.tagline}</p>
 
                   <Link href={`/books/${thirdBook.slug}`} className="cta-link link block">
-                    Learn More
+                    Buy Now
                   </Link>
                 </div>
               </div>
@@ -118,13 +118,13 @@ function Books({ books }) {
               <div className="text-center md:text-right row-start-1 col-start-1 md:row-auto md:col-auto">
                 <Link href={`/books/${thirdBook.slug}`}>
                   <Image
-                    src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${thirdBook.cover_image.url}`}
+                    src={thirdBook.coverImage.url}
                     alt={`Cover Art: ${thirdBook.title}`}
                     width="282"
                     height={calcImageHeight(
                       282,
-                      thirdBook.cover_image.width,
-                      thirdBook.cover_image.height,
+                      thirdBook.coverImage.width,
+                      thirdBook.coverImage.height,
                     )}
                     quality="90"
                   />
@@ -148,18 +148,18 @@ function Books({ books }) {
                 <div className="flex flex-col" key={book.slug}>
                   <Link href={`/books/${book.slug}`}>
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${book.cover_image.url}`}
+                      src={book.coverImage.url}
                       alt={`Cover Art: ${book.title}`}
                       width="180"
-                      height={calcImageHeight(180, book.cover_image.width, book.cover_image.height)}
+                      height={calcImageHeight(180, book.coverImage.width, book.coverImage.height)}
                       quality="90"
                     />
                   </Link>
                   <h4 className="text1 mb-2">
-                    <Link href={`/books/${book.slug}`}>{book.title}</Link>
+                    <Link href={`/books/${book.slug}`} className="hover:text-secondary-dark">{book.title}</Link>
                   </h4>
                   <Link href={`/books/${book.slug}`} className="link">
-                    Learn More
+                    Buy Now
                   </Link>
                 </div>
               ))}
@@ -179,9 +179,9 @@ Books.propTypes = {
   books: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
-      release_date: PropTypes.string.isRequired,
+      releaseDate: PropTypes.string.isRequired,
       slug: PropTypes.string.isRequired,
-      cover_image: PropTypes.shape({
+      coverImage: PropTypes.shape({
         url: PropTypes.string.isRequired,
         alternativeText: PropTypes.string,
         width: PropTypes.number.isRequired,
@@ -193,14 +193,14 @@ Books.propTypes = {
 };
 
 export const getStaticProps = async () => {
-  const books = await fetchAPI('/books');
-  const sortedBooks = books.sort(
-    (a, b) => Number(new Date(b.release_date)) - Number(new Date(a.release_date)),
-  );
+  const books = await contentful
+    .getEntries({ content_type: 'book', order: '-fields.releaseDate' })
+    .then(entries => entries.items.map(transformBook))
+    .catch(err => console.log(err));
 
   return {
     props: {
-      books: sortedBooks,
+      books,
     },
   };
 };

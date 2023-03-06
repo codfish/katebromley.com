@@ -51,7 +51,7 @@ const SubscribeSection = ({ className, ...other }) => (
         method="post"
         id="mc-embedded-subscribe-form"
         name="mc-embedded-subscribe-form"
-        className="validate"
+        className="validate text-center"
         target="_blank"
       >
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}

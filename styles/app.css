@@ -101,49 +101,6 @@ a::selection {
 }
 
 /**
- * Slick Carousel overrides. Prefix selectors with `body` to achieve
- * priority over the default styles.
- */
-body .slick-arrow {
-  margin-top: 1rem;
-  color: var(--color-navy);
-}
-
-body .slick-arrow:hover {
-  color: var(--color-secondary-dark);
-}
-
-body .slick-arrow svg {
-  height: 20px;
-  width: 20px;
-}
-
-body .slick-prev::before,
-body .slick-next::before {
-  display: none;
-}
-
-body .slick-dots li {
-  margin: 0;
-}
-
-body .slick-dots li button:before {
-  color: var(--color-navy);
-  font-size: 10px;
-  opacity: 1;
-}
-
-body .slick-dots li button:before {
-  color: var(--color-navy);
-  font-size: 10px;
-}
-
-body .slick-dots li button:hover:before,
-body .slick-dots li.slick-active button:before {
-  color: var(--color-primary-main);
-}
-
-/**
  * This injects Tailwind's base styles and any base styles registered by
  * plugins.
  */
@@ -165,91 +122,89 @@ body .slick-dots li.slick-active button:before {
  * Text components. Using classes instead of html element selectors so we can
  * easily target responsive variants, i.e. `className="h2 md:h1"`.
  */
-@layer components {
-  @variants responsive {
-    .h1 {
-      @apply font-h1 text-h1 font-extralight;
-    }
-
-    .h2 {
-      @apply font-h2 text-h2 font-extralight;
-    }
-
-    .h3 {
-      @apply font-h3 text-h3 font-extralight;
-    }
-
-    .h4 {
-      @apply font-h4 text-h4 font-extralight;
-    }
-
-    .h5 {
-      @apply font-h5 text-h5 font-semibold;
-    }
-
-    .h6 {
-      @apply font-h6 text-h6 text-gray-dark font-semibold;
-    }
-
-    .body1 {
-      @apply font-body1 text-body1 text-gray-dark font-thin;
-    }
-
-    .body2 {
-      @apply font-body2 text-body2 text-gray-dark;
-    }
-
-    .body3 {
-      @apply font-body3 text-body3;
-    }
-
-    .text1 {
-      @apply font-text1 text-text1 text-gray-dark;
-    }
-
-    .text2 {
-      @apply font-text2 text-text2 text-gray-dark;
-    }
-
-    .callout {
-      @apply font-callout text-callout text-gray-dark font-thin;
-    }
-
-    .button {
-      @apply font-button text-button font-semibold uppercase;
-      transition: all 0.3s;
-    }
-
-    .nav-link {
-      @apply text-nav-link font-nav-link text-gray-dark font-semibold uppercase;
-    }
-
-    .mobile-nav-link {
-      @apply text-mobile-nav-link font-nav-link text-gray-dark font-semibold uppercase;
-    }
-
-    .link {
-      @apply font-link text-link text-secondary-main hover:text-secondary-dark font-semibold uppercase;
-    }
-
-    .caption {
-      @apply font-caption text-caption text-gray-dark;
-    }
-
-    .input {
-      @apply font-input text-input text-gray-dark w-full px-2 py-3 border-gray-border focus:ring-secondary-main focus:border-secondary-main;
-    }
-
-    .textarea {
-      @apply font-input text-input text-gray-dark w-full px-2 py-3 border-gray-border border-b-2 focus:ring-secondary-main focus:border-secondary-main;
-    }
-  }
-}
-
 @layer utilities {
-  @variants responsive {
-    .max-w-kb-prose {
-      @apply max-w-prose;
-    }
+  .title {
+    @apply font-josefin;
+  }
+
+  .h1 {
+    @apply font-h1 text-h1 font-extralight;
+  }
+
+  .h2 {
+    @apply font-h2 text-h2 font-extralight;
+  }
+
+  .h3 {
+    @apply font-h3 text-h3 font-extralight;
+  }
+
+  .h4 {
+    @apply font-h4 text-h4 font-extralight;
+  }
+
+  .h5 {
+    @apply font-h5 text-h5 font-semibold;
+  }
+
+  .h6 {
+    @apply font-h6 text-h6 text-gray-dark font-semibold;
+  }
+
+  .body1 {
+    @apply font-body1 text-body1 text-gray-dark font-thin;
+  }
+
+  .body2 {
+    @apply font-body2 text-body2 text-gray-dark;
+  }
+
+  .body3 {
+    @apply font-body3 text-body3;
+  }
+
+  .text1 {
+    @apply font-text1 text-text1 text-gray-dark;
+  }
+
+  .text2 {
+    @apply font-text2 text-text2 text-gray-dark;
+  }
+
+  .callout {
+    @apply font-callout text-callout text-gray-dark font-thin;
+  }
+
+  .button {
+    @apply font-button text-button font-semibold uppercase;
+    transition: all 0.3s;
+  }
+
+  .nav-link {
+    @apply text-nav-link font-nav-link text-gray-dark font-semibold uppercase;
+  }
+
+  .mobile-nav-link {
+    @apply text-mobile-nav-link font-nav-link text-gray-dark font-semibold uppercase;
+  }
+
+  .link {
+    @apply font-link text-link text-secondary-main hover:text-secondary-dark transition-colors duration-300 font-semibold uppercase;
+  }
+
+  .caption {
+    @apply font-caption text-caption text-gray-dark;
+  }
+
+  .input {
+    @apply font-input text-input text-gray-dark w-full px-2 py-3 border-gray-border focus:ring-secondary-main focus:border-secondary-main;
+  }
+
+  .textarea {
+    @apply font-input text-input text-gray-dark w-full px-2 py-3 border-gray-border border-b-2 focus:ring-secondary-main focus:border-secondary-main;
+  }
+
+  .max-w-kb-prose {
+    @apply max-w-prose;
   }
 }
