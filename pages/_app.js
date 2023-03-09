@@ -4,8 +4,6 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { pageview } from '../lib/gtag';
 import Layout from '../components/Layout';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import '../styles/app.css';
 
 const App = ({ Component, pageProps }) => {
@@ -35,7 +33,7 @@ const App = ({ Component, pageProps }) => {
 
         <meta
           name="description"
-          content="Kate Bromley author of Talk Bookish to Me, a rom-com novel."
+          content="Kate Bromley is the rom-com author of Talk Bookish to Me, Here for the Drama, and Ciao For Now."
         />
       </Head>
 

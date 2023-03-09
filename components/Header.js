@@ -56,10 +56,10 @@ const Header = ({ className, ...other }) => {
           </div>
 
           <Link
-            href="/books/here-for-the-drama"
+            href="/books/ciao-for-now"
             className={`nav-link p-10 border-gray-border border-l h-full hover:text-secondary-dark hover:bg-gray-background ${styles.latest}`}
           >
-            Here for the Drama
+            Ciao For Now
           </Link>
         </div>
 
@@ -75,11 +75,11 @@ const Header = ({ className, ...other }) => {
         )}
       >
         <Link
-          href="/books/talk-bookish-to-me"
+          href="/books/ciao-for-now"
           onClick={hideMenu}
           className="mobile-nav-link text-center py-5 block w-full text-secondary-main hover:text-secondary-dark"
         >
-          Talk Bookish to Me
+          Ciao For Now
         </Link>
 
         <Link
