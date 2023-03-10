@@ -2,14 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
 import Head from 'next/head';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import Section from '../components/Section';
 import SubscribeSection from '../components/SubscribeSection';
 import SocialSection from '../components/SocialSection';
 import Link from '../components/Link';
 import Button from '../components/Button';
 import { formatDateStr, isReleased, calcImageHeight } from '../lib/utils';
-import contentful, { transformBook, transformAuthor } from '../lib/contentful';
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { fetchKateBromley, fetchBooks } from '../lib/contentful';
+
+export const getStaticProps = async () => {
+  const [aboutKate, books] = await Promise.all([
+    fetchKateBromley(),
+    fetchBooks({ 'fields.featuredBook': true }),
+  ])
+  .catch(err => console.log(err));
+
+  return { props: { aboutKate, books } };
+};
 
 function Home({ aboutKate, books, preOrderAvailable }) {
   return (
@@ -136,26 +146,6 @@ Home.propTypes = {
 
 Home.defaultProps = {
   preOrderAvailable: false,
-};
-
-export const getStaticProps = async () => {
-  const [aboutKate, books] = await Promise.all([
-    contentful.getEntries({
-      content_type: 'author',
-      'fields.slug': 'kate-bromley',
-    })
-      .then(entries => transformAuthor(entries.items[0])),
-    contentful
-      .getEntries({
-        content_type: 'book',
-        'fields.featuredBook': true,
-        order: '-fields.releaseDate',
-      })
-      .then(entries => entries.items.map(transformBook))
-  ])
-  .catch(err => console.log(err));
-
-  return { props: { aboutKate, books } };
 };
 
 export default Home;

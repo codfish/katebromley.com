@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Image from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import contentful, {transformBook} from '../../lib/contentful';
+import { fetchBookBySlug, fetchBooks } from '../../lib/contentful';
 import { formatDateStr, isReleased, calcImageHeight } from '../../lib/utils';
 import SubscribeSection from '../../components/SubscribeSection';
 import SocialSection from '../../components/SocialSection';
@@ -11,6 +11,28 @@ import Section from '../../components/Section';
 import Divider from '../../components/Divider';
 import Link from '../../components/Link';
 import styles from './slug.module.css';
+
+export async function getStaticPaths() {
+  const books = await fetchBooks();
+
+  return {
+    paths: books.map(book => ({ params: { slug: book.slug } })),
+    // TODO: loading screen for fallback?
+    fallback: false, // See the "fallback" section below
+  };
+}
+
+export const getStaticProps = async ctx => {
+  const { slug } = ctx.params;
+  const book = await fetchBookBySlug(slug);
+
+  return {
+    props: {
+      slug,
+      book,
+    },
+  };
+};
 
 function Book({ book }) {
   const isPreRelease = !isReleased(book.releaseDate);
@@ -22,7 +44,7 @@ function Book({ book }) {
         <meta name="description" content={book.tagline} />
         <link rel="canonical" href={`https://www.katebromley.com/books/${book.slug}`} />
         <meta property="og:title" content={book.title} />
-        <meta property="og:site_name" content="Kate Bromley Books" />
+        <meta property="og:site_name" content="Kate Bromley Novels" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:description" content={book.tagline} />
         <meta property="og:image" content={book.coverImage.url} />
@@ -170,7 +192,6 @@ function Book({ book }) {
 
       <Section>
         <div className="max-w-kb-prose mx-auto">
-          {/* <h5 className="h6 uppercase mb-10">More About the Book</h5> */}
           <p className="body1 mb-6">{book.tagline}</p>
           <div className={`body2 ${styles.description}`}>{documentToReactComponents(book.description)}</div>
         </div>
@@ -248,36 +269,5 @@ Book.propTypes = {
     ),
   }).isRequired,
 };
-
-export const getStaticProps = async ctx => {
-  const { slug } = ctx.params;
-  const book = await contentful
-    .getEntries({
-      content_type: 'book',
-      'fields.slug': slug,
-    })
-    .then(entries => transformBook(entries.items[0]))
-    .catch(err => console.error(err));
-
-  return {
-    props: {
-      slug,
-      book,
-    },
-  };
-};
-
-export async function getStaticPaths() {
-  const books = await contentful
-    .getEntries({ content_type: 'book' })
-    .then(entries => entries.items)
-    .catch(err => console.error(err));
-
-  return {
-    paths: books.map(book => ({ params: { slug: book.fields.slug } })),
-    // TODO: loading screen for fallback?
-    fallback: false, // See the "fallback" section below
-  };
-}
 
 export default Book;

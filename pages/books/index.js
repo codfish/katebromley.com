@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Image from 'next/image';
-import contentful, { transformBook } from '../../lib/contentful';
+import { fetchBooks } from '../../lib/contentful';
 import { formatDateStr, isReleased, calcImageHeight } from '../../lib/utils';
 import SubscribeSection from '../../components/SubscribeSection';
 import SocialSection from '../../components/SocialSection';
@@ -12,6 +12,15 @@ import Link from '../../components/Link';
 import Section from '../../components/Section';
 import PageHeader from '../../components/PageHeader';
 
+export const getStaticProps = async () => {
+  const books = await fetchBooks();
+
+  return {
+    props: {
+      books,
+    },
+  };
+};
 function Books({ books }) {
   const latestRelease = books[0];
   const secondBook = books[1] ?? null;
@@ -190,19 +199,6 @@ Books.propTypes = {
       tagline: PropTypes.string.isRequired,
     }),
   ).isRequired,
-};
-
-export const getStaticProps = async () => {
-  const books = await contentful
-    .getEntries({ content_type: 'book', order: '-fields.releaseDate' })
-    .then(entries => entries.items.map(transformBook))
-    .catch(err => console.log(err));
-
-  return {
-    props: {
-      books,
-    },
-  };
 };
 
 export default Books;

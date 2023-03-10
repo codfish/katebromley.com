@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Head from 'next/head';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import Section from '../components/Section';
-import contentful, { transformAuthor, transformFaq } from '../lib/contentful';
+import { fetchKateBromley, fetchFaqs } from '../lib/contentful';
 import { calcImageHeight } from '../lib/utils';
 import SubscribeSection from '../components/SubscribeSection';
 import SocialSection from '../components/SocialSection';
@@ -90,17 +90,8 @@ Biography.propTypes = {
 
 export const getStaticProps = async () => {
   const [biography, faqs] = await Promise.all([
-    contentful.getEntries({
-      content_type: 'author',
-      'fields.slug': 'kate-bromley',
-    })
-    .then(entries => transformAuthor(entries.items[0])),
-    contentful.getEntries({
-      content_type: 'faq',
-      'fields.biography': true,
-      order: 'fields.order',
-    })
-      .then(entries => entries.items.map(transformFaq)),
+    fetchKateBromley(),
+    fetchFaqs({ 'fields.biography': true }),
   ]);
 
   return { props: { biography, faqs } };

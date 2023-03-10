@@ -1,7 +1,7 @@
-import { Document } from '@contentful/rich-text-types';
+import { EntryFields } from 'contentful';
 
 export interface FAQ {
   id: string;
-  question: string;
-  answer: Document;
+  question: EntryFields.Text;
+  answer: EntryFields.RichText;
 }

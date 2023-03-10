@@ -1,12 +1,13 @@
-import { Document } from '@contentful/rich-text-types';
-import { Image } from "./image";
+import { Image } from './image';
+import { EntryFields } from 'contentful';
 
 export interface Praise {
+  id: string;
   type: 'praise' | 'press';
-  sourceName: string;
-  sourceDescription: string;
-  quote: Document;
-  cite?: string;
+  sourceName: EntryFields.Text;
+  sourceDescription: EntryFields.Text;
+  quote: EntryFields.RichText;
+  cite?: EntryFields.Text;
   image?: Image;
-  sourceUrl?: string;
+  sourceUrl?: EntryFields.Text;
 }
