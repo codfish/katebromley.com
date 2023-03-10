@@ -23,6 +23,6 @@ export interface Book {
   bookshopUrl?: string;
   walmartUrl?: string;
   targetUrl?: string;
-  praise: Praise[],
+  praise?: Praise[],
   coverImage: Image,
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Image from 'next/image';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import contentful, {transformBook} from '../../lib/contentful';
 import { formatDateStr, isReleased, calcImageHeight } from '../../lib/utils';
 import SubscribeSection from '../../components/SubscribeSection';
@@ -171,23 +172,21 @@ function Book({ book }) {
         <div className="max-w-kb-prose mx-auto">
           {/* <h5 className="h6 uppercase mb-10">More About the Book</h5> */}
           <p className="body1 mb-6">{book.tagline}</p>
-          <div className={`body2 ${styles.description}`} dangerouslySetInnerHTML={{
-            __html: book.description,
-          }} />
+          <div className={`body2 ${styles.description}`}>{documentToReactComponents(book.description)}</div>
         </div>
       </Section>
 
       {book.praise && (
         <section
-          className={`${styles.praise} bg-gray-light px-10 py-10 md:py-14 md:px-32 md:pb-20`}
+          className='bg-gray-light px-10 py-10 md:py-14 md:px-32'
         >
             <h3 className="h5 uppercase text-primary-main md:mb-6 text-center">Praise & Press</h3>
 
             {book.praise.map(praise => (
               <figure className="py-8 md:px-14 text-center" key={praise.id}>
-                <blockquote className="text-lg font-body1 md:body1 mb-4" cite={praise.cite} dangerouslySetInnerHTML={{
-                  __html: praise.quote,
-                }} />
+                <blockquote className="text-lg font-body1 md:body1 mb-4" cite={praise.cite}>
+                  {documentToReactComponents(praise.quote)}
+                </blockquote>
                 <figcaption>
                   <h4 className="text1 mb-2">
                     {praise.cite || praise.sourceUrl ? (
@@ -222,7 +221,7 @@ Book.propTypes = {
       height: PropTypes.number.isRequired,
     }).isRequired,
     tagline: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    description: PropTypes.object.isRequired,
     isbn: PropTypes.string.isRequired,
     onSale: PropTypes.bool,
     amazonUrl: PropTypes.string,
@@ -239,7 +238,7 @@ Book.propTypes = {
     walmartUrl: PropTypes.string,
     praise: PropTypes.arrayOf(
       PropTypes.shape({
-        quote: PropTypes.string.isRequired,
+        quote: PropTypes.object.isRequired,
         type: PropTypes.string.isRequired,
         sourceName: PropTypes.string.isRequired,
         sourceDescription: PropTypes.string.isRequired,

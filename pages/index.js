@@ -9,6 +9,7 @@ import Link from '../components/Link';
 import Button from '../components/Button';
 import { formatDateStr, isReleased, calcImageHeight } from '../lib/utils';
 import contentful, { transformBook, transformAuthor } from '../lib/contentful';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 function Home({ aboutKate, books, preOrderAvailable }) {
   return (
@@ -89,9 +90,7 @@ function Home({ aboutKate, books, preOrderAvailable }) {
             <div>
               <h2 className="h2 lg:h1">About Kate</h2>
 
-              {aboutKate.bio && <p className="body2 mt-4" dangerouslySetInnerHTML={{
-                __html: aboutKate.bio,
-              }} />}
+              {aboutKate.bio && <div className="body2 mt-4">{documentToReactComponents(aboutKate.bio)}</div>}
 
               <Link href="/biography" className="cta-link link block mt-11">
                 More about me
@@ -112,7 +111,7 @@ Home.propTypes = {
   aboutKate: PropTypes.shape({
     greeting_header: PropTypes.string,
     greeting: PropTypes.string.isRequired,
-    bio: PropTypes.string,
+    bio: PropTypes.object.isRequired,
     headshot: PropTypes.shape({
       url: PropTypes.string.isRequired,
       width: PropTypes.number.isRequired,

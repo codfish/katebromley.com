@@ -1,6 +1,5 @@
 import { createClient, Entry } from 'contentful';
 import { Document } from '@contentful/rich-text-types';
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { Book } from '../models/book';
 import { Praise } from '../models/praise';
 import { Author } from '../models/author';
@@ -17,8 +16,8 @@ export const transformBook = (bookEntry: Entry<Book>) => {
     ...bookEntry.fields,
     id: bookEntry.sys.id,
     coverImage: bookEntry.fields.coverImage[0],
-    description: documentToHtmlString(bookEntry.fields.description as Document),
-    praise: (bookEntry.fields.praise || []).map(transformPraise),
+    description: bookEntry.fields.description as Document,
+    praise: bookEntry.fields.praise?.map(transformPraise),
   };
 
   return book;
@@ -29,7 +28,7 @@ export const transformPraise = (praiseEntry: Entry<Praise>) => {
     ...praiseEntry.fields,
     id: praiseEntry.sys.id,
     image: praiseEntry.fields.image ? praiseEntry.fields.image[0] : null,
-    quote: documentToHtmlString(praiseEntry.fields.quote as Document),
+    quote: praiseEntry.fields.quote as Document,
   };
 
   return praise;
@@ -40,7 +39,7 @@ export const transformAuthor = (authorEntry: Entry<Author>) => {
     ...authorEntry.fields,
     id: authorEntry.sys.id,
     headshot: authorEntry.fields.headshot ? authorEntry.fields.headshot[0] : null,
-    bio: documentToHtmlString(authorEntry.fields.bio as Document),
+    bio: authorEntry.fields.bio as Document,
   };
 
   return author;
@@ -50,7 +49,7 @@ export const transformFaq = (faqEntry: Entry<FAQ>) => {
   const faq = {
     ...faqEntry.fields,
     id: faqEntry.sys.id,
-    answer: documentToHtmlString(faqEntry.fields.answer as Document),
+    answer: faqEntry.fields.answer as Document,
   };
 
   return faq;

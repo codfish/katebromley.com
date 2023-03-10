@@ -8,7 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@contentful/rich-text-html-renderer": "^16.0.2",
+    "@contentful/rich-text-react-renderer": "^15.16.2",
     "clsx": "^1.1.1",
     "contentful": "^10.0.0-beta-v10.14",
     "next": "^13.1.6",
