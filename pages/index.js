@@ -2,15 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
 import Head from 'next/head';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import Section from '../components/Section';
 import SubscribeSection from '../components/SubscribeSection';
 import SocialSection from '../components/SocialSection';
 import Link from '../components/Link';
 import Button from '../components/Button';
 import { formatDateStr, isReleased, calcImageHeight } from '../lib/utils';
-import contentful, { transformBook, transformAuthor } from '../lib/contentful';
+import { fetchKateBromley, fetchBooks } from '../lib/contentful';
+
+export const getStaticProps = async () => {
+  const [aboutKate, books] = await Promise.all([
+    fetchKateBromley(),
+    fetchBooks({ 'fields.featuredBook': true }),
+  ])
+  .catch(err => console.log(err));
+
+  return { props: { aboutKate, books } };
+};
 
 function Home({ aboutKate, books, preOrderAvailable }) {
+  const headshotColClasses =
+    books.length % 2 === 0
+      ? 'text-center md:text-left row-start-1 col-start-1' // headshot is on the left
+      : 'text-center md:text-right row-start-1 col-start-1 md:row-auto md:col-auto' // headshot is on the right
+
   return (
     <>
       <Head>
@@ -26,7 +42,7 @@ function Home({ aboutKate, books, preOrderAvailable }) {
         const isPreRelease = !isReleased(book.releaseDate);
 
         return (
-          <Section backdrop={{ color: 'gray', position: index % 2 === 0 ? 'left' : 'right' }} key={book.slug}>
+          <Section backdrop={{ color: 'primary', position: index % 2 === 0 ? 'left' : 'right' }} key={book.slug}>
             <div className="grid md:grid-cols-2 gap-10 md:gap-6">
               <div className="flex justify-center items-center">
                 <div>
@@ -74,29 +90,28 @@ function Home({ aboutKate, books, preOrderAvailable }) {
         );
       })}
 
-      <Section backdrop={{ color: 'primary', position: 'left' }}>
+      <Section backdrop={{ color: 'primary', position: books.length % 2 === 0 ? 'left' : 'right' }}>
         <div className="grid md:grid-cols-2 gap-10 md:gap-6">
-          <div className="text-center md:text-left">
-            <Image
-              src={`${aboutKate.headshot.url}`}
-              alt="Kate Bromley Author Headshot"
-              width="384"
-              height={calcImageHeight(384, aboutKate.headshot.width, aboutKate.headshot.height)}
-            />
-          </div>
-
           <div className="flex items-center">
             <div>
               <h2 className="h2 lg:h1">About Kate</h2>
 
-              {aboutKate.bio && <p className="body2 mt-4" dangerouslySetInnerHTML={{
-                __html: aboutKate.bio,
-              }} />}
+              {aboutKate.bio && <div className="body2 mt-4">{documentToReactComponents(aboutKate.bio)}</div>}
 
               <Link href="/biography" className="cta-link link block mt-11">
                 More about me
               </Link>
             </div>
+          </div>
+
+          <div className={headshotColClasses}>
+            <Image
+              src={`${aboutKate.headshot.url}`}
+              alt="Kate Bromley Author Headshot"
+              className="inline-block"
+              width="384"
+              height={calcImageHeight(384, aboutKate.headshot.width, aboutKate.headshot.height)}
+            />
           </div>
         </div>
       </Section>
@@ -112,7 +127,7 @@ Home.propTypes = {
   aboutKate: PropTypes.shape({
     greeting_header: PropTypes.string,
     greeting: PropTypes.string.isRequired,
-    bio: PropTypes.string,
+    bio: PropTypes.object.isRequired,
     headshot: PropTypes.shape({
       url: PropTypes.string.isRequired,
       width: PropTypes.number.isRequired,
@@ -137,26 +152,6 @@ Home.propTypes = {
 
 Home.defaultProps = {
   preOrderAvailable: false,
-};
-
-export const getStaticProps = async () => {
-  const [aboutKate, books] = await Promise.all([
-    contentful.getEntries({
-      content_type: 'author',
-      'fields.slug': 'kate-bromley',
-    })
-      .then(entries => transformAuthor(entries.items[0])),
-    contentful
-      .getEntries({
-        content_type: 'book',
-        'fields.featuredBook': true,
-        order: '-fields.releaseDate',
-      })
-      .then(entries => entries.items.map(transformBook))
-  ])
-  .catch(err => console.log(err));
-
-  return { props: { aboutKate, books } };
 };
 
 export default Home;

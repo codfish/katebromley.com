@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
 import Head from 'next/head';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import Section from '../components/Section';
-import contentful, { transformAuthor, transformFaq } from '../lib/contentful';
+import { fetchKateBromley, fetchFaqs } from '../lib/contentful';
 import { calcImageHeight } from '../lib/utils';
 import SubscribeSection from '../components/SubscribeSection';
 import SocialSection from '../components/SocialSection';
@@ -36,10 +37,8 @@ function Biography({ biography, faqs }) {
           </div>
 
           <div className="flex justify-center items-center">
-            <div>
-              <p className="body2" dangerouslySetInnerHTML={{
-                __html: biography.bio,
-              }} />
+            <div className="body2">
+              {documentToReactComponents(biography.bio)}
             </div>
           </div>
         </div>
@@ -55,9 +54,7 @@ function Biography({ biography, faqs }) {
             {faqs.map(faq => (
               <div key={faq.id}>
                 <h6 className="text1 mb-4 font-semibold">{faq.question}</h6>
-                <p className="body3 mb-14" dangerouslySetInnerHTML={{
-                  __html: faq.answer,
-                }}/>
+                <div className="body3 mb-14">{documentToReactComponents(faq.answer)}</div>
               </div>
             ))}
           </div>
@@ -75,7 +72,7 @@ Biography.propTypes = {
   biography: PropTypes.shape({
     greetingHeader: PropTypes.string,
     greeting: PropTypes.string.isRequired,
-    bio: PropTypes.string.isRequired,
+    bio: PropTypes.object.isRequired,
     headshot: PropTypes.shape({
       url: PropTypes.string.isRequired,
       width: PropTypes.number.isRequired,
@@ -86,24 +83,15 @@ Biography.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       question: PropTypes.string.isRequired,
-      answer: PropTypes.string.isRequired,
+      answer: PropTypes.object.isRequired,
     }),
   ).isRequired,
 };
 
 export const getStaticProps = async () => {
   const [biography, faqs] = await Promise.all([
-    contentful.getEntries({
-      content_type: 'author',
-      'fields.slug': 'kate-bromley',
-    })
-    .then(entries => transformAuthor(entries.items[0])),
-    contentful.getEntries({
-      content_type: 'faq',
-      'fields.biography': true,
-      order: 'fields.order',
-    })
-      .then(entries => entries.items.map(transformFaq)),
+    fetchKateBromley(),
+    fetchFaqs({ 'fields.biography': true }),
   ]);
 
   return { props: { biography, faqs } };

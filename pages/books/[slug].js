@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Image from 'next/image';
-import contentful, {transformBook} from '../../lib/contentful';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { fetchBookBySlug, fetchBooks } from '../../lib/contentful';
 import { formatDateStr, isReleased, calcImageHeight } from '../../lib/utils';
 import SubscribeSection from '../../components/SubscribeSection';
 import SocialSection from '../../components/SocialSection';
@@ -10,6 +11,28 @@ import Section from '../../components/Section';
 import Divider from '../../components/Divider';
 import Link from '../../components/Link';
 import styles from './slug.module.css';
+
+export async function getStaticPaths() {
+  const books = await fetchBooks();
+
+  return {
+    paths: books.map(book => ({ params: { slug: book.slug } })),
+    // TODO: loading screen for fallback?
+    fallback: false, // See the "fallback" section below
+  };
+}
+
+export const getStaticProps = async ctx => {
+  const { slug } = ctx.params;
+  const book = await fetchBookBySlug(slug);
+
+  return {
+    props: {
+      slug,
+      book,
+    },
+  };
+};
 
 function Book({ book }) {
   const isPreRelease = !isReleased(book.releaseDate);
@@ -21,7 +44,7 @@ function Book({ book }) {
         <meta name="description" content={book.tagline} />
         <link rel="canonical" href={`https://www.katebromley.com/books/${book.slug}`} />
         <meta property="og:title" content={book.title} />
-        <meta property="og:site_name" content="Kate Bromley Books" />
+        <meta property="og:site_name" content="Kate Bromley Novels" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:description" content={book.tagline} />
         <meta property="og:image" content={book.coverImage.url} />
@@ -38,7 +61,7 @@ function Book({ book }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
-      <div className="border-t-8 border-solid border-primary-main lg:mb-10" />
+      <div className="border-t-8 border-solid border-primary-main" />
 
       <Section noBorder>
         <div className="text-center mb-10 lg:mb-16">
@@ -169,25 +192,22 @@ function Book({ book }) {
 
       <Section>
         <div className="max-w-kb-prose mx-auto">
-          {/* <h5 className="h6 uppercase mb-10">More About the Book</h5> */}
           <p className="body1 mb-6">{book.tagline}</p>
-          <div className={`body2 ${styles.description}`} dangerouslySetInnerHTML={{
-            __html: book.description,
-          }} />
+          <div className={`body2 ${styles.description}`}>{documentToReactComponents(book.description)}</div>
         </div>
       </Section>
 
       {book.praise && (
         <section
-          className={`${styles.praise} bg-gray-light px-10 py-10 md:py-14 md:px-32 md:pb-20`}
+          className='bg-gray-light px-10 py-10 md:py-14 md:px-32'
         >
             <h3 className="h5 uppercase text-primary-main md:mb-6 text-center">Praise & Press</h3>
 
             {book.praise.map(praise => (
-              <figure className="py-8 md:px-14 text-center" key={praise.id}>
-                <blockquote className="text-lg font-body1 md:body1 mb-4" cite={praise.cite} dangerouslySetInnerHTML={{
-                  __html: praise.quote,
-                }} />
+              <figure className="py-8 md:px-14 text-center last-of-type:pb-0" key={praise.id}>
+                <blockquote className="text-lg font-body1 md:body1 mb-4" cite={praise.cite}>
+                  {documentToReactComponents(praise.quote)}
+                </blockquote>
                 <figcaption>
                   <h4 className="text1 mb-2">
                     {praise.cite || praise.sourceUrl ? (
@@ -222,7 +242,7 @@ Book.propTypes = {
       height: PropTypes.number.isRequired,
     }).isRequired,
     tagline: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    description: PropTypes.object.isRequired,
     isbn: PropTypes.string.isRequired,
     onSale: PropTypes.bool,
     amazonUrl: PropTypes.string,
@@ -239,7 +259,7 @@ Book.propTypes = {
     walmartUrl: PropTypes.string,
     praise: PropTypes.arrayOf(
       PropTypes.shape({
-        quote: PropTypes.string.isRequired,
+        quote: PropTypes.object.isRequired,
         type: PropTypes.string.isRequired,
         sourceName: PropTypes.string.isRequired,
         sourceDescription: PropTypes.string.isRequired,
@@ -249,36 +269,5 @@ Book.propTypes = {
     ),
   }).isRequired,
 };
-
-export const getStaticProps = async ctx => {
-  const { slug } = ctx.params;
-  const book = await contentful
-    .getEntries({
-      content_type: 'book',
-      'fields.slug': slug,
-    })
-    .then(entries => transformBook(entries.items[0]))
-    .catch(err => console.error(err));
-
-  return {
-    props: {
-      slug,
-      book,
-    },
-  };
-};
-
-export async function getStaticPaths() {
-  const books = await contentful
-    .getEntries({ content_type: 'book' })
-    .then(entries => entries.items)
-    .catch(err => console.error(err));
-
-  return {
-    paths: books.map(book => ({ params: { slug: book.fields.slug } })),
-    // TODO: loading screen for fallback?
-    fallback: false, // See the "fallback" section below
-  };
-}
 
 export default Book;
