@@ -183,7 +183,7 @@ function Book({ book }) {
             <h3 className="h5 uppercase text-primary-main md:mb-6 text-center">Praise & Press</h3>
 
             {book.praise.map(praise => (
-              <figure className="py-8 md:px-14 text-center" key={praise.id}>
+              <figure className="py-8 md:px-14 text-center last-of-type:pb-0" key={praise.id}>
                 <blockquote className="text-lg font-body1 md:body1 mb-4" cite={praise.cite}>
                   {documentToReactComponents(praise.quote)}
                 </blockquote>
