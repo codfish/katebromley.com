@@ -22,6 +22,11 @@ export const getStaticProps = async () => {
 };
 
 function Home({ aboutKate, books, preOrderAvailable }) {
+  const headshotColClasses =
+    books.length % 2 === 0
+      ? 'text-center md:text-left row-start-1 col-start-1' // headshot is on the left
+      : 'text-center md:text-right row-start-1 col-start-1 md:row-auto md:col-auto' // headshot is on the right
+
   return (
     <>
       <Head>
@@ -37,7 +42,7 @@ function Home({ aboutKate, books, preOrderAvailable }) {
         const isPreRelease = !isReleased(book.releaseDate);
 
         return (
-          <Section backdrop={{ color: 'gray', position: index % 2 === 0 ? 'left' : 'right' }} key={book.slug}>
+          <Section backdrop={{ color: 'primary', position: index % 2 === 0 ? 'left' : 'right' }} key={book.slug}>
             <div className="grid md:grid-cols-2 gap-10 md:gap-6">
               <div className="flex justify-center items-center">
                 <div>
@@ -85,17 +90,8 @@ function Home({ aboutKate, books, preOrderAvailable }) {
         );
       })}
 
-      <Section backdrop={{ color: 'primary', position: 'left' }}>
+      <Section backdrop={{ color: 'primary', position: books.length % 2 === 0 ? 'left' : 'right' }}>
         <div className="grid md:grid-cols-2 gap-10 md:gap-6">
-          <div className="text-center md:text-left">
-            <Image
-              src={`${aboutKate.headshot.url}`}
-              alt="Kate Bromley Author Headshot"
-              width="384"
-              height={calcImageHeight(384, aboutKate.headshot.width, aboutKate.headshot.height)}
-            />
-          </div>
-
           <div className="flex items-center">
             <div>
               <h2 className="h2 lg:h1">About Kate</h2>
@@ -106,6 +102,16 @@ function Home({ aboutKate, books, preOrderAvailable }) {
                 More about me
               </Link>
             </div>
+          </div>
+
+          <div className={headshotColClasses}>
+            <Image
+              src={`${aboutKate.headshot.url}`}
+              alt="Kate Bromley Author Headshot"
+              className="inline-block"
+              width="384"
+              height={calcImageHeight(384, aboutKate.headshot.width, aboutKate.headshot.height)}
+            />
           </div>
         </div>
       </Section>

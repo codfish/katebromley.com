@@ -61,7 +61,7 @@ function Book({ book }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
-      <div className="border-t-8 border-solid border-primary-main lg:mb-10" />
+      <div className="border-t-8 border-solid border-primary-main" />
 
       <Section noBorder>
         <div className="text-center mb-10 lg:mb-16">
