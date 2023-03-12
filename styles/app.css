@@ -185,7 +185,7 @@ a::selection {
   }
 
   .mobile-nav-link {
-    @apply text-mobile-nav-link font-nav-link text-gray-dark font-semibold uppercase;
+    @apply text-mobile-nav-link font-nav-link font-semibold uppercase;
   }
 
   .link {

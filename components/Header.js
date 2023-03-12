@@ -42,10 +42,10 @@ const Header = ({ className, ...other }) => {
               Books
             </Link>
             <Link
-              href="/biography"
+              href="/about"
               className={`nav-link h-full px-5 hover:text-secondary-dark ${styles.navLink}`}
             >
-              Bio
+              About
             </Link>
             <Link
               href="/contact"
@@ -85,23 +85,23 @@ const Header = ({ className, ...other }) => {
         <Link
           href="/books"
           onClick={hideMenu}
-          className="mobile-nav-link text-center py-5 block w-full hover:text-secondary-dark"
+          className="mobile-nav-link text-center py-5 block w-full text-gray-dark hover:text-secondary-dark"
         >
           Books
         </Link>
 
         <Link
-          href="/biography"
+          href="/about"
           onClick={hideMenu}
-          className="mobile-nav-link text-center py-5 block w-full hover:text-secondary-dark"
+          className="mobile-nav-link text-center py-5 block w-full text-gray-dark hover:text-secondary-dark"
         >
-          Biography
+          About
         </Link>
 
         <Link
           href="/contact"
           onClick={hideMenu}
-          className="mobile-nav-link text-center py-5 block w-full hover:text-secondary-dark"
+          className="mobile-nav-link text-center py-5 block w-full text-gray-dark hover:text-secondary-dark"
         >
           Contact
         </Link>
