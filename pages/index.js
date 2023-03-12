@@ -59,17 +59,9 @@ function Home({ aboutKate, books, preOrderAvailable }) {
                   </h2>
                   <p className="body2 pb-10 md:w-10/12">{book.tagline}</p>
 
-                  {index === 0 && (
-                    <Button href={`/books/${book.slug}`} className="mr-4" primary>
-                      {isPreRelease ? 'Pre-order Now' : 'Buy Now'}
-                    </Button>
-                  )}
-
-                  {index !== 0 && (
-                    <Link href="/biography" className="cta-link link block">
-                      {isPreRelease ? 'Pre-order Now' : 'Buy Now'}
-                    </Link>
-                  )}
+                  <Button href={`/books/${book.slug}`} primary>
+                    {isPreRelease ? 'Pre-order Now' : 'Buy Now'}
+                  </Button>
                 </div>
               </div>
 

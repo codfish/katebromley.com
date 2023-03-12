@@ -99,11 +99,12 @@ function Books({ books }) {
                   <h3 className="title text-3xl mb-4">
                     <Link href={`/books/${secondBook.slug}`} className="hover:text-secondary-dark">{secondBook.title}</Link>
                   </h3>
+
                   <p className="body2 mb-8">{secondBook.tagline}</p>
 
-                  <Link href={`/books/${secondBook.slug}`} className="cta-link link block">
-                    Buy Now
-                  </Link>
+                  <Button href={`/books/${secondBook.slug}`} primary>
+                    {isReleased(secondBook.releaseDate) ? 'Buy Now' : 'Pre-order Now'}
+                  </Button>
                 </div>
               </div>
             </div>
@@ -116,11 +117,12 @@ function Books({ books }) {
                   <h3 className="title text-3xl mb-4">
                     <Link href={`/books/${thirdBook.slug}`} className="hover:text-secondary-dark">{thirdBook.title}</Link>
                   </h3>
+
                   <p className="body2 mb-8">{thirdBook.tagline}</p>
 
-                  <Link href={`/books/${thirdBook.slug}`} className="cta-link link block">
-                    Buy Now
-                  </Link>
+                  <Button href={`/books/${thirdBook.slug}`} primary>
+                    {isReleased(thirdBook.releaseDate) ? 'Buy Now' : 'Pre-order Now'}
+                  </Button>
                 </div>
               </div>
 
