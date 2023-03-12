@@ -90,7 +90,7 @@ function Home({ aboutKate, books, preOrderAvailable }) {
 
               {aboutKate.bio && <div className="body2 mt-4">{documentToReactComponents(aboutKate.bio)}</div>}
 
-              <Link href="/biography" className="cta-link link block mt-11">
+              <Link href="/about" className="cta-link link block mt-11">
                 More about me
               </Link>
             </div>

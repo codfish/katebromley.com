@@ -11,7 +11,7 @@ import SocialSection from '../components/SocialSection';
 import PageHeader from '../components/PageHeader';
 import Divider from '../components/Divider';
 
-function Biography({ biography, faqs }) {
+function About({ aboutKate, faqs }) {
   return (
     <>
       <Head>
@@ -20,7 +20,7 @@ function Biography({ biography, faqs }) {
           name="description"
           content="I'm a writer of romantic comedies and contemporary romance. I live in New York City with my husband, son, and my somewhat excessive collection of romance novels."
         />
-        <link rel="canonical" href="https://www.katebromley.com/biography" />
+        <link rel="canonical" href="https://www.katebromley.com/about" />
       </Head>
 
       <PageHeader>About Kate</PageHeader>
@@ -29,16 +29,16 @@ function Biography({ biography, faqs }) {
         <div className="grid md:grid-cols-2 gap-10 md:gap-6">
           <div className="text-center md:text-left">
             <Image
-              src={biography.headshot.url}
+              src={aboutKate.headshot.url}
               alt="Kate Bromley Author Headshot"
               width="384"
-              height={calcImageHeight(384, biography.headshot.width, biography.headshot.height)}
+              height={calcImageHeight(384, aboutKate.headshot.width, aboutKate.headshot.height)}
             />
           </div>
 
           <div className="flex justify-center items-center">
             <div className="body2">
-              {documentToReactComponents(biography.bio)}
+              {documentToReactComponents(aboutKate.bio)}
             </div>
           </div>
         </div>
@@ -68,10 +68,8 @@ function Biography({ biography, faqs }) {
   );
 }
 
-Biography.propTypes = {
-  biography: PropTypes.shape({
-    greetingHeader: PropTypes.string,
-    greeting: PropTypes.string.isRequired,
+About.propTypes = {
+  aboutKate: PropTypes.shape({
     bio: PropTypes.object.isRequired,
     headshot: PropTypes.shape({
       url: PropTypes.string.isRequired,
@@ -89,12 +87,12 @@ Biography.propTypes = {
 };
 
 export const getStaticProps = async () => {
-  const [biography, faqs] = await Promise.all([
+  const [aboutKate, faqs] = await Promise.all([
     fetchKateBromley(),
     fetchFaqs({ 'fields.biography': true }),
   ]);
 
-  return { props: { biography, faqs } };
+  return { props: { aboutKate, faqs } };
 };
 
-export default Biography;
+export default About;
