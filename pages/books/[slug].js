@@ -43,7 +43,7 @@ function Book({ book }) {
         <title>{`${book.title}, a novel by Kate Bromley`}</title>
         <meta name="description" content={book.tagline} />
         <link rel="canonical" href={`https://www.katebromley.com/books/${book.slug}`} />
-        <meta property="og:title" content={book.title} />
+        <meta property="og:title" content={`${book.title}, a novel by Kate Bromley`} />
         <meta property="og:site_name" content="Kate Bromley Novels" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:description" content={book.tagline} />
