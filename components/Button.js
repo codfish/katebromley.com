@@ -14,10 +14,8 @@ const Button = ({ href, primary, children, className: classNameProp, ...other })
   );
 
   return href ? (
-    <Link href={href}>
-      <button type="button" className={className} {...other}>
-        {children}
-      </button>
+    <Link href={href} className={className} {...other}>
+      {children}
     </Link>
   ) : (
     <button type="button" className={className} {...other}>

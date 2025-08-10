@@ -12,10 +12,8 @@ function Link({ href, children, className: classNameProp, ...other }) {
   });
 
   return (
-    <NextLink href={href} legacyBehavior>
-      <a className={className} {...other}>
-        {children}
-      </a>
+    <NextLink href={href} className={className} {...other}>
+      {children}
     </NextLink>
   );
 }
