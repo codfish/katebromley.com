@@ -52,23 +52,23 @@ module.exports = {
     colors: {
       black: '#000',
       white: '#FFF',
-      primary: {
-        main: 'var(--color-primary-main)',
-        light: 'var(--color-primary-light)',
-        dark: 'var(--color-primary-dark)',
+      pink: {
+        DEFAULT: 'var(--color-pink)',
+        light: 'var(--color-pink-light)',
+        dark: 'var(--color-pink-dark)',
       },
-      secondary: {
-        main: 'var(--color-secondary-main)',
-        light: 'var(--color-secondary-light)',
-        dark: 'var(--color-secondary-dark)',
+      teal: {
+        DEFAULT: 'var(--color-teal)',
+        light: 'var(--color-teal-light)',
+        dark: 'var(--color-teal-dark)',
       },
-      tertiary: {
-        main: 'var(--color-tertiary-main)',
-        light: 'var(--color-tertiary-light)',
-        dark: 'var(--color-tertiary-dark)',
+      yellow: {
+        DEFAULT: 'var(--color-yellow)',
+        light: 'var(--color-yellow-light)',
+        dark: 'var(--color-yellow-dark)',
       },
       gray: {
-        main: 'var(--color-gray)',
+        DEFAULT: 'var(--color-gray)',
         light: 'var(--color-gray-light)',
         dark: 'var(--color-gray-dark)',
         border: 'var(--color-gray-border)',

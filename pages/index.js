@@ -42,20 +42,20 @@ function Home({ aboutKate, books, preOrderAvailable }) {
         const isPreRelease = !isReleased(book.releaseDate);
 
         return (
-          <Section backdrop={{ color: 'primary', position: index % 2 === 0 ? 'left' : 'right' }} key={book.slug}>
+          <Section backdrop={{ color: 'pink', position: index % 2 === 0 ? 'left' : 'right' }} key={book.slug}>
             <div className="grid md:grid-cols-2 gap-10 md:gap-6">
               <div className="flex justify-center items-center">
                 <div>
                   {index === 0 && (
-                    <h5 className="h5 text-primary-main uppercase mb-10">
+                    <h5 className="h5 text-pink uppercase mb-10">
                       {isPreRelease ? `Coming ${formatDateStr(book.releaseDate)}` : 'Latest Release'}
                     </h5>
                   )}
                   {index === 1 && preOrderAvailable && !isPreRelease && (
-                    <h5 className="h5 text-primary-main uppercase mb-10">Latest Release</h5>
+                    <h5 className="h5 text-pink uppercase mb-10">Latest Release</h5>
                   )}
                   <h2 className="h2 mb-4">
-                    <Link href={`/books/${book.slug}`} className="hover:text-secondary-dark">{book.title}</Link>
+                    <Link href={`/books/${book.slug}`} className="hover:text-teal-dark">{book.title}</Link>
                   </h2>
                   <p className="body2 pb-10 md:w-10/12">{book.tagline}</p>
 
@@ -82,7 +82,7 @@ function Home({ aboutKate, books, preOrderAvailable }) {
         );
       })}
 
-      <Section backdrop={{ color: 'primary', position: books.length % 2 === 0 ? 'left' : 'right' }}>
+      <Section backdrop={{ color: 'pink', position: books.length % 2 === 0 ? 'left' : 'right' }}>
         <div className="grid md:grid-cols-2 gap-10 md:gap-6">
           <div className="flex items-center">
             <div>

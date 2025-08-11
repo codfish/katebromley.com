@@ -6,7 +6,7 @@ import Button from './Button';
 import styles from './SubscribeSection.module.css';
 
 const SubscribeSection = ({ className, ...other }) => (
-  <Section color="secondary" className={clsx(styles.root, className)} {...other}>
+  <Section color="teal" className={clsx(styles.root, className)} {...other}>
     <div className="mb-10">
       <svg
         width="78px"

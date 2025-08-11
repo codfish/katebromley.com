@@ -23,9 +23,9 @@ const Heart = ({ color, width, height, className: classNameProp, ...other }) => 
             // explicitly listing classes here rather than dynamically building a
             // single class so that PurgeCSS can find them when optimizing for prod
             // https://tailwindcss.com/docs/optimizing-for-production#writing-purgeable-html
-            'text-primary-main': color === 'primary',
-            'text-secondary-main': color === 'secondary',
-            'text-tertiary-main': color === 'tertiary',
+            'text-pink': color === 'pink',
+            'text-teal': color === 'teal',
+            'text-yellow': color === 'yellow',
           })}
           transform="translate(-1096.000000, -654.000000)"
           fill="#FFC82E"
@@ -39,14 +39,14 @@ const Heart = ({ color, width, height, className: classNameProp, ...other }) => 
 };
 
 Heart.propTypes = {
-  color: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
+  color: PropTypes.oneOf(['pink', 'teal', 'yellow']),
   width: PropTypes.string,
   height: PropTypes.string,
   className: PropTypes.string,
 };
 
 Heart.defaultProps = {
-  color: 'tertiary',
+  color: 'yellow',
   width: '64px',
   height: '60px',
   className: '',

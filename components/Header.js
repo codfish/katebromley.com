@@ -37,19 +37,19 @@ const Header = ({ className, ...other }) => {
           <div className="pr-5 border-gray-border border-r h-full flex items-center">
             <Link
               href="/books"
-              className={`nav-link h-full px-5 hover:text-secondary-dark ${styles.navLink}`}
+              className={`nav-link h-full px-5 hover:text-teal-dark ${styles.navLink}`}
             >
               Books
             </Link>
             <Link
               href="/about"
-              className={`nav-link h-full px-5 hover:text-secondary-dark ${styles.navLink}`}
+              className={`nav-link h-full px-5 hover:text-teal-dark ${styles.navLink}`}
             >
               About
             </Link>
             <Link
               href="/contact"
-              className={`nav-link h-full px-5 hover:text-secondary-dark ${styles.navLink}`}
+              className={`nav-link h-full px-5 hover:text-teal-dark ${styles.navLink}`}
             >
               Contact
             </Link>
@@ -57,7 +57,7 @@ const Header = ({ className, ...other }) => {
 
           <Link
             href="/books/ciao-for-now"
-            className={`nav-link p-10 border-gray-border border-l h-full hover:text-secondary-dark hover:bg-gray-background ${styles.latest}`}
+            className={`nav-link p-10 border-gray-border border-l h-full hover:text-teal-dark hover:bg-gray-background ${styles.latest}`}
           >
             Ciao For Now
           </Link>
@@ -70,14 +70,14 @@ const Header = ({ className, ...other }) => {
       <div
         className={clsx(
           styles.mobileNav,
-          'w-full absolute lg:hidden bg-white z-10 py-4 border-b-8 border-primary-main flex flex-col justify-center',
+          'w-full absolute lg:hidden bg-white z-10 py-4 border-b-8 border-pink flex flex-col justify-center',
           { hidden: !menuOpen },
         )}
       >
         <Link
           href="/books/ciao-for-now"
           onClick={hideMenu}
-          className="mobile-nav-link text-center py-5 block w-full text-secondary-main hover:text-secondary-dark"
+          className="mobile-nav-link text-center py-5 block w-full text-teal hover:text-teal-dark"
         >
           Ciao For Now
         </Link>
@@ -85,7 +85,7 @@ const Header = ({ className, ...other }) => {
         <Link
           href="/books"
           onClick={hideMenu}
-          className="mobile-nav-link text-center py-5 block w-full text-gray-dark hover:text-secondary-dark"
+          className="mobile-nav-link text-center py-5 block w-full text-gray-dark hover:text-teal-dark"
         >
           Books
         </Link>
@@ -93,7 +93,7 @@ const Header = ({ className, ...other }) => {
         <Link
           href="/about"
           onClick={hideMenu}
-          className="mobile-nav-link text-center py-5 block w-full text-gray-dark hover:text-secondary-dark"
+          className="mobile-nav-link text-center py-5 block w-full text-gray-dark hover:text-teal-dark"
         >
           About
         </Link>
@@ -101,7 +101,7 @@ const Header = ({ className, ...other }) => {
         <Link
           href="/contact"
           onClick={hideMenu}
-          className="mobile-nav-link text-center py-5 block w-full text-gray-dark hover:text-secondary-dark"
+          className="mobile-nav-link text-center py-5 block w-full text-gray-dark hover:text-teal-dark"
         >
           Contact
         </Link>

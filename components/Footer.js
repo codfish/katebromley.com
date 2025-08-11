@@ -5,12 +5,12 @@ import Heart from './Heart';
 import styles from './Footer.module.css';
 
 const Footer = ({ className, ...other }) => {
-  const classNames = clsx('px-10 bg-primary-light py-6', className);
+  const classNames = clsx('px-10 bg-pink-light py-6', className);
 
   return (
     <div className={classNames} {...other}>
       <div className="max-w-screen-xl container flex flex-col sm:flex-row justify-between items-center">
-        <Heart className={`${styles.heart} sm:order-2`} color="primary" />
+        <Heart className={`${styles.heart} sm:order-2`} color="pink" />
         <span className="caption sm:order-1 pt-3 sm:p-0 flex-1">
           @ {new Date().getFullYear()} Kate Bromley. All rights reserved.
         </span>

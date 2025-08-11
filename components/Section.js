@@ -24,9 +24,9 @@ const Section = ({
       // explicitly listing classes here rather than dynamically building a
       // single class so that PurgeCSS can find them when optimizing for prod
       // https://tailwindcss.com/docs/optimizing-for-production#writing-purgeable-html
-      'bg-primary-light': color === 'primary',
-      'bg-secondary-light': color === 'secondary',
-      'bg-tertiary-light': color === 'tertiary',
+      'bg-pink-light': color === 'pink',
+      'bg-teal-light': color === 'teal',
+      'bg-yellow-light': color === 'yellow',
       'bg-gray-light': color === 'gray',
     },
     className,
@@ -35,9 +35,9 @@ const Section = ({
     // explicitly listing classes here rather than dynamically building a
     // single class so that PurgeCSS can find them when optimizing for prod
     // https://tailwindcss.com/docs/optimizing-for-production#writing-purgeable-html
-    'bg-primary-light': backdrop?.color === 'primary',
-    'bg-secondary-light': backdrop?.color === 'secondary',
-    'bg-tertiary-light': backdrop?.color === 'tertiary',
+    'bg-pink-light': backdrop?.color === 'pink',
+    'bg-teal-light': backdrop?.color === 'teal',
+    'bg-yellow-light': backdrop?.color === 'yellow',
     'bg-gray-light': backdrop?.color === 'gray',
 
     // positioning of backdrop
@@ -81,7 +81,7 @@ Section.propTypes = {
    * Background color. References theme palettes. The light variation will
    * always be used.
    */
-  color: PropTypes.oneOf(['primary', 'secondary', 'tertiary', 'gray']),
+  color: PropTypes.oneOf(['pink', 'teal', 'yellow', 'gray']),
   /**
    * Breakpoint width that the section **content area** will be maxed out at.
    */
@@ -97,7 +97,7 @@ Section.propTypes = {
    */
   noBorder: PropTypes.bool,
   backdrop: PropTypes.shape({
-    color: PropTypes.oneOf(['primary', 'secondary', 'tertiary', 'gray']).isRequired,
+    color: PropTypes.oneOf(['pink', 'teal', 'yellow', 'gray']).isRequired,
     position: PropTypes.oneOf(['right', 'left']).isRequired,
   }),
   children: PropTypes.node.isRequired,

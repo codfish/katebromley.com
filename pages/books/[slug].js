@@ -61,7 +61,7 @@ function Book({ book }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
-      <div className="border-t-8 border-solid border-primary-main" />
+      <div className="border-t-8 border-solid border-pink" />
 
       <Section noBorder>
         <div className="text-center mb-10 lg:mb-16">
@@ -201,7 +201,7 @@ function Book({ book }) {
         <section
           className='bg-gray-light px-10 py-10 md:py-14 md:px-32'
         >
-            <h3 className="h5 uppercase text-primary-main md:mb-6 text-center">Praise & Press</h3>
+            <h3 className="h5 uppercase text-pink md:mb-6 text-center">Praise & Press</h3>
 
             {book.praise.map(praise => (
               <figure className="py-8 md:px-14 text-center last-of-type:pb-0" key={praise.id}>

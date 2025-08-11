@@ -5,7 +5,7 @@
 
 @screen lg {
   .root {
-    background: theme('colors.primary.light') url('/page-header-background.jpg') no-repeat center
+    background: theme('colors.pink.light') url('/page-header-background.jpg') no-repeat center
       center;
     background-size: cover;
     height: 11.25rem;

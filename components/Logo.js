@@ -114,9 +114,9 @@ const Logo = ({ heartColor, width, height, className, ...other }) => (
               // explicitly listing classes here rather than dynamically building a
               // single class so that PurgeCSS can find them when optimizing for prod
               // https://tailwindcss.com/docs/optimizing-for-production#writing-purgeable-html
-              'text-primary-main': heartColor === 'primary',
-              'text-secondary-main': heartColor === 'secondary',
-              'text-tertiary-main': heartColor === 'tertiary',
+              'text-pink': heartColor === 'pink',
+              'text-teal': heartColor === 'teal',
+              'text-yellow': heartColor === 'yellow',
             })}
             fill="#FFD55F"
           />
@@ -132,14 +132,14 @@ const Logo = ({ heartColor, width, height, className, ...other }) => (
 );
 
 Logo.propTypes = {
-  heartColor: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
+  heartColor: PropTypes.oneOf(['pink', 'teal', 'yellow']),
   width: PropTypes.string,
   height: PropTypes.string,
   className: PropTypes.string,
 };
 
 Logo.defaultProps = {
-  heartColor: 'tertiary',
+  heartColor: 'yellow',
   width: '327px',
   height: '42px',
   className: '',

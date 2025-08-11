@@ -1,16 +1,16 @@
 :root {
   /* Pink */
-  --color-primary-main: #ed6d90;
-  --color-primary-light: #faeaef;
-  --color-primary-dark: #661733;
+  --color-pink: #ed6d90;
+  --color-pink-light: #faeaef;
+  --color-pink-dark: #661733;
   /* Teal */
-  --color-secondary-main: #4ec9cb;
-  --color-secondary-light: #c7f4f4;
-  --color-secondary-dark: #398186;
+  --color-teal: #4ec9cb;
+  --color-teal-light: #c7f4f4;
+  --color-teal-dark: #398186;
   /* Yellow */
-  --color-tertiary-main: #ffc82e;
-  --color-tertiary-light: #fff2cc;
-  --color-tertiary-dark: #c89d24;
+  --color-yellow: #ffc82e;
+  --color-yellow-light: #fff2cc;
+  --color-yellow-dark: #c89d24;
   /* Gray */
   --color-gray: #e9e9e6;
   --color-gray-light: #f7f7f5;
@@ -71,7 +71,7 @@ h4 {
 }
 
 ::selection {
-  background: var(--color-primary-light);
+  background: var(--color-pink-light);
 }
 
 .cta-link {
@@ -81,7 +81,7 @@ h4 {
 }
 
 .cta-link::before {
-  background-color: var(--color-secondary-main);
+  background-color: var(--color-teal);
   content: '';
   display: inline-block;
   transition: all 0.3s;
@@ -93,7 +93,7 @@ h4 {
 }
 
 .cta-link:hover::before {
-  background-color: var(--color-secondary-dark);
+  background-color: var(--color-teal-dark);
 }
 
 /**
@@ -185,7 +185,7 @@ h4 {
   }
 
   .link {
-    @apply font-link text-link text-secondary-main hover:text-secondary-dark transition-colors duration-300 font-semibold uppercase;
+    @apply font-link text-link text-teal hover:text-teal-dark transition-colors duration-300 font-semibold uppercase;
   }
 
   .caption {
@@ -193,11 +193,11 @@ h4 {
   }
 
   .input {
-    @apply font-input text-input text-gray-dark w-full px-2 py-3 border-gray-border focus:ring-secondary-main focus:border-secondary-main;
+    @apply font-input text-input text-gray-dark w-full px-2 py-3 border-gray-border focus:ring-teal focus:border-teal;
   }
 
   .textarea {
-    @apply font-input text-input text-gray-dark w-full px-2 py-3 border-gray-border border-b-2 focus:ring-secondary-main focus:border-secondary-main;
+    @apply font-input text-input text-gray-dark w-full px-2 py-3 border-gray-border border-b-2 focus:ring-teal focus:border-teal;
   }
 
   .max-w-kb-prose {
