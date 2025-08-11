@@ -5,12 +5,12 @@ import useClickOutside from '../hooks/useClickOutside';
 import Link from './Link';
 import Logo from './Logo';
 import NavIcon from './NavIcon';
-import styles from './Header.module.css';
+
 
 const Header = ({ className, ...other }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const classNames = clsx(
-    styles.nav,
+    'h-20 lg:h-[6.25rem]',
     'px-5 lg:pr-0 flex justify-between items-center lg:block relative border-gray-border border-b',
     className,
   );
@@ -29,7 +29,7 @@ const Header = ({ className, ...other }) => {
       <div className={classNames} {...other}>
         <div className="lg:absolute lg:top-1/2 lg:left-1/2 transform lg:-translate-y-1/2 lg:-translate-x-1/2 items-center inline-flex">
           <Link href="/" className="inline-flex" onClick={hideMenu}>
-            <Logo className={styles.logo} />
+            <Logo className="w-[15.0625rem] h-8 lg:w-[20.4375rem] lg:h-[2.625rem]" />
           </Link>
         </div>
 
@@ -37,19 +37,19 @@ const Header = ({ className, ...other }) => {
           <div className="pr-5 border-gray-border border-r h-full flex items-center">
             <Link
               href="/books"
-              className={`nav-link h-full px-5 hover:text-teal-dark ${styles.navLink}`}
+              className="nav-link h-full px-5 hover:text-teal-dark !leading-[6.25rem] align-middle transition-all duration-300"
             >
               Books
             </Link>
             <Link
               href="/about"
-              className={`nav-link h-full px-5 hover:text-teal-dark ${styles.navLink}`}
+              className="nav-link h-full px-5 hover:text-teal-dark !leading-[6.25rem] align-middle transition-all duration-300"
             >
               About
             </Link>
             <Link
               href="/contact"
-              className={`nav-link h-full px-5 hover:text-teal-dark ${styles.navLink}`}
+              className="nav-link h-full px-5 hover:text-teal-dark !leading-[6.25rem] align-middle transition-all duration-300"
             >
               Contact
             </Link>
@@ -57,7 +57,7 @@ const Header = ({ className, ...other }) => {
 
           <Link
             href="/books/ciao-for-now"
-            className={`nav-link p-10 border-gray-border border-l h-full hover:text-teal-dark hover:bg-gray-background ${styles.latest}`}
+            className="nav-link p-10 border-gray-border border-l h-full hover:text-teal-dark hover:bg-gray-background transition-all duration-300"
           >
             Ciao For Now
           </Link>
@@ -69,8 +69,7 @@ const Header = ({ className, ...other }) => {
       {/* mobile nav dropdown menu */}
       <div
         className={clsx(
-          styles.mobileNav,
-          'w-full absolute lg:hidden bg-white z-10 py-4 border-b-8 border-pink flex flex-col justify-center',
+          'h-[calc(100vh-5rem)] w-full absolute lg:hidden bg-white z-10 py-4 border-b-8 border-pink flex flex-col justify-center',
           { hidden: !menuOpen },
         )}
       >

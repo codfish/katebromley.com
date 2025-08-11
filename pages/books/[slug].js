@@ -10,7 +10,7 @@ import SocialSection from '../../components/SocialSection';
 import Section from '../../components/Section';
 import Divider from '../../components/Divider';
 import Link from '../../components/Link';
-import styles from './slug.module.css';
+
 
 export async function getStaticPaths() {
   const books = await fetchBooks();
@@ -87,43 +87,43 @@ function Book({ book }) {
         <div className="text-center mb-8">
           <ul className="flex flex-wrap justify-center">
             {book.amazonUrl && (
-              <li className={styles.purchaseListItem}>
-                <a href={book.amazonUrl} className="link">
+              <li className="my-2">
+                <a href={book.amazonUrl} className="link py-2 px-4">
                   Amazon
                 </a>
               </li>
             )}
             {book.barnesNobleUrl && (
-              <li className={styles.purchaseListItem}>
-                <a href={book.barnesNobleUrl} className="link">
+              <li className="my-2 lg:border-l lg:border-gray-border lg:first:border-l-0">
+                <a href={book.barnesNobleUrl} className="link py-2 px-4">
                   B&N
                 </a>
               </li>
             )}
             {book.appleBooksUrl && (
-              <li className={styles.purchaseListItem}>
-                <a href={book.appleBooksUrl} className="link">
+              <li className="my-2 lg:border-l lg:border-gray-border lg:first:border-l-0">
+                <a href={book.appleBooksUrl} className="link py-2 px-4">
                   Apple Books
                 </a>
               </li>
             )}
             {book.googlePlayUrl && (
-              <li className={styles.purchaseListItem}>
-                <a href={book.googlePlayUrl} className="link">
+              <li className="my-2 lg:border-l lg:border-gray-border lg:first:border-l-0">
+                <a href={book.googlePlayUrl} className="link py-2 px-4">
                   Google Play
                 </a>
               </li>
             )}
             {book.audibleUrl && (
-              <li className={styles.purchaseListItem}>
-                <a href={book.audibleUrl} className="link">
+              <li className="my-2 lg:border-l lg:border-gray-border lg:first:border-l-0">
+                <a href={book.audibleUrl} className="link py-2 px-4">
                   Audible
                 </a>
               </li>
             )}
             {book.targetUrl && (
-              <li className={styles.purchaseListItem}>
-                <a href={book.targetUrl} className="link">
+              <li className="my-2 lg:border-l lg:border-gray-border lg:first:border-l-0">
+                <a href={book.targetUrl} className="link py-2 px-4">
                   Target
                 </a>
               </li>
@@ -132,50 +132,50 @@ function Book({ book }) {
 
           <ul className="flex flex-wrap justify-center md:mt-5">
             {book.walmartUrl && (
-              <li className={styles.purchaseListItem}>
-                <a href={book.walmartUrl} className="link">
+              <li className="my-2 lg:border-l lg:border-gray-border lg:first:border-l-0">
+                <a href={book.walmartUrl} className="link py-2 px-4">
                   Walmart
                 </a>
               </li>
             )}
             {book.indieboundUrl && (
-              <li className={styles.purchaseListItem}>
-                <a href={book.indieboundUrl} className="link">
+              <li className="my-2 lg:border-l lg:border-gray-border lg:first:border-l-0">
+                <a href={book.indieboundUrl} className="link py-2 px-4">
                   IndieBound
                 </a>
               </li>
             )}
             {book.indigoUrl && (
-              <li className={styles.purchaseListItem}>
-                <a href={book.indigoUrl} className="link">
+              <li className="my-2 lg:border-l lg:border-gray-border lg:first:border-l-0">
+                <a href={book.indigoUrl} className="link py-2 px-4">
                   Indigo
                 </a>
               </li>
             )}
             {book.koboUrl && (
-              <li className={styles.purchaseListItem}>
-                <a href={book.koboUrl} className="link">
+              <li className="my-2 lg:border-l lg:border-gray-border lg:first:border-l-0">
+                <a href={book.koboUrl} className="link py-2 px-4">
                   Kobo
                 </a>
               </li>
             )}
             {book.libroFmUrl && (
-              <li className={styles.purchaseListItem}>
-                <a href={book.libroFmUrl} className="link">
+              <li className="my-2 lg:border-l lg:border-gray-border lg:first:border-l-0">
+                <a href={book.libroFmUrl} className="link py-2 px-4">
                   Libro.fm
                 </a>
               </li>
             )}
             {book.chirpUrl && (
-              <li className={styles.purchaseListItem}>
-                <a href={book.chirpUrl} className="link">
+              <li className="my-2 lg:border-l lg:border-gray-border lg:first:border-l-0">
+                <a href={book.chirpUrl} className="link py-2 px-4">
                   Chirp
                 </a>
               </li>
             )}
             {book.bookshopUrl && (
-              <li className={styles.purchaseListItem}>
-                <a href={book.bookshopUrl} className="link">
+              <li className="my-2 lg:border-l lg:border-gray-border lg:first:border-l-0">
+                <a href={book.bookshopUrl} className="link py-2 px-4">
                   Bookshop
                 </a>
               </li>
@@ -193,7 +193,7 @@ function Book({ book }) {
       <Section>
         <div className="max-w-kb-prose mx-auto">
           <p className="body1 mb-6">{book.tagline}</p>
-          <div className={`body2 ${styles.description}`}>{documentToReactComponents(book.description)}</div>
+          <div className="body2 [&>p]:mb-6 [&>p:last-child]:mb-0">{documentToReactComponents(book.description)}</div>
         </div>
       </Section>
 

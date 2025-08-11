@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import styles from './PageHeader.module.css';
+
 
 const PageHeader = ({ children, className, ...other }) => {
-  const classNames = clsx('relative bg-pink-light', styles.root, className);
+  const classNames = clsx('relative bg-pink-light h-[7.5rem] mb-[2.125rem] lg:h-[11.25rem] lg:mb-[5.5rem] lg:bg-pink-light lg:bg-[url("/page-header-background.jpg")] lg:bg-no-repeat lg:bg-center lg:bg-cover', className);
 
   return (
     <header className={classNames} {...other}>
