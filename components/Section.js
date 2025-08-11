@@ -55,11 +55,10 @@ const Section = ({
   const innerClassName = clsx('relative py-10 md:py-16 container mx-auto', {
     // explicitly list class names for tailwind
     // https://tailwindcss.com/docs/optimizing-for-production#writing-purgeable-html
-    'max-w-screen-sm': maxWidth === 'sm',
-    'max-w-screen-md': maxWidth === 'md',
-    'max-w-screen-lg': maxWidth === 'lg',
-    'max-w-screen-xl': maxWidth === 'xl',
-    'max-w-screen-2xl': maxWidth === '2xl',
+    'max-w-(--breakpoint-sm)': maxWidth === 'sm',
+    'max-w-(--breakpoint-md)': maxWidth === 'md',
+    'max-w-(--breakpoint-lg)': maxWidth === 'lg',
+    'max-w-(--breakpoint-xl)': maxWidth === 'xl',
   });
 
   return (
@@ -85,7 +84,7 @@ Section.propTypes = {
   /**
    * Breakpoint width that the section **content area** will be maxed out at.
    */
-  maxWidth: PropTypes.oneOf(['sm', 'md', 'lg', 'xl', '2xl']),
+  maxWidth: PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
   /**
    * Remove default padding on left and right so the content goes flush to
    * the screen in breakpoints below the `maxWidth`.

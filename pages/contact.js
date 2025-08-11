@@ -18,8 +18,8 @@ function Contact() {
 
       <PageHeader>Contact</PageHeader>
 
-      <Section noBorder>
-        <div className="max-w-kb-prose mx-auto">
+      <Section noBorder maxWidth="lg">
+        <div className="prose mx-auto text-center">
           <p className="text-body2 mb-4">
             For agent inquiries, contact{' '}
             <a

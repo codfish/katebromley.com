@@ -36,7 +36,7 @@ function Books({ books }) {
 
       <PageHeader>Books</PageHeader>
 
-      <Section noBorder>
+      <Section noBorder maxWidth="lg">
         <div className="grid md:grid-cols-2 gap-10 md:gap-6">
           <div className="flex items-center">
             <div>
@@ -55,7 +55,7 @@ function Books({ books }) {
           </div>
 
           <div className="text-center row-start-1 col-start-1 md:row-auto md:col-auto md:text-right">
-            <Link href={`/books/${latestRelease.slug}`}>
+            <Link href={`/books/${latestRelease.slug}`} className="inline-block md:text-right">
               <Image
                 src={latestRelease.coverImage.url}
                 alt={`Cover Art: ${latestRelease.title}`}
@@ -94,7 +94,7 @@ function Books({ books }) {
                 </Link>
               </div>
 
-              <div className="flex justify-center items-center">
+              <div className="flex md:justify-center items-center">
                 <div>
                   <h3 className="title text-3xl mb-4">
                     <Link href={`/books/${secondBook.slug}`} className="hover:text-teal-dark">{secondBook.title}</Link>

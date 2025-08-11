@@ -10,7 +10,7 @@ import NavIcon from './NavIcon';
 const Header = ({ className, ...other }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const classNames = clsx(
-    'h-20 lg:h-[6.25rem]',
+    'h-20 lg:h-25',
     'px-5 lg:pr-0 flex justify-between items-center lg:block relative border-gray-border border-b',
     className,
   );
@@ -29,7 +29,7 @@ const Header = ({ className, ...other }) => {
       <div className={classNames} {...other}>
         <div className="lg:absolute lg:top-1/2 lg:left-1/2 transform lg:-translate-y-1/2 lg:-translate-x-1/2 items-center inline-flex">
           <Link href="/" className="inline-flex" onClick={hideMenu}>
-            <Logo className="w-[15.0625rem] h-8 lg:w-[20.4375rem] lg:h-[2.625rem]" />
+            <Logo className="w-60.25 h-8 lg:w-81.75 lg:h-10.5" heartColor="yellow" />
           </Link>
         </div>
 
@@ -37,19 +37,19 @@ const Header = ({ className, ...other }) => {
           <div className="pr-5 border-gray-border border-r h-full flex items-center">
             <Link
               href="/books"
-              className="nav-link h-full px-5 hover:text-teal-dark !leading-[6.25rem] align-middle transition-all duration-300"
+              className="nav-link h-full px-5 hover:text-teal-dark leading-25! align-middle transition-all duration-300"
             >
               Books
             </Link>
             <Link
               href="/about"
-              className="nav-link h-full px-5 hover:text-teal-dark !leading-[6.25rem] align-middle transition-all duration-300"
+              className="nav-link h-full px-5 hover:text-teal-dark leading-25! align-middle transition-all duration-300"
             >
               About
             </Link>
             <Link
               href="/contact"
-              className="nav-link h-full px-5 hover:text-teal-dark !leading-[6.25rem] align-middle transition-all duration-300"
+              className="nav-link h-full px-5 hover:text-teal-dark leading-25! align-middle transition-all duration-300"
             >
               Contact
             </Link>

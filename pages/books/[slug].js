@@ -191,7 +191,7 @@ function Book({ book }) {
       <Divider />
 
       <Section>
-        <div className="max-w-kb-prose mx-auto">
+        <div className="prose mx-auto">
           <p className="body1 mb-6">{book.tagline}</p>
           <div className="body2 [&>p]:mb-6 [&>p:last-child]:mb-0">{documentToReactComponents(book.description)}</div>
         </div>

@@ -9,8 +9,8 @@ const Footer = ({ className, ...other }) => {
 
   return (
     <div className={classNames} {...other}>
-      <div className="max-w-screen-xl container flex flex-col sm:flex-row justify-between items-center">
-        <Heart className="w-6 h-6 sm:w-[0.8125rem] sm:h-3 sm:order-2" color="pink" />
+      <div className="max-w-(--breakpoint-xl) container mx-auto flex flex-col sm:flex-row justify-between items-center">
+        <Heart className="w-6 h-6 sm:w-3.25 sm:h-3 sm:order-2" color="pink" />
         <span className="caption sm:order-1 pt-3 sm:p-0 flex-1">
           @ {new Date().getFullYear()} Kate Bromley. All rights reserved.
         </span>

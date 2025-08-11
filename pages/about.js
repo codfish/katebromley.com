@@ -25,7 +25,7 @@ function About({ aboutKate, faqs }) {
 
       <PageHeader>About Kate</PageHeader>
 
-      <Section noBorder>
+      <Section noBorder maxWidth="lg">
         <div className="grid md:grid-cols-2 gap-10 md:gap-6">
           <div className="text-center md:text-left">
             <Image
