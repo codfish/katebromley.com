@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FaInstagram, FaTwitterSquare, FaAmazon, FaGoodreads } from 'react-icons/fa';
+import { FaInstagram, FaAmazon, FaGoodreads } from 'react-icons/fa';
+import { SiLinktree } from "react-icons/si";
 import Section from './Section';
 import Link from './Link';
 
@@ -12,8 +13,8 @@ const SocialSection = ({ className, ...other }) => (
         <Link href="https://www.instagram.com/katebromleywrites" className="mx-4">
           <FaInstagram className="hover:text-pink" />
         </Link>
-        <Link href="https://twitter.com/kbromleywrites" className="mx-4">
-          <FaTwitterSquare className="hover:text-pink" />
+        <Link href="https://linktr.ee/katebromley" className="mx-4">
+          <SiLinktree className="hover:text-pink size-6" />
         </Link>
         <Link href="https://www.amazon.com/Kate-Bromley/e/B08GYP6TNY" className="mx-4">
           <FaAmazon className="hover:text-pink" />
