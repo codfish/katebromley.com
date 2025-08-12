@@ -2,7 +2,7 @@
 // the same project, you must use the interoperable object-based format instead:
 module.exports = {
   plugins: [
-    'tailwindcss',
+    '@tailwindcss/postcss',
     [
       'postcss-preset-env',
       {

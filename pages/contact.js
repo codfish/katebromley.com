@@ -18,8 +18,8 @@ function Contact() {
 
       <PageHeader>Contact</PageHeader>
 
-      <Section noBorder>
-        <div className="max-w-kb-prose mx-auto">
+      <Section noBorder maxWidth="lg">
+        <div className="prose mx-auto text-center">
           <p className="text-body2 mb-4">
             For agent inquiries, contact{' '}
             <a
@@ -49,22 +49,22 @@ function Contact() {
           </p>
 
           <div className="flex flex-col justify-center text-center">
-            <h5 className="h5 text-primary-main mb-6 uppercase">Follow along on social media</h5>
+            <h5 className="h5 text-pink mb-6 uppercase">Follow along on social media</h5>
             <div className="flex items-center justify-center text-2xl">
               <Link href="https://www.instagram.com/katebromleywrites" className="mx-4">
-                <FaInstagram className="hover:text-primary-main" />
+                <FaInstagram className="hover:text-pink" />
               </Link>
               <Link href="https://twitter.com/kbromleywrites" className="mx-4">
-                <FaTwitterSquare className="hover:text-primary-main" />
+                <FaTwitterSquare className="hover:text-pink" />
               </Link>
               <Link href="https://www.amazon.com/Kate-Bromley/e/B08GYP6TNY" className="mx-4">
-                <FaAmazon className="hover:text-primary-main" />
+                <FaAmazon className="hover:text-pink" />
               </Link>
               <Link
                 href="https://www.goodreads.com/author/show/20590705.Kate_Bromley"
                 className="mx-4"
               >
-                <FaGoodreads className="hover:text-primary-main" />
+                <FaGoodreads className="hover:text-pink" />
               </Link>
             </div>
           </div>

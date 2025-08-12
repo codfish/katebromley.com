@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Section from './Section';
 import Button from './Button';
-import styles from './SubscribeSection.module.css';
+
 
 const SubscribeSection = ({ className, ...other }) => (
-  <Section color="secondary" className={clsx(styles.root, className)} {...other}>
+  <Section color="teal" className={clsx('lg:bg-teal-light lg:bg-[url("/newsletter-background.jpg")] lg:bg-no-repeat lg:bg-center lg:bg-cover', className)} {...other}>
     <div className="mb-10">
       <svg
         width="78px"

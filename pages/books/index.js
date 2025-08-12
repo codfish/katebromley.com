@@ -36,15 +36,15 @@ function Books({ books }) {
 
       <PageHeader>Books</PageHeader>
 
-      <Section noBorder>
+      <Section noBorder maxWidth="lg">
         <div className="grid md:grid-cols-2 gap-10 md:gap-6">
           <div className="flex items-center">
             <div>
-              <h5 className="h5 text-primary-main uppercase mb-10">
+              <h5 className="h5 text-pink uppercase mb-10">
                 {isReleased(latestRelease.releaseDate) ? 'Latest Release' : `Coming ${formatDateStr(latestRelease.releaseDate)}`}
               </h5>
               <h2 className="title text-5xl mb-4">
-                <Link href={`/books/${latestRelease.slug}`} className="hover:text-secondary-dark">{latestRelease.title}</Link>
+                <Link href={`/books/${latestRelease.slug}`} className="hover:text-teal-dark">{latestRelease.title}</Link>
               </h2>
               <p className="body2 pb-10 md:w-10/12">{latestRelease.tagline}</p>
 
@@ -55,7 +55,7 @@ function Books({ books }) {
           </div>
 
           <div className="text-center row-start-1 col-start-1 md:row-auto md:col-auto md:text-right">
-            <Link href={`/books/${latestRelease.slug}`}>
+            <Link href={`/books/${latestRelease.slug}`} className="inline-block md:text-right">
               <Image
                 src={latestRelease.coverImage.url}
                 alt={`Cover Art: ${latestRelease.title}`}
@@ -94,10 +94,10 @@ function Books({ books }) {
                 </Link>
               </div>
 
-              <div className="flex justify-center items-center">
+              <div className="flex md:justify-center items-center">
                 <div>
                   <h3 className="title text-3xl mb-4">
-                    <Link href={`/books/${secondBook.slug}`} className="hover:text-secondary-dark">{secondBook.title}</Link>
+                    <Link href={`/books/${secondBook.slug}`} className="hover:text-teal-dark">{secondBook.title}</Link>
                   </h3>
 
                   <p className="body2 mb-8">{secondBook.tagline}</p>
@@ -115,7 +115,7 @@ function Books({ books }) {
               <div className="flex justify-center items-center">
                 <div>
                   <h3 className="title text-3xl mb-4">
-                    <Link href={`/books/${thirdBook.slug}`} className="hover:text-secondary-dark">{thirdBook.title}</Link>
+                    <Link href={`/books/${thirdBook.slug}`} className="hover:text-teal-dark">{thirdBook.title}</Link>
                   </h3>
 
                   <p className="body2 mb-8">{thirdBook.tagline}</p>
@@ -151,7 +151,7 @@ function Books({ books }) {
           <Divider maxWidth="md" className="my-6" />
 
           <Section maxWidth="md" noBorder>
-            <h5 className="h5 uppercase text-primary-main mb-4">Heading Text Here</h5>
+            <h5 className="h5 uppercase text-pink mb-4">Heading Text Here</h5>
             <h3 className="h3 mb-10">Even More Books Here</h3>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
@@ -167,7 +167,7 @@ function Books({ books }) {
                     />
                   </Link>
                   <h4 className="text1 mb-2">
-                    <Link href={`/books/${book.slug}`} className="hover:text-secondary-dark">{book.title}</Link>
+                    <Link href={`/books/${book.slug}`} className="hover:text-teal-dark">{book.title}</Link>
                   </h4>
                   <Link href={`/books/${book.slug}`} className="link">
                     Buy Now

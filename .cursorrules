@@ -76,3 +76,9 @@ return (
 - Use semantic, accessible HTML elements
 - Follow React prop spreading patterns consistently
 - Maintain TypeScript/PropTypes validation where established
+
+## CSS Formatting Standards
+- **CRITICAL**: Every CSS definition/block must be preceded by an empty line
+- This includes: @utility definitions, @layer blocks, @font-face declarations, CSS rules, and comment blocks
+- Ensures clean separation and readability of CSS code
+- Exception: The very first definition in a file or immediately after an opening brace

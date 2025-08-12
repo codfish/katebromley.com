@@ -25,7 +25,7 @@ function About({ aboutKate, faqs }) {
 
       <PageHeader>About Kate</PageHeader>
 
-      <Section noBorder>
+      <Section noBorder maxWidth="lg">
         <div className="grid md:grid-cols-2 gap-10 md:gap-6">
           <div className="text-center md:text-left">
             <Image
@@ -49,7 +49,7 @@ function About({ aboutKate, faqs }) {
       {faqs && (
         <Section noBorder>
           <div className="max-w-prose mx-auto">
-            <h5 className="h5 text-primary-main uppercase mb-10">Frequently Asked Questions</h5>
+            <h5 className="h5 text-pink uppercase mb-10">Frequently Asked Questions</h5>
 
             {faqs.map(faq => (
               <div key={faq.id}>
