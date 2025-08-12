@@ -1,8 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-const Divider = ({ maxWidth, className, ...other }) => {
+export interface DividerProps {
+  /**
+   * Breakpoint width that the section **content area** will be maxed out at.
+   */
+  maxWidth?: 'sm' | 'md' | 'lg' | 'xl';
+  className?: string;
+  [key: string]: any;
+}
+
+const Divider = ({ maxWidth = 'lg', className = '', ...other }: DividerProps) => {
   const classNames = clsx(
     'mx-auto border-t border-solid border-gray-border',
     {
@@ -17,19 +25,6 @@ const Divider = ({ maxWidth, className, ...other }) => {
   );
 
   return <div className={classNames} {...other} />;
-};
-
-Divider.propTypes = {
-  /**
-   * Breakpoint width that the section **content area** will be maxed out at.
-   */
-  maxWidth: PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
-  className: PropTypes.string,
-};
-
-Divider.defaultProps = {
-  maxWidth: 'lg',
-  className: '',
 };
 
 export default Divider;

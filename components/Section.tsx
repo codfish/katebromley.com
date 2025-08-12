@@ -1,17 +1,44 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { PropsWithChildren } from 'react';
 import clsx from 'clsx';
 
+export interface SectionProps {
+  /**
+   * Background color. References theme palettes. The light variation will
+   * always be used.
+   */
+  color?: 'pink' | 'teal' | 'yellow' | 'gray' | null;
+  /**
+   * Breakpoint width that the section **content area** will be maxed out at.
+   */
+  maxWidth?: 'sm' | 'md' | 'lg' | 'xl';
+  /**
+   * Remove default padding on left and right so the content goes flush to
+   * the screen in breakpoints below the `maxWidth`.
+   */
+  noBumpers?: boolean;
+  /**
+   * Remove default padding on left and right so the content goes flush to
+   * the screen in breakpoints below the `maxWidth`.
+   */
+  noBorder?: boolean;
+  backdrop?: {
+    color: 'pink' | 'teal' | 'yellow' | 'gray';
+    position: 'right' | 'left';
+  } | null;
+  className?: string | null;
+  [key: string]: any;
+}
+
 const Section = ({
-  color,
-  maxWidth,
-  noBumpers,
-  noBorder,
-  backdrop,
+  color = null,
+  maxWidth = 'lg',
+  noBumpers = false,
+  noBorder = false,
+  backdrop = null,
   children,
-  className,
+  className = null,
   ...other
-}) => {
+}: PropsWithChildren<SectionProps>) => {
   const classNames = clsx(
     'relative',
     {
@@ -73,43 +100,6 @@ const Section = ({
       </div>
     </section>
   );
-};
-
-Section.propTypes = {
-  /**
-   * Background color. References theme palettes. The light variation will
-   * always be used.
-   */
-  color: PropTypes.oneOf(['pink', 'teal', 'yellow', 'gray']),
-  /**
-   * Breakpoint width that the section **content area** will be maxed out at.
-   */
-  maxWidth: PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
-  /**
-   * Remove default padding on left and right so the content goes flush to
-   * the screen in breakpoints below the `maxWidth`.
-   */
-  noBumpers: PropTypes.bool,
-  /**
-   * Remove default padding on left and right so the content goes flush to
-   * the screen in breakpoints below the `maxWidth`.
-   */
-  noBorder: PropTypes.bool,
-  backdrop: PropTypes.shape({
-    color: PropTypes.oneOf(['pink', 'teal', 'yellow', 'gray']).isRequired,
-    position: PropTypes.oneOf(['right', 'left']).isRequired,
-  }),
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-};
-
-Section.defaultProps = {
-  color: null,
-  maxWidth: 'lg',
-  noBumpers: false,
-  noBorder: false,
-  backdrop: null,
-  className: null,
 };
 
 export default Section;

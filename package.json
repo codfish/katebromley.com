@@ -5,14 +5,14 @@
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^16.1.0",
     "clsx": "^2.1.1",
     "contentful": "^11.7.15",
     "next": "^15.4.6",
-    "prop-types": "^15.8.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-icons": "^5.5.0"
@@ -22,11 +22,14 @@
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/typography": "^0.5.16",
+    "@types/node": "24.2.1",
+    "@types/react": "19.1.10",
     "autoprefixer": "^10.2.6",
     "postcss": "^8.5.6",
     "postcss-preset-env": "^10.2.4",
     "stylelint-config-recommended": "^17.0.0",
-    "tailwindcss": "^4.1.11"
+    "tailwindcss": "^4.1.11",
+    "typescript": "5.9.2"
   },
   "volta": {
     "node": "22.18.0"

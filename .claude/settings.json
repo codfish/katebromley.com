@@ -6,7 +6,11 @@
       "Bash(npm install:*)",
       "Bash(npm run build:*)",
       "Bash(npm run dev:*)",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "Bash(git mv:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm run typecheck:*)",
+      "Bash(grep:*)"
     ],
     "deny": []
   }

@@ -1,13 +1,16 @@
 import React, { useState, useRef } from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import useClickOutside from '../hooks/useClickOutside';
 import Link from './Link';
 import Logo from './Logo';
 import NavIcon from './NavIcon';
 
+export interface HeaderProps {
+  className?: string;
+  [key: string]: any;
+}
 
-const Header = ({ className, ...other }) => {
+const Header = ({ className = '', ...other }: HeaderProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const classNames = clsx(
     'h-20 lg:h-25',
@@ -20,7 +23,7 @@ const Header = ({ className, ...other }) => {
   };
 
   // handle clicks outsive of the nav and make sure mobile dropdown menu closes
-  const navRef = useRef(null);
+  const navRef = useRef<HTMLElement>(null);
   useClickOutside(navRef, hideMenu);
 
   return (
@@ -107,14 +110,6 @@ const Header = ({ className, ...other }) => {
       </div>
     </nav>
   );
-};
-
-Header.propTypes = {
-  className: PropTypes.string,
-};
-
-Header.defaultProps = {
-  className: '',
 };
 
 export default Header;

@@ -1,8 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-const Logo = ({ heartColor, width, height, className, ...other }) => (
+export interface LogoProps {
+  heartColor?: 'pink' | 'teal' | 'yellow';
+  width?: string;
+  height?: string;
+  className?: string;
+  [key: string]: any;
+}
+
+const Logo = ({ heartColor = 'yellow', width = '327px', height = '42px', className = '', ...other }: LogoProps) => (
   <svg
     width={width}
     height={height}
@@ -130,19 +137,5 @@ const Logo = ({ heartColor, width, height, className, ...other }) => (
     </g>
   </svg>
 );
-
-Logo.propTypes = {
-  heartColor: PropTypes.oneOf(['pink', 'teal', 'yellow']),
-  width: PropTypes.string,
-  height: PropTypes.string,
-  className: PropTypes.string,
-};
-
-Logo.defaultProps = {
-  heartColor: 'yellow',
-  width: '327px',
-  height: '42px',
-  className: '',
-};
 
 export default Logo;

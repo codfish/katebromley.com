@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { GetStaticProps } from 'next';
 import Image from 'next/image';
 import Head from 'next/head';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
@@ -10,8 +10,14 @@ import SubscribeSection from '../components/SubscribeSection';
 import SocialSection from '../components/SocialSection';
 import PageHeader from '../components/PageHeader';
 import Divider from '../components/Divider';
+import { AboutKate, FAQ } from '../lib/contentful';
 
-function About({ aboutKate, faqs }) {
+interface AboutProps {
+  aboutKate: AboutKate;
+  faqs: FAQ[];
+}
+
+function About({ aboutKate, faqs }: AboutProps) {
   return (
     <>
       <Head>
@@ -68,25 +74,7 @@ function About({ aboutKate, faqs }) {
   );
 }
 
-About.propTypes = {
-  aboutKate: PropTypes.shape({
-    bio: PropTypes.object.isRequired,
-    headshot: PropTypes.shape({
-      url: PropTypes.string.isRequired,
-      width: PropTypes.number.isRequired,
-      height: PropTypes.number.isRequired,
-    }).isRequired,
-  }).isRequired,
-  faqs: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      question: PropTypes.string.isRequired,
-      answer: PropTypes.object.isRequired,
-    }),
-  ).isRequired,
-};
-
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const [aboutKate, faqs] = await Promise.all([
     fetchKateBromley(),
     fetchFaqs({ 'fields.biography': true }),
