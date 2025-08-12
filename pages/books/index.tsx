@@ -59,21 +59,23 @@ function Books({ books }: BooksProps) {
             </div>
           </div>
 
-          <div className="text-center row-start-1 col-start-1 md:row-auto md:col-auto md:text-right">
-            <Link href={`/books/${latestRelease.slug}`} className="inline-block md:text-right">
-              <Image
-                src={latestRelease.coverImage.url}
-                alt={`Cover Art: ${latestRelease.title}`}
-                width="384"
-                height={calcImageHeight(
-                  384,
-                  latestRelease.coverImage.width,
-                  latestRelease.coverImage.height,
-                )}
-                quality="90"
-              />
-            </Link>
-          </div>
+          {latestRelease.coverImage && (
+            <div className="text-center row-start-1 col-start-1 md:row-auto md:col-auto md:text-right">
+              <Link href={`/books/${latestRelease.slug}`} className="inline-block md:text-right">
+                <Image
+                  src={latestRelease.coverImage.url}
+                  alt={`Cover Art: ${latestRelease.title}`}
+                  width="384"
+                  height={calcImageHeight(
+                    384,
+                    latestRelease.coverImage.width,
+                    latestRelease.coverImage.height,
+                  )}
+                  quality="90"
+                />
+              </Link>
+            </div>
+          )}
         </div>
       </Section>
 
@@ -83,21 +85,23 @@ function Books({ books }: BooksProps) {
         <Section maxWidth="md" noBorder>
           {secondBook && (
             <div className="grid md:grid-cols-2 gap-10 md:gap-6 mb-10">
-              <div className="text-center md:text-left md:row-auto md:col-auto">
-                <Link href={`/books/${secondBook.slug}`}>
-                  <Image
-                    src={secondBook.coverImage.url}
-                    alt={`Cover Art: ${secondBook.title}`}
-                    width="282"
-                    height={calcImageHeight(
-                      282,
-                      secondBook.coverImage.width,
-                      secondBook.coverImage.height,
-                    )}
-                    quality="90"
-                  />
-                </Link>
-              </div>
+              {secondBook.coverImage && (
+                <div className="text-center md:text-left md:row-auto md:col-auto">
+                  <Link href={`/books/${secondBook.slug}`}>
+                    <Image
+                      src={secondBook.coverImage.url}
+                      alt={`Cover Art: ${secondBook.title}`}
+                      width="282"
+                      height={calcImageHeight(
+                        282,
+                        secondBook.coverImage.width,
+                        secondBook.coverImage.height,
+                      )}
+                      quality="90"
+                    />
+                  </Link>
+                </div>
+              )}
 
               <div className="flex md:justify-center items-center">
                 <div>
@@ -131,21 +135,23 @@ function Books({ books }: BooksProps) {
                 </div>
               </div>
 
-              <div className="text-center md:text-right row-start-1 col-start-1 md:row-auto md:col-auto">
-                <Link href={`/books/${thirdBook.slug}`}>
-                  <Image
-                    src={thirdBook.coverImage.url}
-                    alt={`Cover Art: ${thirdBook.title}`}
-                    width="282"
-                    height={calcImageHeight(
-                      282,
-                      thirdBook.coverImage.width,
-                      thirdBook.coverImage.height,
-                    )}
-                    quality="90"
-                  />
-                </Link>
-              </div>
+              {thirdBook.coverImage && (
+                <div className="text-center md:text-right row-start-1 col-start-1 md:row-auto md:col-auto">
+                  <Link href={`/books/${thirdBook.slug}`}>
+                    <Image
+                      src={thirdBook.coverImage.url}
+                      alt={`Cover Art: ${thirdBook.title}`}
+                      width="282"
+                      height={calcImageHeight(
+                        282,
+                        thirdBook.coverImage.width,
+                        thirdBook.coverImage.height,
+                      )}
+                      quality="90"
+                    />
+                  </Link>
+                </div>
+              )}
             </div>
           )}
         </Section>
@@ -162,15 +168,17 @@ function Books({ books }: BooksProps) {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
               {books.slice(3).map(book => (
                 <div className="flex flex-col" key={book.slug}>
-                  <Link href={`/books/${book.slug}`}>
-                    <Image
-                      src={book.coverImage.url}
-                      alt={`Cover Art: ${book.title}`}
-                      width="180"
-                      height={calcImageHeight(180, book.coverImage.width, book.coverImage.height)}
-                      quality="90"
-                    />
-                  </Link>
+                  {book.coverImage && (
+                    <Link href={`/books/${book.slug}`}>
+                      <Image
+                        src={book.coverImage.url}
+                        alt={`Cover Art: ${book.title}`}
+                        width="180"
+                        height={calcImageHeight(180, book.coverImage.width, book.coverImage.height)}
+                        quality="90"
+                      />
+                    </Link>
+                  )}
                   <h4 className="text1 mb-2">
                     <Link href={`/books/${book.slug}`} className="hover:text-teal-dark">{book.title}</Link>
                   </h4>

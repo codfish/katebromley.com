@@ -1,4 +1,4 @@
-import { createClient, Entry } from 'contentful';
+import { createClient } from 'contentful';
 import { Document } from '@contentful/rich-text-types';
 
 export interface ContentfulImage {
@@ -29,9 +29,9 @@ export interface Book {
   title: string;
   releaseDate: string;
   slug: string;
-  coverImage: ContentfulImage;
+  coverImage: ContentfulImage | null;
   tagline: string;
-  description: Document;
+  description: Document | null;
   isbn: string;
   onSale?: boolean;
   amazonUrl?: string;
@@ -47,7 +47,7 @@ export interface Book {
   bookshopUrl?: string;
   walmartUrl?: string;
   targetUrl?: string;
-  praise?: Praise[];
+  praise?: Praise[] | null;
 }
 
 export interface FAQ {
@@ -65,11 +65,12 @@ const client = createClient({
 export default client;
 
 export const transformBook = (bookEntry: any): Book => {
+  const coverImage = bookEntry.fields.coverImage;
   const book = {
     ...bookEntry.fields,
-    coverImage: Array.isArray(bookEntry.fields.coverImage) ? bookEntry.fields.coverImage[0] : bookEntry.fields.coverImage,
-    description: bookEntry.fields.description,
-    praise: bookEntry.fields.praise?.map((entry: any) => transformPraise(entry)),
+    coverImage: Array.isArray(coverImage) ? coverImage[0] : coverImage || null,
+    description: bookEntry.fields.description || null,
+    praise: bookEntry.fields.praise?.map((entry: any) => transformPraise(entry)) || null,
   };
 
   return book;

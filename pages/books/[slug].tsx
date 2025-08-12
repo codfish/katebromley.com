@@ -53,7 +53,7 @@ function BookPage({ book }: BookPageProps) {
         <meta property="og:site_name" content="Kate Bromley Novels" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:description" content={book.tagline} />
-        <meta property="og:image" content={book.coverImage.url} />
+        {book.coverImage && <meta property="og:image" content={book.coverImage.url} />}
         <meta property="og:url" content={`https://www.katebromley.com/books/${book.slug}`} />
         {/* https://ogp.me/#type_book */}
         <meta property="og:type" content="book" />
@@ -70,17 +70,19 @@ function BookPage({ book }: BookPageProps) {
       <div className="border-t-8 border-solid border-pink" />
 
       <Section noBorder>
-        <div className="text-center mb-10 lg:mb-16">
-          <Image
-            className='inline-block'
-            src={book.coverImage.url}
-            alt={book.coverImage.alternativeText || `Cover Art: ${book.title}`}
-            width="384"
-            height={calcImageHeight(384, book.coverImage.width, book.coverImage.height)}
-            quality="90"
-            priority
-          />
-        </div>
+        {book.coverImage && (
+          <div className="text-center mb-10 lg:mb-16">
+            <Image
+              className='inline-block'
+              src={book.coverImage.url}
+              alt={book.coverImage.alternativeText || `Cover Art: ${book.title}`}
+              width="384"
+              height={calcImageHeight(384, book.coverImage.width, book.coverImage.height)}
+              quality="90"
+              priority
+            />
+          </div>
+        )}
 
         <h1 className="h2 text-center mb-12">
           <Link href={`/books/${book.slug}`}>{book.title}</Link>
@@ -199,7 +201,9 @@ function BookPage({ book }: BookPageProps) {
       <Section>
         <div className="prose mx-auto">
           <p className="body1 mb-6">{book.tagline}</p>
-          <div className="body2 [&>p]:mb-6 [&>p:last-child]:mb-0">{documentToReactComponents(book.description)}</div>
+          {book.description && (
+            <div className="body2 [&>p]:mb-6 [&>p:last-child]:mb-0">{documentToReactComponents(book.description)}</div>
+          )}
         </div>
       </Section>
 
