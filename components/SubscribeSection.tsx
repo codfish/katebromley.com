@@ -1,11 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Section from './Section';
 import Button from './Button';
 
+export interface SubscribeSectionProps {
+  className?: string;
+  [key: string]: any;
+}
 
-const SubscribeSection = ({ className, ...other }) => (
+const SubscribeSection = ({ className = '', ...other }: SubscribeSectionProps) => (
   <Section color="teal" className={clsx('lg:bg-teal-light lg:bg-[url("/newsletter-background.jpg")] lg:bg-no-repeat lg:bg-center lg:bg-cover', className)} {...other}>
     <div className="mb-10">
       <svg
@@ -64,12 +67,12 @@ const SubscribeSection = ({ className, ...other }) => (
           placeholder="Your Email"
           id="mce-EMAIL"
           required
-          aria-required
+          aria-required="true"
           className="input mb-6"
         />
 
         <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
-          <input type="text" name="b_3409d07d2655432fdaf750be0_1792a82a63" tabIndex="-1" />
+          <input type="text" name="b_3409d07d2655432fdaf750be0_1792a82a63" tabIndex={-1} />
         </div>
 
         <Button
@@ -85,13 +88,5 @@ const SubscribeSection = ({ className, ...other }) => (
     </div>
   </Section>
 );
-
-SubscribeSection.propTypes = {
-  className: PropTypes.string,
-};
-
-SubscribeSection.defaultProps = {
-  className: '',
-};
 
 export default SubscribeSection;

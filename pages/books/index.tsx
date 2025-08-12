@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import { fetchBooks } from '../../lib/contentful';
@@ -11,8 +11,9 @@ import Button from '../../components/Button';
 import Link from '../../components/Link';
 import Section from '../../components/Section';
 import PageHeader from '../../components/PageHeader';
+import { Book } from '../../lib/contentful';
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const books = await fetchBooks();
 
   return {
@@ -21,7 +22,11 @@ export const getStaticProps = async () => {
     },
   };
 };
-function Books({ books }) {
+interface BooksProps {
+  books: Book[];
+}
+
+function Books({ books }: BooksProps) {
   const latestRelease = books[0];
   const secondBook = books[1] ?? null;
   const thirdBook = books[2] ?? null;
@@ -185,22 +190,5 @@ function Books({ books }) {
     </>
   );
 }
-
-Books.propTypes = {
-  books: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      releaseDate: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired,
-      coverImage: PropTypes.shape({
-        url: PropTypes.string.isRequired,
-        alternativeText: PropTypes.string,
-        width: PropTypes.number.isRequired,
-        height: PropTypes.number.isRequired,
-      }).isRequired,
-      tagline: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-};
 
 export default Books;

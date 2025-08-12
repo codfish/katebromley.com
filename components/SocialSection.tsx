@@ -1,11 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { FaInstagram, FaAmazon, FaGoodreads } from 'react-icons/fa';
 import { SiLinktree } from "react-icons/si";
 import Section from './Section';
 import Link from './Link';
 
-const SocialSection = ({ className, ...other }) => (
+export interface SocialSectionProps {
+  className?: string;
+  [key: string]: any;
+}
+
+const SocialSection = ({ className = '', ...other }: SocialSectionProps) => (
   <Section noBorder className={className} {...other}>
     <div className="flex flex-col justify-center items-center">
       <h4 className="h4 text-center px-12 mb-9">Follow Me On Social Media</h4>
@@ -26,13 +30,5 @@ const SocialSection = ({ className, ...other }) => (
     </div>
   </Section>
 );
-
-SocialSection.propTypes = {
-  className: PropTypes.string,
-};
-
-SocialSection.defaultProps = {
-  className: '',
-};
 
 export default SocialSection;

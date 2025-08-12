@@ -69,11 +69,60 @@ return (
 - Should pass through all props to NextLink
 - Should maintain active state detection if needed
 
+## TypeScript Standards
+
+### Component Development
+- **ALWAYS** use TypeScript for all React components (.tsx) and utility functions (.ts)
+- **NEVER** use PropTypes - this project has migrated to TypeScript for type safety
+- Define component props above the component and export them as interfaces
+- Name prop interfaces using the pattern: `<ComponentName>Props`
+
+```tsx
+// ✅ CORRECT: TypeScript component pattern
+import React, { PropsWithChildren } from 'react';
+
+export interface ButtonProps {
+  href?: string | object | null;
+  primary?: boolean;
+  className?: string;
+  [key: string]: any;
+}
+
+const Button = ({ href = null, primary = false, children, className = '', ...other }: PropsWithChildren<ButtonProps>) => {
+  // Component implementation
+};
+
+export default Button;
+```
+
+### Type Organization
+- **CRITICAL**: Keep types close to their implementations
+- Define types directly in the file where they're used (e.g., Contentful types in `lib/contentful.ts`)
+- Only create separate type files for truly shared types across multiple unrelated modules
+- Export types from implementation files to allow reuse when needed
+
+### File Naming & Extensions
+- React components: `.tsx` extension
+- Utility functions, hooks, libs: `.ts` extension
+- Always use `git mv` when converting existing JS files to preserve git history
+
+### Type Safety Best Practices
+- Use strict TypeScript configuration with `"strict": true`
+- Prefer explicit types over `any` (use `any` only for complex external APIs like Contentful)
+- Use proper Next.js types: `GetStaticProps`, `GetStaticPaths`, `AppProps`
+- For HTML attributes, use TypeScript's built-in DOM types (e.g., `tabIndex={-1}` not `tabIndex="-1"`)
+- **For components with children**: Use `PropsWithChildren<YourProps>` instead of adding `children: React.ReactNode` to your interface
+
+### Development Scripts
+- Use `npm run typecheck` for type checking without building
+- All builds include TypeScript compilation and type checking
+- Add `*.tsbuildinfo` to `.gitignore` (TypeScript build cache)
+
 ## Code Quality
 - Prefer editing existing files over creating new ones
 - Use semantic, accessible HTML elements
 - Follow React prop spreading patterns consistently
-- Maintain TypeScript/PropTypes validation where established
+- **NEVER** use PropTypes - use TypeScript interfaces instead
 
 ## CSS Formatting Standards
 - **CRITICAL**: Every CSS definition/block must be preceded by an empty line

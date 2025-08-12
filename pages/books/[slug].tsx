@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { GetStaticProps, GetStaticPaths } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
@@ -10,9 +10,10 @@ import SocialSection from '../../components/SocialSection';
 import Section from '../../components/Section';
 import Divider from '../../components/Divider';
 import Link from '../../components/Link';
+import { Book } from '../../lib/contentful';
 
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const books = await fetchBooks();
 
   return {
@@ -22,9 +23,9 @@ export async function getStaticPaths() {
   };
 }
 
-export const getStaticProps = async ctx => {
-  const { slug } = ctx.params;
-  const book = await fetchBookBySlug(slug);
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  const { slug } = ctx.params!;
+  const book = await fetchBookBySlug(slug as string);
 
   return {
     props: {
@@ -34,7 +35,12 @@ export const getStaticProps = async ctx => {
   };
 };
 
-function Book({ book }) {
+interface BookPageProps {
+  slug: string;
+  book: Book;
+}
+
+function BookPage({ book }: BookPageProps) {
   const isPreRelease = !isReleased(book.releaseDate);
 
   return (
@@ -230,44 +236,4 @@ function Book({ book }) {
   );
 }
 
-Book.propTypes = {
-  book: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    releaseDate: PropTypes.string.isRequired,
-    slug: PropTypes.string.isRequired,
-    coverImage: PropTypes.shape({
-      url: PropTypes.string.isRequired,
-      alternativeText: PropTypes.string,
-      width: PropTypes.number.isRequired,
-      height: PropTypes.number.isRequired,
-    }).isRequired,
-    tagline: PropTypes.string.isRequired,
-    description: PropTypes.object.isRequired,
-    isbn: PropTypes.string.isRequired,
-    onSale: PropTypes.bool,
-    amazonUrl: PropTypes.string,
-    audibleUrl: PropTypes.string,
-    barnesNobleUrl: PropTypes.string,
-    indieboundUrl: PropTypes.string,
-    indigoUrl: PropTypes.string,
-    koboUrl: PropTypes.string,
-    appleBooksUrl: PropTypes.string,
-    googlePlayUrl: PropTypes.string,
-    libroFmUrl: PropTypes.string,
-    chirpUrl: PropTypes.string,
-    bookshopUrl: PropTypes.string,
-    walmartUrl: PropTypes.string,
-    praise: PropTypes.arrayOf(
-      PropTypes.shape({
-        quote: PropTypes.object.isRequired,
-        type: PropTypes.string.isRequired,
-        sourceName: PropTypes.string.isRequired,
-        sourceDescription: PropTypes.string.isRequired,
-        sourceUrl: PropTypes.string,
-        cite: PropTypes.string,
-      }),
-    ),
-  }).isRequired,
-};
-
-export default Book;
+export default BookPage;

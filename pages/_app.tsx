@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { pageview } from '../lib/gtag';
 import Layout from '../components/Layout';
 import '../styles/app.css';
 
-const App = ({ Component, pageProps }) => {
+const App = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
 
   useEffect(() => {
-    const handleRouteChange = url => {
+    const handleRouteChange = (url: string) => {
       pageview(url);
     };
     router.events.on('routeChangeComplete', handleRouteChange);
@@ -42,11 +42,6 @@ const App = ({ Component, pageProps }) => {
       </Layout>
     </>
   );
-};
-
-App.propTypes = {
-  Component: PropTypes.elementType.isRequired,
-  pageProps: PropTypes.shape({}).isRequired,
 };
 
 export default App;

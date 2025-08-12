@@ -1,8 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-const Heart = ({ color, width, height, className: classNameProp, ...other }) => {
+export interface HeartProps {
+  color?: 'pink' | 'teal' | 'yellow';
+  width?: string;
+  height?: string;
+  className?: string;
+  [key: string]: any;
+}
+
+const Heart = ({ color = 'yellow', width = '64px', height = '60px', className: classNameProp = '', ...other }: HeartProps) => {
   const className = clsx('root', classNameProp);
 
   return (
@@ -36,20 +43,6 @@ const Heart = ({ color, width, height, className: classNameProp, ...other }) => 
       </g>
     </svg>
   );
-};
-
-Heart.propTypes = {
-  color: PropTypes.oneOf(['pink', 'teal', 'yellow']),
-  width: PropTypes.string,
-  height: PropTypes.string,
-  className: PropTypes.string,
-};
-
-Heart.defaultProps = {
-  color: 'yellow',
-  width: '64px',
-  height: '60px',
-  className: '',
 };
 
 export default Heart;

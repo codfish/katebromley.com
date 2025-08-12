@@ -1,10 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Heart from './Heart';
 
+export interface FooterProps {
+  className?: string;
+  [key: string]: any;
+}
 
-const Footer = ({ className, ...other }) => {
+const Footer = ({ className = '', ...other }: FooterProps) => {
   const classNames = clsx('px-10 bg-pink-light py-6', className);
 
   return (
@@ -20,14 +23,6 @@ const Footer = ({ className, ...other }) => {
       </div>
     </div>
   );
-};
-
-Footer.propTypes = {
-  className: PropTypes.string,
-};
-
-Footer.defaultProps = {
-  className: '',
 };
 
 export default Footer;

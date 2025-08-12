@@ -1,9 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { PropsWithChildren } from 'react';
 import clsx from 'clsx';
 import Link from './Link';
 
-const Button = ({ href, primary, children, className: classNameProp, ...other }) => {
+export interface ButtonProps {
+  href?: string | object | null;
+  primary?: boolean;
+  className?: string;
+  [key: string]: any;
+}
+
+const Button = ({ href = null, primary = false, children, className: classNameProp = '', ...other }: PropsWithChildren<ButtonProps>) => {
   const className = clsx(
     `button px-4 pt-4 pb-3 border border-teal hover:border-teal-dark disabled:opacity-50`,
     {
@@ -22,19 +28,6 @@ const Button = ({ href, primary, children, className: classNameProp, ...other })
       {children}
     </button>
   );
-};
-
-Button.propTypes = {
-  href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  primary: PropTypes.bool,
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-};
-
-Button.defaultProps = {
-  href: null,
-  primary: false,
-  className: '',
 };
 
 export default Button;

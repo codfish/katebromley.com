@@ -1,9 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { PropsWithChildren } from 'react';
 import clsx from 'clsx';
 
+export interface PageHeaderProps {
+  className?: string;
+  [key: string]: any;
+}
 
-const PageHeader = ({ children, className, ...other }) => {
+const PageHeader = ({ children, className = '', ...other }: PropsWithChildren<PageHeaderProps>) => {
   const classNames = clsx('relative bg-pink-light h-30 mb-8.5 lg:h-45 lg:mb-22 lg:bg-pink-light lg:bg-[url("/page-header-background.jpg")] lg:bg-no-repeat lg:bg-center lg:bg-cover', className);
 
   return (
@@ -13,15 +16,6 @@ const PageHeader = ({ children, className, ...other }) => {
       </h1>
     </header>
   );
-};
-
-PageHeader.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-};
-
-PageHeader.defaultProps = {
-  className: '',
 };
 
 export default PageHeader;

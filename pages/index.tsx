@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { GetStaticProps } from 'next';
 import Image from 'next/image';
 import Head from 'next/head';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
@@ -10,18 +10,29 @@ import Link from '../components/Link';
 import Button from '../components/Button';
 import { formatDateStr, isReleased, calcImageHeight } from '../lib/utils';
 import { fetchKateBromley, fetchBooks } from '../lib/contentful';
+import { AboutKate, Book } from '../lib/contentful';
 
-export const getStaticProps = async () => {
-  const [aboutKate, books] = await Promise.all([
-    fetchKateBromley(),
-    fetchBooks({ 'fields.featuredBook': true }),
-  ])
-  .catch(err => console.log(err));
+export const getStaticProps: GetStaticProps = async () => {
+  try {
+    const [aboutKate, books] = await Promise.all([
+      fetchKateBromley(),
+      fetchBooks({ 'fields.featuredBook': true }),
+    ]);
 
-  return { props: { aboutKate, books } };
+    return { props: { aboutKate, books } };
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
 };
 
-function Home({ aboutKate, books, preOrderAvailable }) {
+interface HomeProps {
+  aboutKate: AboutKate;
+  books: Book[];
+  preOrderAvailable?: boolean;
+}
+
+function Home({ aboutKate, books, preOrderAvailable = false }: HomeProps) {
   const headshotColClasses =
     books.length % 2 === 0
       ? 'text-center md:text-left row-start-1 col-start-1' // headshot is on the left
@@ -114,36 +125,5 @@ function Home({ aboutKate, books, preOrderAvailable }) {
     </>
   );
 }
-
-Home.propTypes = {
-  aboutKate: PropTypes.shape({
-    greeting_header: PropTypes.string,
-    greeting: PropTypes.string.isRequired,
-    bio: PropTypes.object.isRequired,
-    headshot: PropTypes.shape({
-      url: PropTypes.string.isRequired,
-      width: PropTypes.number.isRequired,
-      height: PropTypes.number.isRequired,
-    }).isRequired,
-  }).isRequired,
-  books: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      releaseDate: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired,
-      coverImage: PropTypes.shape({
-        url: PropTypes.string.isRequired,
-        width: PropTypes.number.isRequired,
-        height: PropTypes.number.isRequired,
-      }).isRequired,
-      tagline: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-  preOrderAvailable: PropTypes.bool,
-};
-
-Home.defaultProps = {
-  preOrderAvailable: false,
-};
 
 export default Home;
