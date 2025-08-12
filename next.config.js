@@ -1,15 +1,6 @@
 module.exports = () => ({
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'res.cloudinary.com',
-      },
-      {
-        protocol: 'http',
-        hostname: 'localhost',
-      },
-    ],
+    domains: ['localhost', 'res.cloudinary.com'],
   },
 
   async rewrites() {
