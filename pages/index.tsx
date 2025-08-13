@@ -76,18 +76,20 @@ function Home({ aboutKate, books, preOrderAvailable = false }: HomeProps) {
                 </div>
               </div>
 
-              <div className={bookColClasses}>
-                <Link href={`/books/${book.slug}`}>
-                  <Image
-                    src={`${book.coverImage.url}`}
-                    alt={`Cover Art: ${book.title}`}
-                    className="inline-block"
-                    width="384"
-                    height={calcImageHeight(384, book.coverImage.width, book.coverImage.height)}
-                    quality="90"
-                  />
-                </Link>
-              </div>
+              {book.coverImage && (
+                <div className={bookColClasses}>
+                  <Link href={`/books/${book.slug}`}>
+                    <Image
+                      src={`${book.coverImage.url}`}
+                      alt={`Cover Art: ${book.title}`}
+                      className="inline-block"
+                      width="384"
+                      height={calcImageHeight(384, book.coverImage.width, book.coverImage.height)}
+                      quality="90"
+                    />
+                  </Link>
+                </div>
+              )}
             </div>
           </Section>
         );
