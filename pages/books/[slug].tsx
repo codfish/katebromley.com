@@ -199,7 +199,7 @@ function BookPage({ book }: BookPageProps) {
       <Divider />
 
       <Section>
-        <div className="prose mx-auto">
+        <div className="prose text-pretty mx-auto">
           <p className="body1 mb-6">{book.tagline}</p>
           {book.description && (
             <div className="body2 [&>p]:mb-6 [&>p:last-child]:mb-0">{documentToReactComponents(book.description)}</div>
