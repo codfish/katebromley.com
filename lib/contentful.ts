@@ -60,6 +60,7 @@ const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID || 'UNDEFINED_SPACE_ID',
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN || 'UNDEFINED_ACCESS_TOKEN',
   host: process.env.CONTENTFUL_HOST,
+  environment: process.env.CONTENTFUL_ENVIRONMENT || 'master',
 });
 
 export default client;
