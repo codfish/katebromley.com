@@ -57,10 +57,12 @@ export interface FAQ {
 }
 
 const client = createClient({
-  space: process.env.CONTENTFUL_SPACE_ID || 'UNDEFINED_SPACE_ID',
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN || 'UNDEFINED_ACCESS_TOKEN',
+  space: process.env.CONTENTFUL_SPACE_ID,
+  accessToken: process.env.CONTENTFUL_STAGING_ENABLED === 'true'
+    ? process.env.CONTENTFUL_STAGING_ACCESS_TOKEN
+    : process.env.CONTENTFUL_ACCESS_TOKEN,
   host: process.env.CONTENTFUL_HOST,
-  environment: process.env.CONTENTFUL_ENVIRONMENT || 'master',
+  environment: process.env.CONTENTFUL_STAGING_ENABLED === 'true' ? 'staging' : 'master',
 });
 
 export default client;
