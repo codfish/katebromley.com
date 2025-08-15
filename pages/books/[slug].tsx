@@ -89,10 +89,10 @@ function BookPage({ book }: BookPageProps) {
         </h1>
 
         <h5 className="h6 uppercase text-center mb-5">
-          {isPreRelease ? 'Now Available for Pre-order' : 'Purchase the Book'}
+          {isPreRelease ? 'Now Available for Pre-order' : 'Shop the Book'}
         </h5>
 
-        <div className="text-center mb-8">
+        <div className="text-center">
           <ul className="flex flex-wrap justify-center">
             {book.amazonUrl && (
               <li className="my-2">
@@ -192,7 +192,7 @@ function BookPage({ book }: BookPageProps) {
         </div>
 
         {isPreRelease && (
-          <p className="body1 text-center">Coming {formatDateStr(book.releaseDate)}</p>
+          <p className="body2 text-center mt-8">Coming {formatDateStr(book.releaseDate)}</p>
         )}
       </Section>
 

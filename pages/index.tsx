@@ -59,7 +59,7 @@ function Home({ aboutKate, books, preOrderAvailable = false }: HomeProps) {
                 <div>
                   {index === 0 && (
                     <h5 className="h5 text-pink uppercase mb-10">
-                      {isPreRelease ? `Coming ${formatDateStr(book.releaseDate)}` : 'Latest Release'}
+                      {isPreRelease ? `Available for Pre-order` : 'Latest Release'}
                     </h5>
                   )}
                   {index === 1 && preOrderAvailable && !isPreRelease && (
@@ -70,9 +70,9 @@ function Home({ aboutKate, books, preOrderAvailable = false }: HomeProps) {
                   </h2>
                   <p className="body2 pb-10 md:w-10/12">{book.tagline}</p>
 
-                  <Button href={`/books/${book.slug}`} primary>
-                    {isPreRelease ? 'Pre-order Now' : 'Buy Now'}
-                  </Button>
+                  <Link href={`/books/${book.slug}`} className="cta-link link block">
+                    Fall Into the Story
+                  </Link>
                 </div>
               </div>
 
