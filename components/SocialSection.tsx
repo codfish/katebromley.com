@@ -17,14 +17,14 @@ const SocialSection = ({ className = '', ...other }: SocialSectionProps) => (
         <Link href="https://www.instagram.com/katebromleywrites" className="mx-4">
           <FaInstagram className="hover:text-pink" />
         </Link>
-        <Link href="https://linktr.ee/katebromley" className="mx-4">
-          <SiLinktree className="hover:text-pink size-6" />
-        </Link>
         <Link href="https://www.amazon.com/Kate-Bromley/e/B08GYP6TNY" className="mx-4">
           <FaAmazon className="hover:text-pink" />
         </Link>
         <Link href="https://www.goodreads.com/author/show/20590705.Kate_Bromley" className="mx-4">
           <FaGoodreads className="hover:text-pink" />
+        </Link>
+        <Link href="https://linktr.ee/katebromley" className="mx-4">
+          <SiLinktree className="hover:text-pink size-6" />
         </Link>
       </div>
     </div>
