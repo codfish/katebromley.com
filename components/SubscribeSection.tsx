@@ -44,9 +44,9 @@ const SubscribeSection = ({ className = '', ...other }: SubscribeSectionProps) =
     </div>
 
     <div className="w-full max-w-xl mx-auto">
-      <h3 className="h3 text-center mb-4">Stay Connected with Kate</h3>
+      <h3 className="h3 text-center mb-4">Subscribe to Kate&apos;s Newsletter</h3>
       <p className="body3 text-center mb-12">
-        Because let&apos;s just casually be bookish buddies forever!
+        Get the latest news, updates, and exclusive content delivered straight to your inbox. Because let&apos;s just casually be bookish buddies forever!
       </p>
 
       <form
