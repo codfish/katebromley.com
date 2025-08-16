@@ -6,6 +6,7 @@ import PageHeader from '../components/PageHeader';
 import Section from '../components/Section';
 import SubscribeSection from '../components/SubscribeSection';
 import Link from '../components/Link';
+import { SiLinktree } from 'react-icons/si';
 
 function Contact() {
   return (
@@ -54,9 +55,6 @@ function Contact() {
               <Link href="https://www.instagram.com/katebromleywrites" className="mx-4">
                 <FaInstagram className="hover:text-pink" />
               </Link>
-              <Link href="https://twitter.com/kbromleywrites" className="mx-4">
-                <FaTwitterSquare className="hover:text-pink" />
-              </Link>
               <Link href="https://www.amazon.com/Kate-Bromley/e/B08GYP6TNY" className="mx-4">
                 <FaAmazon className="hover:text-pink" />
               </Link>
@@ -65,6 +63,9 @@ function Contact() {
                 className="mx-4"
               >
                 <FaGoodreads className="hover:text-pink" />
+              </Link>
+              <Link href="https://linktr.ee/katebromley" className="mx-4">
+                <SiLinktree className="hover:text-pink size-5" />
               </Link>
             </div>
           </div>
