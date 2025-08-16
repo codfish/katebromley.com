@@ -59,10 +59,10 @@ const Header = ({ className = '', ...other }: HeaderProps) => {
           </div>
 
           <Link
-            href="/books/ciao-for-now"
+            href="/books/in-my-tudor-era"
             className="nav-link p-10 border-gray-border border-l h-full hover:text-teal-dark hover:bg-gray-background transition-all duration-300"
           >
-            Ciao For Now
+            In My Tudor Era
           </Link>
         </div>
 

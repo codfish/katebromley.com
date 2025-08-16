@@ -53,9 +53,9 @@ function Books({ books }: BooksProps) {
               </h2>
               <p className="body2 pb-10 md:w-10/12">{latestRelease.tagline}</p>
 
-              <Button href={`/books/${latestRelease.slug}`} className="mr-4" primary>
-                {isReleased(latestRelease.releaseDate) ? 'Buy Now' : 'Pre-order Now'}
-              </Button>
+              <Link href={`/books/${latestRelease.slug}`} className="cta-link link block">
+                Fall Into the Story
+              </Link>
             </div>
           </div>
 
@@ -87,7 +87,7 @@ function Books({ books }: BooksProps) {
             <div className="grid md:grid-cols-2 gap-10 md:gap-6 mb-10">
               {secondBook.coverImage && (
                 <div className="text-center md:text-left md:row-auto md:col-auto">
-                  <Link href={`/books/${secondBook.slug}`}>
+                  <Link href={`/books/${secondBook.slug}`} className="inline-block md:text-left">
                     <Image
                       src={secondBook.coverImage.url}
                       alt={`Cover Art: ${secondBook.title}`}
@@ -111,9 +111,9 @@ function Books({ books }: BooksProps) {
 
                   <p className="body2 mb-8">{secondBook.tagline}</p>
 
-                  <Button href={`/books/${secondBook.slug}`} primary>
-                    {isReleased(secondBook.releaseDate) ? 'Buy Now' : 'Pre-order Now'}
-                  </Button>
+                  <Link href={`/books/${secondBook.slug}`} className="cta-link link block">
+                    Fall Into the Story
+                  </Link>
                 </div>
               </div>
             </div>
@@ -129,15 +129,15 @@ function Books({ books }: BooksProps) {
 
                   <p className="body2 mb-8">{thirdBook.tagline}</p>
 
-                  <Button href={`/books/${thirdBook.slug}`} primary>
-                    {isReleased(thirdBook.releaseDate) ? 'Buy Now' : 'Pre-order Now'}
-                  </Button>
+                  <Link href={`/books/${thirdBook.slug}`} className="cta-link link block">
+                    Fall Into the Story
+                  </Link>
                 </div>
               </div>
 
               {thirdBook.coverImage && (
                 <div className="text-center md:text-right row-start-1 col-start-1 md:row-auto md:col-auto">
-                  <Link href={`/books/${thirdBook.slug}`}>
+                  <Link href={`/books/${thirdBook.slug}`} className="inline-block md:text-right">
                     <Image
                       src={thirdBook.coverImage.url}
                       alt={`Cover Art: ${thirdBook.title}`}
