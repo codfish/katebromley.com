@@ -134,6 +134,21 @@
   font-family: var(--font-josefin);
 }
 
+@utility book-title {
+  font-family: var(--font-josefin);
+  font-size: var(--text-h4);
+  line-height: var(--leading-h4);
+
+  @variant md {
+    font-size: var(--text-4xl);
+  }
+
+  @variant lg {
+    font-size: var(--text-h2);
+    line-height: var(--leading-h2);
+  }
+}
+
 @utility h1 {
   font-family: var(--font-h1);
   font-size: var(--text-h1);

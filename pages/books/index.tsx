@@ -3,11 +3,10 @@ import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import { fetchBooks } from '../../lib/contentful';
-import { formatDateStr, isReleased, calcImageHeight } from '../../lib/utils';
+import { isReleased, calcImageHeight } from '../../lib/utils';
 import SubscribeSection from '../../components/SubscribeSection';
 import SocialSection from '../../components/SocialSection';
 import Divider from '../../components/Divider';
-import Button from '../../components/Button';
 import Link from '../../components/Link';
 import Section from '../../components/Section';
 import PageHeader from '../../components/PageHeader';
@@ -28,8 +27,6 @@ interface BooksProps {
 
 function Books({ books }: BooksProps) {
   const latestRelease = books[0];
-  const secondBook = books[1] ?? null;
-  const thirdBook = books[2] ?? null;
 
   return (
     <>
@@ -46,9 +43,9 @@ function Books({ books }: BooksProps) {
           <div className="flex items-center">
             <div>
               <h5 className="h5 text-pink uppercase mb-10">
-                {isReleased(latestRelease.releaseDate) ? 'Latest Release' : `Coming ${formatDateStr(latestRelease.releaseDate)}`}
+                {isReleased(latestRelease.releaseDate) ? 'Latest Release' : 'Available for Pre-order'}
               </h5>
-              <h2 className="title text-5xl mb-4">
+              <h2 className="book-title mb-4">
                 <Link href={`/books/${latestRelease.slug}`} className="hover:text-teal-dark">{latestRelease.title}</Link>
               </h2>
               <p className="body2 pb-10 md:w-10/12">{latestRelease.tagline}</p>
@@ -79,118 +76,51 @@ function Books({ books }: BooksProps) {
         </div>
       </Section>
 
-      {secondBook && <Divider className="my-6" />}
+      <Divider className="my-6" />
 
-      {books.length > 1 && (
-        <Section maxWidth="md" noBorder>
-          {secondBook && (
-            <div className="grid md:grid-cols-2 gap-10 md:gap-6 mb-10">
-              {secondBook.coverImage && (
-                <div className="text-center md:text-left md:row-auto md:col-auto">
-                  <Link href={`/books/${secondBook.slug}`} className="inline-block md:text-left">
-                    <Image
-                      src={secondBook.coverImage.url}
-                      alt={`Cover Art: ${secondBook.title}`}
-                      width="282"
-                      height={calcImageHeight(
-                        282,
-                        secondBook.coverImage.width,
-                        secondBook.coverImage.height,
-                      )}
-                      quality="90"
-                    />
-                  </Link>
-                </div>
-              )}
+      <Section maxWidth="md" noBorder>
+        {books.slice(1).map((book, index) => {
+          // alternate order of book & text, starting with the book being on the left
+          const isEven = index % 2 === 0;
+          const bookColClasses =
+            isEven
+              ? 'text-center row-start-1 col-start-1 md:text-left' // book is on the left
+              : 'text-center row-start-1 col-start-1 md:row-auto md:col-auto md:text-right'; // book is on the right
 
-              <div className="flex md:justify-center items-center">
+
+          return (
+            <div className="grid md:grid-cols-4 gap-10 md:gap-6 py-8 first-of-type:pt-0 last-of-type:pb-0">
+              <div className="flex justify-center items-center md:col-span-3 md:justify-start">
                 <div>
-                  <h3 className="title text-3xl mb-4">
-                    <Link href={`/books/${secondBook.slug}`} className="hover:text-teal-dark">{secondBook.title}</Link>
-                  </h3>
-
-                  <p className="body2 mb-8">{secondBook.tagline}</p>
-
-                  <Link href={`/books/${secondBook.slug}`} className="cta-link link block">
-                    Fall Into the Story
-                  </Link>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {thirdBook && (
-            <div className="grid md:grid-cols-2 gap-10 md:gap-6">
-              <div className="flex justify-center items-center">
-                <div>
-                  <h3 className="title text-3xl mb-4">
-                    <Link href={`/books/${thirdBook.slug}`} className="hover:text-teal-dark">{thirdBook.title}</Link>
-                  </h3>
-
-                  <p className="body2 mb-8">{thirdBook.tagline}</p>
-
-                  <Link href={`/books/${thirdBook.slug}`} className="cta-link link block">
-                    Fall Into the Story
-                  </Link>
-                </div>
-              </div>
-
-              {thirdBook.coverImage && (
-                <div className="text-center md:text-right row-start-1 col-start-1 md:row-auto md:col-auto">
-                  <Link href={`/books/${thirdBook.slug}`} className="inline-block md:text-right">
-                    <Image
-                      src={thirdBook.coverImage.url}
-                      alt={`Cover Art: ${thirdBook.title}`}
-                      width="282"
-                      height={calcImageHeight(
-                        282,
-                        thirdBook.coverImage.width,
-                        thirdBook.coverImage.height,
-                      )}
-                      quality="90"
-                    />
-                  </Link>
-                </div>
-              )}
-            </div>
-          )}
-        </Section>
-      )}
-
-      {/* {books.length > 3 && (
-        <>
-          <Divider maxWidth="md" className="my-6" />
-
-          <Section maxWidth="md" noBorder>
-            <h5 className="h5 uppercase text-pink mb-4">Heading Text Here</h5>
-            <h3 className="h3 mb-10">Even More Books Here</h3>
-
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-              {books.slice(3).map(book => (
-                <div className="flex flex-col" key={book.slug}>
-                  {book.coverImage && (
-                    <Link href={`/books/${book.slug}`}>
-                      <Image
-                        src={book.coverImage.url}
-                        alt={`Cover Art: ${book.title}`}
-                        width="180"
-                        height={calcImageHeight(180, book.coverImage.width, book.coverImage.height)}
-                        quality="90"
-                      />
-                    </Link>
-                  )}
-                  <h4 className="text1 mb-2">
+                  <h2 className="book-title mb-4">
                     <Link href={`/books/${book.slug}`} className="hover:text-teal-dark">{book.title}</Link>
-                  </h4>
-                  <Link href={`/books/${book.slug}`} className="link">
-                    Buy Now
+                  </h2>
+                  <p className="body2 pb-10 md:w-10/12">{book.tagline}</p>
+
+                  <Link href={`/books/${book.slug}`} className="cta-link link block">
+                    Fall Into the Story
                   </Link>
                 </div>
-              ))}
+              </div>
+
+              {book.coverImage && (
+                <div className={bookColClasses}>
+                  <Link href={`/books/${book.slug}`}>
+                    <Image
+                      src={book.coverImage.url}
+                      alt={`Cover Art: ${book.title}`}
+                      className="inline-block"
+                      width="256"
+                      height={calcImageHeight(256, book.coverImage.width, book.coverImage.height)}
+                      quality="90"
+                    />
+                  </Link>
+                </div>
+              )}
             </div>
-          </Section>
-        </>
-      )} */}
+          );
+        })}
+      </Section>
 
       <SubscribeSection />
 

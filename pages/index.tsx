@@ -65,7 +65,7 @@ function Home({ aboutKate, books, preOrderAvailable = false }: HomeProps) {
                   {index === 1 && preOrderAvailable && !isPreRelease && (
                     <h5 className="h5 text-pink uppercase mb-10">Latest Release</h5>
                   )}
-                  <h2 className="h2 text-h4 md:text-4xl lg:text-h2 mb-4">
+                  <h2 className="book-title mb-4">
                     <Link href={`/books/${book.slug}`} className="hover:text-teal-dark">{book.title}</Link>
                   </h2>
                   <p className="body2 pb-10 md:w-10/12">{book.tagline}</p>
@@ -80,7 +80,7 @@ function Home({ aboutKate, books, preOrderAvailable = false }: HomeProps) {
                 <div className={bookColClasses}>
                   <Link href={`/books/${book.slug}`}>
                     <Image
-                      src={`${book.coverImage.url}`}
+                      src={book.coverImage.url}
                       alt={`Cover Art: ${book.title}`}
                       className="inline-block"
                       width="384"
