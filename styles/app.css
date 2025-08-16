@@ -56,48 +56,48 @@
   --color-warning-main: #F1C21B;
   --color-warning-inverse: #EED375;
 
-  --font-size-h1: 4.5rem;
+  --text-h1: 4.5rem;
   --leading-h1: 1.06;
-  --font-size-h2: 3.125rem;
+  --text-h2: 3.125rem;
   --leading-h2: 1.08;
-  --font-size-h3: 2.375rem;
+  --text-h3: 2.375rem;
   --leading-h3: 1.05;
-  --font-size-h4: 2rem;
+  --text-h4: 2rem;
   --leading-h4: 1.13;
-  --font-size-h5: 1rem;
-  --letter-spacing-h5: 0.4px;
+  --text-h5: 1rem;
+  --tracking-h5: 0.4px;
   --leading-h5: 1.38;
-  --font-size-h6: 0.875rem;
-  --letter-spacing-h6: 0.4px;
+  --text-h6: 0.875rem;
+  --tracking-h6: 0.4px;
   --leading-h6: 1.14;
-  --font-size-body1: 1.625rem;
+  --text-body1: 1.625rem;
   --leading-body1: 1.38;
-  --font-size-body2: 1rem;
+  --text-body2: 1rem;
   --leading-body2: 1.5;
-  --font-size-body3: 0.875rem;
+  --text-body3: 0.875rem;
   --leading-body3: 1.43;
-  --font-size-text1: 1.125rem;
-  --letter-spacing-text1: -0.4px;
+  --text-text1: 1.125rem;
+  --tracking-text1: -0.4px;
   --leading-text1: 1.33;
-  --font-size-text2: 0.875rem;
+  --text-text2: 0.875rem;
   --leading-text2: 1.29;
-  --font-size-callout: 2rem;
+  --text-callout: 2rem;
   --leading-callout: 1.25;
-  --font-size-button: 0.875rem;
-  --letter-spacing-button: 0.4px;
+  --text-button: 0.875rem;
+  --tracking-button: 0.4px;
   --leading-button: 1.29;
-  --font-size-nav-link: 0.875rem;
-  --letter-spacing-nav-link: 0.35px;
+  --text-nav-link: 0.875rem;
+  --tracking-nav-link: 0.35px;
   --leading-nav-link: 1.29;
-  --font-size-mobile-nav-link: 1.125rem;
-  --letter-spacing-mobile-nav-link: 0.4px;
+  --text-mobile-nav-link: 1.125rem;
+  --tracking-mobile-nav-link: 0.4px;
   --leading-mobile-nav-link: 1.22;
-  --font-size-link: 0.875rem;
-  --letter-spacing-link: 0.4px;
+  --text-link: 0.875rem;
+  --tracking-link: 0.4px;
   --leading-link: 1.29;
-  --font-size-caption: 0.75rem;
+  --text-caption: 0.75rem;
   --leading-caption: 1.17;
-  --font-size-input: 1rem;
+  --text-input: 1rem;
   --leading-input: 1.5;
 
   --z-index--10: -10;
@@ -136,52 +136,52 @@
 
 @utility h1 {
   font-family: var(--font-h1);
-  font-size: var(--font-size-h1);
+  font-size: var(--text-h1);
   line-height: var(--leading-h1);
   font-weight: 200;
 }
 
 @utility h2 {
   font-family: var(--font-h2);
-  font-size: var(--font-size-h2);
+  font-size: var(--text-h2);
   line-height: var(--leading-h2);
   font-weight: 200;
 }
 
 @utility h3 {
   font-family: var(--font-h3);
-  font-size: var(--font-size-h3);
+  font-size: var(--text-h3);
   line-height: var(--leading-h3);
   font-weight: 200;
 }
 
 @utility h4 {
   font-family: var(--font-h4);
-  font-size: var(--font-size-h4);
+  font-size: var(--text-h4);
   line-height: var(--leading-h4);
   font-weight: 200;
 }
 
 @utility h5 {
   font-family: var(--font-h5);
-  font-size: var(--font-size-h5);
+  font-size: var(--text-h5);
   line-height: var(--leading-h5);
-  letter-spacing: var(--letter-spacing-h5);
+  letter-spacing: var(--tracking-h5);
   font-weight: 600;
 }
 
 @utility h6 {
   font-family: var(--font-h6);
-  font-size: var(--font-size-h6);
+  font-size: var(--text-h6);
   line-height: var(--leading-h6);
-  letter-spacing: var(--letter-spacing-h6);
+  letter-spacing: var(--tracking-h6);
   color: var(--color-gray-dark);
   font-weight: 600;
 }
 
 @utility body1 {
   font-family: var(--font-body1);
-  font-size: var(--font-size-body1);
+  font-size: var(--text-body1);
   line-height: var(--leading-body1);
   color: var(--color-gray-dark);
   font-weight: 100;
@@ -189,35 +189,35 @@
 
 @utility body2 {
   font-family: var(--font-body2);
-  font-size: var(--font-size-body2);
+  font-size: var(--text-body2);
   line-height: var(--leading-body2);
   color: var(--color-gray-dark);
 }
 
 @utility body3 {
   font-family: var(--font-body3);
-  font-size: var(--font-size-body3);
+  font-size: var(--text-body3);
   line-height: var(--leading-body3);
 }
 
 @utility text1 {
   font-family: var(--font-text1);
-  font-size: var(--font-size-text1);
+  font-size: var(--text-text1);
   line-height: var(--leading-text1);
-  letter-spacing: var(--letter-spacing-text1);
+  letter-spacing: var(--tracking-text1);
   color: var(--color-gray-dark);
 }
 
 @utility text2 {
   font-family: var(--font-text2);
-  font-size: var(--font-size-text2);
+  font-size: var(--text-text2);
   line-height: var(--leading-text2);
   color: var(--color-gray-dark);
 }
 
 @utility callout {
   font-family: var(--font-callout);
-  font-size: var(--font-size-callout);
+  font-size: var(--text-callout);
   line-height: var(--leading-callout);
   color: var(--color-gray-dark);
   font-weight: 100;
@@ -225,9 +225,9 @@
 
 @utility button {
   font-family: var(--font-button);
-  font-size: var(--font-size-button);
+  font-size: var(--text-button);
   line-height: var(--leading-button);
-  letter-spacing: var(--letter-spacing-button);
+  letter-spacing: var(--tracking-button);
   font-weight: 600;
   text-transform: uppercase;
   transition: all 0.3s;
@@ -235,9 +235,9 @@
 
 @utility nav-link {
   font-family: var(--font-nav-link);
-  font-size: var(--font-size-nav-link);
+  font-size: var(--text-nav-link);
   line-height: var(--leading-nav-link);
-  letter-spacing: var(--letter-spacing-nav-link);
+  letter-spacing: var(--tracking-nav-link);
   color: var(--color-gray-dark);
   font-weight: 600;
   text-transform: uppercase;
@@ -245,18 +245,18 @@
 
 @utility mobile-nav-link {
   font-family: var(--font-nav-link);
-  font-size: var(--font-size-mobile-nav-link);
+  font-size: var(--text-mobile-nav-link);
   line-height: var(--leading-mobile-nav-link);
-  letter-spacing: var(--letter-spacing-mobile-nav-link);
+  letter-spacing: var(--tracking-mobile-nav-link);
   font-weight: 600;
   text-transform: uppercase;
 }
 
 @utility link {
   font-family: var(--font-link);
-  font-size: var(--font-size-link);
+  font-size: var(--text-link);
   line-height: var(--leading-link);
-  letter-spacing: var(--letter-spacing-link);
+  letter-spacing: var(--tracking-link);
   color: var(--color-teal);
   font-weight: 600;
   text-transform: uppercase;
@@ -265,14 +265,14 @@
 
 @utility caption {
   font-family: var(--font-caption);
-  font-size: var(--font-size-caption);
+  font-size: var(--text-caption);
   line-height: var(--leading-caption);
   color: var(--color-gray-dark);
 }
 
 @utility input {
   font-family: var(--font-input);
-  font-size: var(--font-size-input);
+  font-size: var(--text-input);
   line-height: var(--leading-input);
   color: var(--color-gray-dark);
   width: 100%;
@@ -282,7 +282,7 @@
 
 @utility textarea {
   font-family: var(--font-input);
-  font-size: var(--font-size-input);
+  font-size: var(--text-input);
   line-height: var(--leading-input);
   color: var(--color-gray-dark);
   width: 100%;
