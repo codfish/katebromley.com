@@ -8,3 +8,5 @@ node_modules
 # TypeScript
 *.tsbuildinfo
 .env*.local
+
+coverage
