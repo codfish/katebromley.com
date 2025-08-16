@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import clsx from 'clsx';
 import useClickOutside from '../hooks/useClickOutside';
+import useBodyScrollLock from '../hooks/useBodyScrollLock';
 import Link from './Link';
 import Logo from './Logo';
 import NavIcon from './NavIcon';
@@ -25,6 +26,9 @@ const Header = ({ className = '', ...other }: HeaderProps) => {
   // handle clicks outsive of the nav and make sure mobile dropdown menu closes
   const navRef = useRef<HTMLElement>(null);
   useClickOutside(navRef, hideMenu);
+
+  // lock body scroll when mobile menu is open
+  useBodyScrollLock(menuOpen);
 
   return (
     <nav ref={navRef}>
