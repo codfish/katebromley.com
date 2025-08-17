@@ -81,11 +81,11 @@ const Header = ({ className = '', ...other }: HeaderProps) => {
         )}
       >
         <Link
-          href="/books/ciao-for-now"
+          href="/books/in-my-tudor-era"
           onClick={hideMenu}
           className="mobile-nav-link text-center py-5 block w-full text-teal hover:text-teal-dark"
         >
-          Ciao For Now
+          In My Tudor Era
         </Link>
 
         <Link
