@@ -3,7 +3,7 @@ name: Validate
 on: pull_request_target
 
 jobs:
-  typecheck:
+  quality-checks:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,3 +21,11 @@ jobs:
 
       - name: Run TypeScript type checking
         run: npm run typecheck
+
+      - name: Run tests (CI)
+        run: npm run test:ci
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}

@@ -84,7 +84,7 @@ function BookPage({ book }: BookPageProps) {
           </div>
         )}
 
-        <h1 className="h2 text-center mb-12">
+        <h1 className="book-title text-center mb-12">
           <Link href={`/books/${book.slug}`}>{book.title}</Link>
         </h1>
 

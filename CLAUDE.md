@@ -124,8 +124,41 @@ export default Button;
 - Follow React prop spreading patterns consistently
 - **NEVER** use PropTypes - use TypeScript interfaces instead
 
+## Testing Conventions
+
+- Do not wrap an entire test file in a top-level `describe`. Use `describe` only to group distinct categories of tests within the same file when it materially improves structure and readability.
+
 ## CSS Formatting Standards
 - **CRITICAL**: Every CSS definition/block must be preceded by an empty line
 - This includes: @utility definitions, @layer blocks, @font-face declarations, CSS rules, and comment blocks
 - Ensures clean separation and readability of CSS code
 - Exception: The very first definition in a file or immediately after an opening brace
+
+## Overlays, Menus, and Body Scroll Lock
+
+- Always prevent background page scrolling when any overlay is open on mobile or desktop:
+  - **Mobile menus**, **drawers**, **modals**, **lightboxes**, and **full-screen overlays**
+- Use the shared hook `useBodyScrollLock(isOpen)` for a robust, accessible scroll lock with iOS hardening.
+- Do not roll your own body class toggles or inline styles; use the hook to ensure consistent behavior and proper cleanup.
+
+### Hook
+
+File: `hooks/useBodyScrollLock.ts`
+
+What it does:
+- Fixes `body` to prevent scroll and layout shift
+- Disables rubber-banding on iOS (`overscroll-behavior: none`, `touchmove`/`wheel` prevention)
+- Temporarily disables smooth scroll to avoid jumpiness and restores exact scroll position on close
+
+### Usage
+
+```tsx
+import useBodyScrollLock from '../hooks/useBodyScrollLock';
+
+interface DrawerProps { isOpen: boolean }
+
+const Drawer = ({ isOpen }: DrawerProps) => {
+  useBodyScrollLock(isOpen);
+  return isOpen ? (<div className="fixed inset-0">...</div>) : null;
+};
+```
