@@ -1,7 +1,8 @@
+"use client";
 import React, { PropsWithChildren } from 'react';
 import clsx from 'clsx';
-import { useRouter } from 'next/router';
 import NextLink from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export interface LinkProps {
   href: string | object;
@@ -9,11 +10,11 @@ export interface LinkProps {
   [key: string]: any;
 }
 
-function Link({ href, children, className: classNameProp = '', ...other }: PropsWithChildren<LinkProps>) {
-  const router = useRouter();
-  const pathname = typeof href === 'string' ? href : (href as any).pathname;
+export default function Link({ href, children, className: classNameProp = '', ...other }: PropsWithChildren<LinkProps>) {
+  const currentPathname = usePathname?.() as string | null;
+  const targetPathname = typeof href === 'string' ? href : (href as any)?.pathname;
   const className = clsx('transition-colors duration-300', classNameProp, {
-    active: router.pathname === pathname,
+    active: currentPathname && targetPathname ? currentPathname === targetPathname : false,
   });
 
   return (
@@ -22,5 +23,3 @@ function Link({ href, children, className: classNameProp = '', ...other }: Props
     </NextLink>
   );
 }
-
-export default Link;

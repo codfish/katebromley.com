@@ -1,41 +1,61 @@
 import React from 'react';
-import { GetStaticProps } from 'next';
-import Head from 'next/head';
 import Image from 'next/image';
-import { fetchBooks } from '../../lib/contentful';
-import { isReleased, calcImageHeight } from '../../lib/utils';
 import SubscribeSection from '../../components/SubscribeSection';
 import SocialSection from '../../components/SocialSection';
 import Divider from '../../components/Divider';
 import Link from '../../components/Link';
 import Section from '../../components/Section';
 import PageHeader from '../../components/PageHeader';
-import { Book } from '../../lib/contentful';
+import { fetchBooks } from '../../lib/contentful';
+import type { Book } from '../../lib/contentful';
+import { isReleased, calcImageHeight } from '../../lib/utils';
+import type { Metadata } from 'next';
 
-export const getStaticProps: GetStaticProps = async () => {
-  const books = await fetchBooks();
+export const dynamic = 'force-static';
 
+export async function generateMetadata(): Promise<Metadata> {
   return {
-    props: {
-      books,
+    title: 'Books by Kate Bromley',
+    description: 'A list of books written by Kate Bromley',
+    alternates: { canonical: 'https://www.katebromley.com/books' },
+    openGraph: {
+      title: 'Books by Kate Bromley',
+      description: 'A list of books written by Kate Bromley',
+      url: 'https://www.katebromley.com/books',
+      type: 'website',
+      siteName: 'Kate Bromley Novels',
+      locale: 'en_US',
+    },
+    twitter: {
+      card: 'summary',
+      title: 'Books by Kate Bromley',
+      description: 'A list of books written by Kate Bromley',
     },
   };
-};
-interface BooksProps {
-  books: Book[];
 }
 
-function Books({ books }: BooksProps) {
+async function getData(): Promise<{ books: Book[] }> {
+  const books = await fetchBooks();
+  return { books };
+}
+
+export default async function BooksPage() {
+  const { books } = await getData();
   const latestRelease = books[0];
 
   return (
     <>
-      <Head>
-        <title>Books by Kate Bromley</title>
-        <meta name="description" content="A list of books written by Kate Bromley" />
-        <link rel="canonical" href="https://www.katebromley.com/books" />
-      </Head>
-
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'CollectionPage',
+            name: 'Books by Kate Bromley',
+            url: 'https://www.katebromley.com/books',
+          }),
+        }}
+      />
       <PageHeader>Books</PageHeader>
 
       <Section noBorder maxWidth="lg">
@@ -62,13 +82,13 @@ function Books({ books }: BooksProps) {
                 <Image
                   src={latestRelease.coverImage.url}
                   alt={`Cover Art: ${latestRelease.title}`}
-                  width="384"
+                  width={384}
                   height={calcImageHeight(
                     384,
                     latestRelease.coverImage.width,
                     latestRelease.coverImage.height,
                   )}
-                  quality="90"
+                  quality={90}
                 />
               </Link>
             </div>
@@ -80,16 +100,14 @@ function Books({ books }: BooksProps) {
 
       <Section maxWidth="md" noBorder>
         {books.slice(1).map((book, index) => {
-          // alternate order of book & text, starting with the book being on the left
           const isEven = index % 2 === 0;
           const bookColClasses =
             isEven
-              ? 'text-center row-start-1 col-start-1 md:text-left' // book is on the left
-              : 'text-center row-start-1 col-start-1 md:row-auto md:col-auto md:text-right'; // book is on the right
-
+              ? 'text-center row-start-1 col-start-1 md:text-left'
+              : 'text-center row-start-1 col-start-1 md:row-auto md:col-auto md:text-right';
 
           return (
-            <div className="grid md:grid-cols-4 gap-10 md:gap-6 py-8 first-of-type:pt-0 last-of-type:pb-0">
+            <div className="grid md:grid-cols-4 gap-10 md:gap-6 py-8 first-of-type:pt-0 last-of-type:pb-0" key={book.slug}>
               <div className="flex justify-center items-center md:col-span-3 md:justify-start">
                 <div>
                   <h2 className="book-title mb-4">
@@ -110,9 +128,9 @@ function Books({ books }: BooksProps) {
                       src={book.coverImage.url}
                       alt={`Cover Art: ${book.title}`}
                       className="inline-block"
-                      width="256"
+                      width={256}
                       height={calcImageHeight(256, book.coverImage.width, book.coverImage.height)}
-                      quality="90"
+                      quality={90}
                     />
                   </Link>
                 </div>
@@ -123,10 +141,9 @@ function Books({ books }: BooksProps) {
       </Section>
 
       <SubscribeSection />
-
       <SocialSection />
     </>
   );
 }
 
-export default Books;
+

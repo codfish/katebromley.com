@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useRef } from 'react';
 import clsx from 'clsx';
 import useClickOutside from '../hooks/useClickOutside';
@@ -89,6 +90,7 @@ export default function Header({ className = '', ...other }: HeaderProps) {
       {/* mobile nav dropdown menu */}
       <div
         id="mobile-nav"
+        data-testid="mobile-nav"
         className={clsx(
           'h-[calc(100vh-5rem)] w-full absolute lg:hidden bg-white z-10 py-4 border-b-8 border-pink flex flex-col justify-center',
           { hidden: !menuOpen },

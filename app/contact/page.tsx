@@ -1,22 +1,49 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-import Head from 'next/head';
-import { FaInstagram, FaTwitterSquare, FaAmazon, FaGoodreads } from 'react-icons/fa';
-import PageHeader from '../components/PageHeader';
-import Section from '../components/Section';
-import SubscribeSection from '../components/SubscribeSection';
-import Link from '../components/Link';
+import { FaInstagram, FaAmazon, FaGoodreads } from 'react-icons/fa';
 import { SiLinktree } from 'react-icons/si';
+import PageHeader from '../../components/PageHeader';
+import Section from '../../components/Section';
+import SubscribeSection from '../../components/SubscribeSection';
+import Link from '../../components/Link';
+import type { Metadata } from 'next';
 
-function Contact() {
+export const dynamic = 'force-static';
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: 'Contact Kate Bromley',
+    description: 'Contact Kate Bromley',
+    alternates: { canonical: 'https://www.katebromley.com/contact' },
+    openGraph: {
+      title: 'Contact Kate Bromley',
+      description: 'Contact Kate Bromley',
+      url: 'https://www.katebromley.com/contact',
+      type: 'website',
+      siteName: 'Kate Bromley Novels',
+      locale: 'en_US',
+    },
+    twitter: {
+      card: 'summary',
+      title: 'Contact Kate Bromley',
+      description: 'Contact Kate Bromley',
+    },
+  };
+}
+
+export default function ContactPage() {
   return (
     <>
-      <Head>
-        <title>Contact Kate Bromley</title>
-        <meta name="description" content="Contact Kate Bromley" />
-        <link rel="canonical" href="https://www.katebromley.com/contact" />
-      </Head>
-
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'ContactPage',
+            name: 'Contact Kate Bromley',
+            url: 'https://www.katebromley.com/contact',
+          }),
+        }}
+      />
       <PageHeader>Contact</PageHeader>
 
       <Section noBorder maxWidth="lg">
@@ -77,4 +104,4 @@ function Contact() {
   );
 }
 
-export default Contact;
+

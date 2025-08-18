@@ -130,6 +130,12 @@ export default Button;
 
 - Do not wrap an entire test file in a top-level `describe`. Use `describe` only to group distinct categories of tests within the same file when it materially improves structure.
 
+- When running tests non-interactively (e.g., from automation or tools), always pass `--no-watch` to prevent watch mode. Example: `npm test -- --no-watch`.
+
+- Test file naming and location:
+  - Name spec files exactly: `<FileName>.spec.{ts|tsx}` (unit/integration tests).
+  - Place specs in a `__tests__` directory that is a sibling of the file under test. Example: `components/__tests__/Header.spec.ts` tests `components/Header.tsx`.
+
 ## CSS Formatting Standards
 - **CRITICAL**: Every CSS definition/block must be preceded by an empty line
 - This includes: @utility definitions, @layer blocks, @font-face declarations, CSS rules, and comment blocks

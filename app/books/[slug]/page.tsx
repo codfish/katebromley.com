@@ -1,72 +1,81 @@
 import React from 'react';
-import { GetStaticProps, GetStaticPaths } from 'next';
-import Head from 'next/head';
 import Image from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { fetchBookBySlug, fetchBooks } from '../../lib/contentful';
-import { formatDateStr, isReleased, calcImageHeight } from '../../lib/utils';
-import SubscribeSection from '../../components/SubscribeSection';
-import SocialSection from '../../components/SocialSection';
-import Section from '../../components/Section';
-import Divider from '../../components/Divider';
-import Link from '../../components/Link';
-import { Book } from '../../lib/contentful';
+import { fetchBooks, fetchBookBySlug } from '../../../lib/contentful';
+import type { Book } from '../../../lib/contentful';
+import { formatDateStr, isReleased, calcImageHeight } from '../../../lib/utils';
+import SubscribeSection from '../../../components/SubscribeSection';
+import SocialSection from '../../../components/SocialSection';
+import Section from '../../../components/Section';
+import Divider from '../../../components/Divider';
+import Link from '../../../components/Link';
+import type { Metadata } from 'next';
 
+export const dynamic = 'force-static';
+export const dynamicParams = false;
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export async function generateStaticParams() {
   const books = await fetchBooks();
-
-  return {
-    paths: books.map(book => ({ params: { slug: book.slug } })),
-    // TODO: loading screen for fallback?
-    fallback: false, // See the "fallback" section below
-  };
+  return books.map(book => ({ slug: book.slug }));
 }
 
-export const getStaticProps: GetStaticProps = async (ctx) => {
-  const { slug } = ctx.params!;
-  const book = await fetchBookBySlug(slug as string);
-
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const book: Book = await fetchBookBySlug(slug);
+  const title = `${book.title}, a novel by Kate Bromley`;
+  const url = `https://www.katebromley.com/books/${book.slug}`;
   return {
-    props: {
-      slug,
-      book,
+    title,
+    description: book.tagline,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      siteName: 'Kate Bromley Novels',
+      locale: 'en_US',
+      description: book.tagline,
+      url,
+      type: 'book',
+      images: book.coverImage ? [{ url: book.coverImage.url }] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description: book.tagline,
+      images: book.coverImage ? [book.coverImage.url] : undefined,
+    },
+    other: {
+      'book:isbn': book.isbn,
+      'book:release_date': book.releaseDate,
     },
   };
-};
-
-interface BookPageProps {
-  slug: string;
-  book: Book;
 }
 
-function BookPage({ book }: BookPageProps) {
+export default async function BookPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const book: Book = await fetchBookBySlug(slug);
   const isPreRelease = !isReleased(book.releaseDate);
 
   return (
     <article>
-      <Head>
-        <title>{`${book.title}, a novel by Kate Bromley`}</title>
-        <meta name="description" content={book.tagline} />
-        <link rel="canonical" href={`https://www.katebromley.com/books/${book.slug}`} />
-        <meta property="og:title" content={`${book.title}, a novel by Kate Bromley`} />
-        <meta property="og:site_name" content="Kate Bromley Novels" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:description" content={book.tagline} />
-        {book.coverImage && <meta property="og:image" content={book.coverImage.url} />}
-        <meta property="og:url" content={`https://www.katebromley.com/books/${book.slug}`} />
-        {/* https://ogp.me/#type_book */}
-        <meta property="og:type" content="book" />
-        <meta property="book:isbn" content={book.isbn} />
-        <meta property="book:release_date" content={book.releaseDate} />
-        <meta property="book:tag" content="bookstagram" />
-        <meta property="book:tag" content="romcom" />
-        <meta property="book:tag" content="Romantic Comedy" />
-        <meta property="book:tag" content="Books" />
-        <meta name="twitter:title" content={book.title} />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Book',
+            name: book.title,
+            isbn: book.isbn,
+            url: `https://www.katebromley.com/books/${book.slug}`,
+            description: book.tagline,
+            image: book.coverImage?.url,
+            datePublished: book.releaseDate,
+            author: {
+              '@type': 'Person',
+              name: 'Kate Bromley',
+            },
+          }),
+        }}
+      />
       <div className="border-t-8 border-solid border-pink" />
 
       <Section noBorder>
@@ -76,9 +85,9 @@ function BookPage({ book }: BookPageProps) {
               className='inline-block'
               src={book.coverImage.url}
               alt={book.coverImage.alternativeText || `Cover Art: ${book.title}`}
-              width="384"
+              width={384}
               height={calcImageHeight(384, book.coverImage.width, book.coverImage.height)}
-              quality="90"
+              quality={90}
               priority
             />
           </div>
@@ -234,10 +243,9 @@ function BookPage({ book }: BookPageProps) {
       )}
 
       <SubscribeSection />
-
       <SocialSection />
     </article>
   );
 }
 
-export default BookPage;
+
