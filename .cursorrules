@@ -152,3 +152,24 @@ const MobileMenu = ({ isOpen }: { isOpen: boolean }) => {
   // ...
 }
 ```
+
+## Tailwind Custom Variant: desktop-only
+
+- **Purpose**: Apply styles only on devices with traditional desktop capabilities (hover available, fine pointer), regardless of viewport width. This is ideal for adjustments tied to scrollbars or other desktop-only UI behaviors.
+- **Definition**: Add this once in `styles/app.css` (already present):
+
+```css
+@custom-variant desktop-only (@media (hover: hover) and (pointer: fine));
+```
+
+- **Usage**: Prefix any utility with `desktop-only:` to target desktop environments only.
+
+```jsx
+// Example: add right margin only on desktop (e.g., compensate for hidden scrollbar when menu is open)
+<XIcon className="size-6.5 text-pink desktop-only:mr-3" />
+```
+
+- **Guidance**:
+  - Use `desktop-only:` for capability-based targeting (hover + fine pointer)
+  - Use `lg:` and other breakpoints for layout/viewport-based changes
+  - Prefer this variant over custom CSS classes for clearer intent in markup
