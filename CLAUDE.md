@@ -162,3 +162,23 @@ const Drawer = ({ isOpen }: DrawerProps) => {
   return isOpen ? (<div className="fixed inset-0">...</div>) : null;
 };
 ```
+
+## Tailwind Custom Variant: desktop-only
+
+Use a capability-based variant to target traditional desktop environments where hover is available and the pointer is fine. This is useful for scrollbar-related spacing adjustments and other desktop-only behaviors that should not apply on mobile/tablet devices regardless of viewport width.
+
+- Definition (in `styles/app.css`):
+
+```css
+@custom-variant desktop-only (@media (hover: hover) and (pointer: fine));
+```
+
+- Usage in markup:
+
+```tsx
+<XIcon className="size-6.5 text-pink desktop-only:mr-3" />
+```
+
+- When to use:
+  - Use `desktop-only:` for input/capability-specific behaviors (hover + fine pointer)
+  - Use breakpoint prefixes (e.g., `lg:`) for viewport/layout-specific changes

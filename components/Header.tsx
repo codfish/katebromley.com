@@ -4,18 +4,18 @@ import useClickOutside from '../hooks/useClickOutside';
 import useBodyScrollLock from '../hooks/useBodyScrollLock';
 import Link from './Link';
 import Logo from './Logo';
-import NavIcon from './NavIcon';
+import { BsList as HamburgerIcon, BsX as XIcon } from 'react-icons/bs';
 
 export interface HeaderProps {
   className?: string;
   [key: string]: any;
 }
 
-const Header = ({ className = '', ...other }: HeaderProps) => {
+export default function Header({ className = '', ...other }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const classNames = clsx(
     'h-20 lg:h-25',
-    'px-5 lg:pr-0 flex justify-between items-center lg:block relative border-gray-border border-b',
+    'pl-6 lg:pr-0 flex justify-between items-center lg:block relative border-gray-border border-b',
     className,
   );
 
@@ -70,11 +70,25 @@ const Header = ({ className = '', ...other }: HeaderProps) => {
           </Link>
         </div>
 
-        <NavIcon className="lg:hidden" open={menuOpen} onClick={() => setMenuOpen(!menuOpen)} />
+        <button
+          type="button"
+          className="lg:hidden p-6"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-nav"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? (
+            <XIcon className="size-6.5 text-pink desktop-only:mr-3" />
+          ) : (
+            <HamburgerIcon className="size-6 text-gray-dark" />
+          )}
+        </button>
       </div>
 
       {/* mobile nav dropdown menu */}
       <div
+        id="mobile-nav"
         className={clsx(
           'h-[calc(100vh-5rem)] w-full absolute lg:hidden bg-white z-10 py-4 border-b-8 border-pink flex flex-col justify-center',
           { hidden: !menuOpen },
@@ -114,6 +128,4 @@ const Header = ({ className = '', ...other }: HeaderProps) => {
       </div>
     </nav>
   );
-};
-
-export default Header;
+}

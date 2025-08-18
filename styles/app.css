@@ -306,19 +306,17 @@
   border-bottom-width: 2px;
 }
 
-.link:hover {
-  color: var(--color-teal-dark);
-}
+/* Utility to add a margin-right to an element to compensate for the scrollbar being hidden.
+   Should only apply to desktop devices, so we're using media queries to target them. */
+/* @layer utilities {
+  @media (hover: hover) and (pointer: fine) {
+    .mr-scrollbar {
+      margin-right: 0.75rem;
+    }
+  }
+} */
 
-.input:focus {
-  --tw-ring-color: var(--color-teal);
-  border-color: var(--color-teal);
-}
-
-.textarea:focus {
-  --tw-ring-color: var(--color-teal);
-  border-color: var(--color-teal);
-}
+@custom-variant desktop-only (@media (hover: hover) and (pointer: fine));
 
 @layer base {
   @font-face {
@@ -406,5 +404,19 @@
   .cta-link:hover::before {
     background-color: var(--color-teal-dark);
     transform: rotate(180deg);
+  }
+
+  .link:hover {
+    color: var(--color-teal-dark);
+  }
+
+  .input:focus {
+    --tw-ring-color: var(--color-teal);
+    border-color: var(--color-teal);
+  }
+
+  .textarea:focus {
+    --tw-ring-color: var(--color-teal);
+    border-color: var(--color-teal);
   }
 }
