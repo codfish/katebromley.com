@@ -1,55 +1,91 @@
 import React from 'react';
-import { GetStaticProps } from 'next';
-import Image from 'next/image';
-import Head from 'next/head';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import Image from 'next/image';
 import Section from '../components/Section';
 import SubscribeSection from '../components/SubscribeSection';
 import SocialSection from '../components/SocialSection';
 import Link from '../components/Link';
-import Button from '../components/Button';
-import { formatDateStr, isReleased, calcImageHeight } from '../lib/utils';
+import { isReleased, calcImageHeight } from '../lib/utils';
 import { fetchKateBromley, fetchBooks } from '../lib/contentful';
-import { AboutKate, Book } from '../lib/contentful';
+import type { AboutKate, Book } from '../lib/contentful';
+import type { Metadata } from 'next';
 
-export const getStaticProps: GetStaticProps = async () => {
-  try {
-    const [aboutKate, books] = await Promise.all([
-      fetchKateBromley(),
-      fetchBooks({ 'fields.featuredBook': true }),
-    ]);
+export const dynamic = 'force-static';
 
-    return { props: { aboutKate, books } };
-  } catch (err) {
-    console.log(err);
-    throw err;
-  }
-};
+export async function generateMetadata(): Promise<Metadata> {
+  // Try to use featured book cover as OG/Twitter image; fall back to logo
+  const [aboutKate, books] = await Promise.all([
+    fetchKateBromley(),
+    fetchBooks({ 'fields.featuredBook': true }),
+  ]);
 
-interface HomeProps {
-  aboutKate: AboutKate;
-  books: Book[];
-  preOrderAvailable?: boolean;
+  const featured = books?.[0] as Book | undefined;
+  const ogImage = featured?.coverImage?.url || '/logo.png';
+
+  return {
+    title: 'Kate Bromley',
+    description:
+      'Kate Bromley is the rom-com author of In My Tudor Era, Talk Bookish to Me, Here for the Drama, and Ciao For Now.',
+    alternates: { canonical: 'https://www.katebromley.com' },
+    openGraph: {
+      title: 'Kate Bromley',
+      description:
+        'Kate Bromley is the rom-com author of In My Tudor Era, Talk Bookish to Me, Here for the Drama, and Ciao For Now.',
+      url: 'https://www.katebromley.com',
+      siteName: 'Kate Bromley Novels',
+      locale: 'en_US',
+      type: 'website',
+      images: [{ url: ogImage }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Kate Bromley',
+      description:
+        'Kate Bromley is the rom-com author of In My Tudor Era, Talk Bookish to Me, Here for the Drama, and Ciao For Now.',
+      images: [ogImage],
+    },
+  };
 }
 
-function Home({ aboutKate, books, preOrderAvailable = false }: HomeProps) {
+async function getData(): Promise<{ aboutKate: AboutKate; books: Book[] }> {
+  const [aboutKate, books] = await Promise.all([
+    fetchKateBromley(),
+    fetchBooks({ 'fields.featuredBook': true }),
+  ]);
+  return { aboutKate, books };
+}
+
+export default async function HomePage() {
+  const { aboutKate, books } = await getData();
+
   const headshotColClasses =
     books.length % 2 === 0
-      ? 'text-center md:text-left row-start-1 col-start-1' // headshot is on the left
-      : 'text-center md:text-right row-start-1 col-start-1 md:row-auto md:col-auto' // headshot is on the right
+      ? 'text-center md:text-left row-start-1 col-start-1'
+      : 'text-center md:text-right row-start-1 col-start-1 md:row-auto md:col-auto';
 
   return (
     <>
-      <Head>
-        <link rel="canonical" href="https://www.katebromley.com" />
-      </Head>
-
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            url: 'https://www.katebromley.com',
+            name: 'Kate Bromley',
+            potentialAction: {
+              '@type': 'SearchAction',
+              target: 'https://www.katebromley.com/?q={search_term_string}',
+              'query-input': 'required name=search_term_string',
+            },
+          }),
+        }}
+      />
       {books.map((book, index) => {
-        // alternate order of book & text, starting with the book being on the left
         const bookColClasses =
           index % 2 === 0
-            ? 'text-center row-start-1 col-start-1 md:text-left' // book is on the left
-            : 'text-center row-start-1 col-start-1 md:row-auto md:col-auto md:text-right'; // book is on the right
+            ? 'text-center row-start-1 col-start-1 md:text-left'
+            : 'text-center row-start-1 col-start-1 md:row-auto md:col-auto md:text-right';
         const isPreRelease = !isReleased(book.releaseDate);
 
         return (
@@ -61,9 +97,6 @@ function Home({ aboutKate, books, preOrderAvailable = false }: HomeProps) {
                     <h5 className="h5 text-pink uppercase mb-10">
                       {isPreRelease ? `Available for Pre-order` : 'Latest Release'}
                     </h5>
-                  )}
-                  {index === 1 && preOrderAvailable && !isPreRelease && (
-                    <h5 className="h5 text-pink uppercase mb-10">Latest Release</h5>
                   )}
                   <h2 className="book-title mb-4">
                     <Link href={`/books/${book.slug}`} className="hover:text-teal-dark">{book.title}</Link>
@@ -83,9 +116,9 @@ function Home({ aboutKate, books, preOrderAvailable = false }: HomeProps) {
                       src={book.coverImage.url}
                       alt={`Cover Art: ${book.title}`}
                       className="inline-block"
-                      width="384"
+                      width={384}
                       height={calcImageHeight(384, book.coverImage.width, book.coverImage.height)}
-                      quality="90"
+                      quality={90}
                     />
                   </Link>
                 </div>
@@ -114,7 +147,7 @@ function Home({ aboutKate, books, preOrderAvailable = false }: HomeProps) {
               src={`${aboutKate.headshot.url}`}
               alt="Kate Bromley Author Headshot"
               className="inline-block"
-              width="384"
+              width={384}
               height={calcImageHeight(384, aboutKate.headshot.width, aboutKate.headshot.height)}
             />
           </div>
@@ -122,10 +155,9 @@ function Home({ aboutKate, books, preOrderAvailable = false }: HomeProps) {
       </Section>
 
       <SubscribeSection />
-
       <SocialSection />
     </>
   );
 }
 
-export default Home;
+
