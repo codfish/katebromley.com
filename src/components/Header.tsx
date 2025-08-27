@@ -1,10 +1,10 @@
 "use client";
 import React, { useState, useRef } from 'react';
 import clsx from 'clsx';
-import useClickOutside from '../hooks/useClickOutside';
-import useBodyScrollLock from '../hooks/useBodyScrollLock';
-import Link from './Link';
-import Logo from './Logo';
+import useClickOutside from '@/hooks/useClickOutside';
+import useBodyScrollLock from '@/hooks/useBodyScrollLock';
+import Link from '@/components/Link';
+import Logo from '@/components/Logo';
 import { BsList as HamburgerIcon, BsX as XIcon } from 'react-icons/bs';
 
 export interface HeaderProps {

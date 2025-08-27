@@ -1,13 +1,13 @@
 import React from 'react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import Image from 'next/image';
-import Section from '../components/Section';
-import SubscribeSection from '../components/SubscribeSection';
-import SocialSection from '../components/SocialSection';
-import Link from '../components/Link';
-import { isReleased, calcImageHeight } from '../lib/utils';
-import { fetchKateBromley, fetchBooks } from '../lib/contentful';
-import type { AboutKate, Book } from '../lib/contentful';
+import Section from '@/components/Section';
+import SubscribeSection from '@/components/SubscribeSection';
+import SocialSection from '@/components/SocialSection';
+import Link from '@/components/Link';
+import { isReleased, calcImageHeight } from '@/lib/utils';
+import { fetchKateBromley, fetchBooks } from '@/lib/contentful';
+import type { AboutKate, Book } from '@/lib/contentful';
 import type { Metadata } from 'next';
 
 export const dynamic = 'force-static';

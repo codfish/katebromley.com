@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from 'next';
 import React, { PropsWithChildren } from 'react';
-import '../styles/app.css';
-import GoogleAnalytics from '../components/GoogleAnalytics';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import '@/styles/app.css';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Kate Bromley',

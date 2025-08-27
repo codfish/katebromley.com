@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import clsx from 'clsx';
-import Link from './Link';
+import Link from '@/components/Link';
 
 export interface ButtonProps {
   href?: string | object | null;

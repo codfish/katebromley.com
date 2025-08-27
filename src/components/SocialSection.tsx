@@ -1,8 +1,8 @@
 import React from 'react';
 import { FaInstagram, FaAmazon, FaGoodreads } from 'react-icons/fa';
 import { SiLinktree } from "react-icons/si";
-import Section from './Section';
-import Link from './Link';
+import Section from '@/components/Section';
+import Link from '@/components/Link';
 
 export interface SocialSectionProps {
   className?: string;

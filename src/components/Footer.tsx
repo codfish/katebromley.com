@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import Heart from './Heart';
+import Heart from '@/components/Heart';
 
 export interface FooterProps {
   className?: string;

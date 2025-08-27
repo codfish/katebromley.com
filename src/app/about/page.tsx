@@ -1,14 +1,14 @@
 import React from 'react';
 import Image from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import Section from '../../components/Section';
-import SubscribeSection from '../../components/SubscribeSection';
-import SocialSection from '../../components/SocialSection';
-import PageHeader from '../../components/PageHeader';
-import Divider from '../../components/Divider';
-import { fetchKateBromley, fetchFaqs } from '../../lib/contentful';
-import type { AboutKate, FAQ } from '../../lib/contentful';
-import { calcImageHeight } from '../../lib/utils';
+import Section from '@/components/Section';
+import SubscribeSection from '@/components/SubscribeSection';
+import SocialSection from '@/components/SocialSection';
+import PageHeader from '@/components/PageHeader';
+import Divider from '@/components/Divider';
+import { fetchKateBromley, fetchFaqs } from '@/lib/contentful';
+import type { AboutKate, FAQ } from '@/lib/contentful';
+import { calcImageHeight } from '@/lib/utils';
 import type { Metadata } from 'next';
 
 export const dynamic = 'force-static';

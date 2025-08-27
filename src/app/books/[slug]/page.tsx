@@ -1,14 +1,14 @@
 import React from 'react';
 import Image from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { fetchBooks, fetchBookBySlug } from '../../../lib/contentful';
-import type { Book } from '../../../lib/contentful';
-import { formatDateStr, isReleased, calcImageHeight } from '../../../lib/utils';
-import SubscribeSection from '../../../components/SubscribeSection';
-import SocialSection from '../../../components/SocialSection';
-import Section from '../../../components/Section';
-import Divider from '../../../components/Divider';
-import Link from '../../../components/Link';
+import { fetchBooks, fetchBookBySlug } from '@/lib/contentful';
+import type { Book } from '@/lib/contentful';
+import { formatDateStr, isReleased, calcImageHeight } from '@/lib/utils';
+import SubscribeSection from '@/components/SubscribeSection';
+import SocialSection from '@/components/SocialSection';
+import Section from '@/components/Section';
+import Divider from '@/components/Divider';
+import Link from '@/components/Link';
 import type { Metadata } from 'next';
 
 export const dynamic = 'force-static';

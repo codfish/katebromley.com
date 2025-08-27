@@ -1,4 +1,4 @@
-import { Book } from './contentful';
+import { Book } from '@/lib/contentful';
 
 /**
  * Format an iso date string using the Intl DateTimeFormat API.
