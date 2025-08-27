@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Header from '../Header';
+import Header from '@/components/Header';
 
 // Mock child components used by Header to keep tests focused
-jest.mock('../Logo', () => ({ className }: any) => <div data-testid="logo" className={className} />);
-jest.mock('../Link', () => ({ children, href, onClick, className }: any) => (
+jest.mock('@/components/Logo', () => ({ className }: any) => <div data-testid="logo" className={className} />);
+jest.mock('@/components/Link', () => ({ children, href, onClick, className }: any) => (
   <a
     href={typeof href === 'string' ? href : href?.pathname || ''}
     onClick={(e) => { e.preventDefault(); onClick?.(e); }}
@@ -16,10 +16,10 @@ jest.mock('../Link', () => ({ children, href, onClick, className }: any) => (
 ));
 
 // Mock scroll lock hook to avoid touching real DOM styles
-jest.mock('../../hooks/useBodyScrollLock', () => ({ __esModule: true, default: () => {} }));
+jest.mock('@/hooks/useBodyScrollLock', () => ({ __esModule: true, default: () => {} }));
 
 // Mock click outside hook to avoid attaching document listeners
-jest.mock('../../hooks/useClickOutside', () => ({ __esModule: true, default: () => {} }));
+jest.mock('@/hooks/useClickOutside', () => ({ __esModule: true, default: () => {} }));
 
 describe('Header', () => {
   it('renders desktop navigation links', () => {

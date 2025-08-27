@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
-import Section from './Section';
-import Button from './Button';
+import Section from '@/components/Section';
+import Button from '@/components/Button';
 
 export interface SubscribeSectionProps {
   className?: string;

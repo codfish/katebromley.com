@@ -1,14 +1,14 @@
 import React from 'react';
 import Image from 'next/image';
-import SubscribeSection from '../../components/SubscribeSection';
-import SocialSection from '../../components/SocialSection';
-import Divider from '../../components/Divider';
-import Link from '../../components/Link';
-import Section from '../../components/Section';
-import PageHeader from '../../components/PageHeader';
-import { fetchBooks } from '../../lib/contentful';
-import type { Book } from '../../lib/contentful';
-import { isReleased, calcImageHeight } from '../../lib/utils';
+import SubscribeSection from '@/components/SubscribeSection';
+import SocialSection from '@/components/SocialSection';
+import Divider from '@/components/Divider';
+import Link from '@/components/Link';
+import Section from '@/components/Section';
+import PageHeader from '@/components/PageHeader';
+import { fetchBooks } from '@/lib/contentful';
+import type { Book } from '@/lib/contentful';
+import { isReleased, calcImageHeight } from '@/lib/utils';
 import type { Metadata } from 'next';
 
 export const dynamic = 'force-static';

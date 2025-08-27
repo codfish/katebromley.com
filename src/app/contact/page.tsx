@@ -1,10 +1,10 @@
 import React from 'react';
 import { FaInstagram, FaAmazon, FaGoodreads } from 'react-icons/fa';
 import { SiLinktree } from 'react-icons/si';
-import PageHeader from '../../components/PageHeader';
-import Section from '../../components/Section';
-import SubscribeSection from '../../components/SubscribeSection';
-import Link from '../../components/Link';
+import PageHeader from '@/components/PageHeader';
+import Section from '@/components/Section';
+import SubscribeSection from '@/components/SubscribeSection';
+import Link from '@/components/Link';
 import type { Metadata } from 'next';
 
 export const dynamic = 'force-static';

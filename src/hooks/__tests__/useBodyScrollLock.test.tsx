@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, act } from '@testing-library/react';
-import useBodyScrollLock from '../useBodyScrollLock';
+import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 
 const TestComponent = ({ isOpen }: { isOpen: boolean }) => {
   useBodyScrollLock(isOpen);

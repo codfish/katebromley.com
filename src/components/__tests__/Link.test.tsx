@@ -30,7 +30,7 @@ describe('Link', () => {
 
   it('applies active class when current path matches string href', async () => {
     mockUsePathname('/about');
-    const { default: TestLink } = await import('../Link');
+    const { default: TestLink } = await import('@/components/Link');
     render(<TestLink href="/about">About</TestLink>);
     const anchor = screen.getByRole('link', { name: 'About' });
     expect(anchor).toHaveClass('active');
@@ -39,7 +39,7 @@ describe('Link', () => {
 
   it('applies active class when current path matches object href.pathname', async () => {
     mockUsePathname('/books');
-    const { default: TestLink } = await import('../Link');
+    const { default: TestLink } = await import('@/components/Link');
     render(<TestLink href={{ pathname: '/books' }}>Books</TestLink>);
     const anchor = screen.getByRole('link', { name: 'Books' });
     expect(anchor).toHaveClass('active');
@@ -48,7 +48,7 @@ describe('Link', () => {
 
   it('does not apply active class when paths differ and preserves custom className', async () => {
     mockUsePathname('/contact');
-    const { default: TestLink } = await import('../Link');
+    const { default: TestLink } = await import('@/components/Link');
     render(
       <TestLink href="/about" className="custom-class">
         About
