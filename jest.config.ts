@@ -28,10 +28,14 @@ const config: Config = {
   moduleNameMapper: {
     '\\.css$': 'identity-obj-proxy',
   },
-  collectCoverageFrom: ['lib/**/*.{ts,tsx}', 'pages/**/*.{ts,tsx}', 'hooks/**/*.{ts,tsx}', 'components/**/*.{ts,tsx}', '!**/__tests__/**'],
+  collectCoverageFrom: [
+    'lib/**/*.{ts,tsx}',
+    'pages/**/*.{ts,tsx}',
+    'hooks/**/*.{ts,tsx}',
+    'components/**/*.{ts,tsx}',
+    '!**/__tests__/**',
+  ],
   coverageReporters: ['lcov', 'text', 'text-summary'],
 };
 
 export default config;
-
-

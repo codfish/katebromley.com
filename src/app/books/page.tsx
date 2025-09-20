@@ -1,15 +1,16 @@
-import React from 'react';
+import type { Metadata } from 'next';
 import Image from 'next/image';
-import SubscribeSection from '@/components/SubscribeSection';
-import SocialSection from '@/components/SocialSection';
+import React from 'react';
+
 import Divider from '@/components/Divider';
 import Link from '@/components/Link';
-import Section from '@/components/Section';
 import PageHeader from '@/components/PageHeader';
-import { fetchBooks } from '@/lib/contentful';
+import Section from '@/components/Section';
+import SocialSection from '@/components/SocialSection';
+import SubscribeSection from '@/components/SubscribeSection';
 import type { Book } from '@/lib/contentful';
-import { isReleased, calcImageHeight } from '@/lib/utils';
-import type { Metadata } from 'next';
+import { fetchBooks } from '@/lib/contentful';
+import { calcImageHeight, isReleased } from '@/lib/utils';
 
 export const dynamic = 'force-static';
 
@@ -59,35 +60,33 @@ export default async function BooksPage() {
       <PageHeader>Books</PageHeader>
 
       <Section noBorder maxWidth="lg">
-        <div className="grid md:grid-cols-2 gap-10 md:gap-6">
+        <div className="grid gap-10 md:grid-cols-2 md:gap-6">
           <div className="flex items-center">
             <div>
-              <h5 className="h5 text-pink uppercase mb-10">
+              <h5 className="mb-10 h5 text-pink uppercase">
                 {isReleased(latestRelease.releaseDate) ? 'Latest Release' : 'Available for Pre-order'}
               </h5>
-              <h2 className="book-title mb-4">
-                <Link href={`/books/${latestRelease.slug}`} className="hover:text-teal-dark">{latestRelease.title}</Link>
+              <h2 className="mb-4 book-title">
+                <Link href={`/books/${latestRelease.slug}`} className="hover:text-teal-dark">
+                  {latestRelease.title}
+                </Link>
               </h2>
-              <p className="body2 pb-10 md:w-10/12">{latestRelease.tagline}</p>
+              <p className="pb-10 body2 md:w-10/12">{latestRelease.tagline}</p>
 
-              <Link href={`/books/${latestRelease.slug}`} className="cta-link link block">
+              <Link href={`/books/${latestRelease.slug}`} className="cta-link block link">
                 Fall Into the Story
               </Link>
             </div>
           </div>
 
           {latestRelease.coverImage && (
-            <div className="text-center row-start-1 col-start-1 md:row-auto md:col-auto md:text-right">
+            <div className="col-start-1 row-start-1 text-center md:col-auto md:row-auto md:text-right">
               <Link href={`/books/${latestRelease.slug}`} className="inline-block md:text-right">
                 <Image
                   src={latestRelease.coverImage.url}
                   alt={`Cover Art: ${latestRelease.title}`}
                   width={384}
-                  height={calcImageHeight(
-                    384,
-                    latestRelease.coverImage.width,
-                    latestRelease.coverImage.height,
-                  )}
+                  height={calcImageHeight(384, latestRelease.coverImage.width, latestRelease.coverImage.height)}
                   quality={90}
                 />
               </Link>
@@ -101,21 +100,25 @@ export default async function BooksPage() {
       <Section maxWidth="md" noBorder>
         {books.slice(1).map((book, index) => {
           const isEven = index % 2 === 0;
-          const bookColClasses =
-            isEven
-              ? 'text-center row-start-1 col-start-1 md:text-left'
-              : 'text-center row-start-1 col-start-1 md:row-auto md:col-auto md:text-right';
+          const bookColClasses = isEven
+            ? 'text-center row-start-1 col-start-1 md:text-left'
+            : 'text-center row-start-1 col-start-1 md:row-auto md:col-auto md:text-right';
 
           return (
-            <div className="grid md:grid-cols-4 gap-10 md:gap-6 py-8 first-of-type:pt-0 last-of-type:pb-0" key={book.slug}>
-              <div className="flex justify-center items-center md:col-span-3 md:justify-start">
+            <div
+              className="grid gap-10 py-8 first-of-type:pt-0 last-of-type:pb-0 md:grid-cols-4 md:gap-6"
+              key={book.slug}
+            >
+              <div className="flex items-center justify-center md:col-span-3 md:justify-start">
                 <div>
-                  <h2 className="book-title mb-4">
-                    <Link href={`/books/${book.slug}`} className="hover:text-teal-dark">{book.title}</Link>
+                  <h2 className="mb-4 book-title">
+                    <Link href={`/books/${book.slug}`} className="hover:text-teal-dark">
+                      {book.title}
+                    </Link>
                   </h2>
-                  <p className="body2 pb-10 md:w-10/12">{book.tagline}</p>
+                  <p className="pb-10 body2 md:w-10/12">{book.tagline}</p>
 
-                  <Link href={`/books/${book.slug}`} className="cta-link link block">
+                  <Link href={`/books/${book.slug}`} className="cta-link block link">
                     Fall Into the Story
                   </Link>
                 </div>
@@ -145,5 +148,3 @@ export default async function BooksPage() {
     </>
   );
 }
-
-

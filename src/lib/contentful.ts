@@ -1,5 +1,5 @@
-import { createClient } from 'contentful';
 import { Document } from '@contentful/rich-text-types';
+import { createClient } from 'contentful';
 
 export interface ContentfulImage {
   url: string;
@@ -58,9 +58,10 @@ export interface FAQ {
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_STAGING_ENABLED === 'true'
-    ? process.env.CONTENTFUL_STAGING_ACCESS_TOKEN
-    : process.env.CONTENTFUL_ACCESS_TOKEN,
+  accessToken:
+    process.env.CONTENTFUL_STAGING_ENABLED === 'true'
+      ? process.env.CONTENTFUL_STAGING_ACCESS_TOKEN
+      : process.env.CONTENTFUL_ACCESS_TOKEN,
   host: process.env.CONTENTFUL_HOST,
   environment: process.env.CONTENTFUL_STAGING_ENABLED === 'true' ? 'staging' : 'master',
 });
@@ -77,7 +78,7 @@ export const transformBook = (bookEntry: any): Book => {
   };
 
   return book;
-}
+};
 
 export const transformPraise = (praiseEntry: any): Praise => {
   const praise = {
@@ -88,7 +89,7 @@ export const transformPraise = (praiseEntry: any): Praise => {
   };
 
   return praise;
-}
+};
 
 export const transformAuthor = (authorEntry: any): AboutKate => {
   const author = {
@@ -98,7 +99,7 @@ export const transformAuthor = (authorEntry: any): AboutKate => {
   };
 
   return author;
-}
+};
 
 export const transformFaq = (faqEntry: any): FAQ => {
   const faq = {
@@ -108,7 +109,7 @@ export const transformFaq = (faqEntry: any): FAQ => {
   };
 
   return faq;
-}
+};
 
 export const fetchKateBromley = (): Promise<AboutKate> => {
   return client
@@ -117,7 +118,7 @@ export const fetchKateBromley = (): Promise<AboutKate> => {
       'fields.slug': 'kate-bromley',
     })
     .then(entries => transformAuthor(entries.items[0]));
-}
+};
 
 export const fetchBooks = (query?: any): Promise<Book[]> => {
   return client
@@ -127,7 +128,7 @@ export const fetchBooks = (query?: any): Promise<Book[]> => {
       ...query,
     })
     .then(entries => entries.items.map(entry => transformBook(entry)));
-}
+};
 
 export const fetchBookBySlug = (slug: string): Promise<Book> => {
   return client
@@ -136,7 +137,7 @@ export const fetchBookBySlug = (slug: string): Promise<Book> => {
       'fields.slug': slug,
     })
     .then(entries => transformBook(entries.items[0]));
-}
+};
 
 export const fetchFaqs = (query?: any): Promise<FAQ[]> => {
   return client
@@ -145,5 +146,5 @@ export const fetchFaqs = (query?: any): Promise<FAQ[]> => {
       order: 'fields.order',
       ...query,
     })
-      .then(entries => entries.items.map(entry => transformFaq(entry)));
-}
+    .then(entries => entries.items.map(entry => transformFaq(entry)));
+};

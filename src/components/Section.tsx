@@ -1,5 +1,5 @@
-import React, { PropsWithChildren } from 'react';
 import clsx from 'clsx';
+import React, { PropsWithChildren } from 'react';
 
 export interface SectionProps {
   /**
@@ -58,7 +58,7 @@ const Section = ({
     },
     className,
   );
-  const backdropClass = clsx('absolute top-0 -z-20 w-full h-56 md:w-1/2 md:h-full', {
+  const backdropClass = clsx('absolute top-0 -z-20 h-56 w-full md:h-full md:w-1/2', {
     // explicitly listing classes here rather than dynamically building a
     // single class so that PurgeCSS can find them when optimizing for prod
     // https://tailwindcss.com/docs/optimizing-for-production#writing-purgeable-html
@@ -71,15 +71,12 @@ const Section = ({
     'left-0': backdrop?.position === 'left',
     'right-0': backdrop?.position === 'right',
   });
-  const backdropCoverClass = clsx(
-    'absolute top-0 bg-white -z-10 hidden md:block md:w-11/12 md:h-full',
-    {
-      // opposite the positioning of backdrop to cover it up
-      'right-0': backdrop?.position === 'left',
-      'left-0': backdrop?.position === 'right',
-    },
-  );
-  const innerClassName = clsx('relative py-10 md:py-16 container mx-auto', {
+  const backdropCoverClass = clsx('absolute top-0 -z-10 hidden bg-white md:block md:h-full md:w-11/12', {
+    // opposite the positioning of backdrop to cover it up
+    'right-0': backdrop?.position === 'left',
+    'left-0': backdrop?.position === 'right',
+  });
+  const innerClassName = clsx('relative container mx-auto py-10 md:py-16', {
     // explicitly list class names for tailwind
     // https://tailwindcss.com/docs/optimizing-for-production#writing-purgeable-html
     'max-w-(--breakpoint-sm)': maxWidth === 'sm',

@@ -1,5 +1,6 @@
+import { render } from '@testing-library/react';
 import React from 'react';
-import { render, act } from '@testing-library/react';
+
 import useBodyScrollLock from '@/hooks/useBodyScrollLock';
 
 const TestComponent = ({ isOpen }: { isOpen: boolean }) => {
@@ -59,5 +60,3 @@ it('applies iOS hardening styles and event listeners', () => {
   expect(removeEventListenerSpy).toHaveBeenCalledWith('touchmove', expect.any(Function));
   expect(removeEventListenerSpy).toHaveBeenCalledWith('wheel', expect.any(Function));
 });
-
-

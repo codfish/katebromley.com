@@ -1,6 +1,7 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import React from 'react';
+
 import Header from '@/components/Header';
 
 // Mock child components used by Header to keep tests focused
@@ -8,7 +9,10 @@ jest.mock('@/components/Logo', () => ({ className }: any) => <div data-testid="l
 jest.mock('@/components/Link', () => ({ children, href, onClick, className }: any) => (
   <a
     href={typeof href === 'string' ? href : href?.pathname || ''}
-    onClick={(e) => { e.preventDefault(); onClick?.(e); }}
+    onClick={e => {
+      e.preventDefault();
+      onClick?.(e);
+    }}
     className={className}
   >
     {children}
@@ -58,5 +62,3 @@ describe('Header', () => {
     expect(button).toHaveAttribute('aria-expanded', 'false');
   });
 });
-
-

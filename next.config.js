@@ -1,4 +1,4 @@
-module.exports = () => ({
+export default () => ({
   images: {
     remotePatterns: [
       {
@@ -13,15 +13,14 @@ module.exports = () => ({
         protocol: 'http',
         hostname: 'localhost',
       },
-    ]
+    ],
   },
 
   async rewrites() {
     return [
       {
         source: '/robots.txt',
-        destination:
-          process.env.VERCEL_ENV === 'production' ? '/robots.prod.txt' : '/robots.dev.txt',
+        destination: process.env.VERCEL_ENV === 'production' ? '/robots.prod.txt' : '/robots.dev.txt',
       },
     ];
   },
@@ -33,6 +32,6 @@ module.exports = () => ({
         destination: '/about',
         permanent: true,
       },
-    ]
+    ];
   },
 });

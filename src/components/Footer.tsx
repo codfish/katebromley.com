@@ -1,5 +1,6 @@
-import React from 'react';
 import clsx from 'clsx';
+import React from 'react';
+
 import Heart from '@/components/Heart';
 
 export interface FooterProps {
@@ -8,16 +9,16 @@ export interface FooterProps {
 }
 
 const Footer = ({ className = '', ...other }: FooterProps) => {
-  const classNames = clsx('px-10 bg-pink-light py-6', className);
+  const classNames = clsx('bg-pink-light px-10 py-6', className);
 
   return (
     <div className={classNames} {...other}>
-      <div className="max-w-(--breakpoint-xl) container mx-auto flex flex-col sm:flex-row justify-between items-center">
-        <Heart className="w-6 h-6 sm:w-3.25 sm:h-3 sm:order-2" color="pink" />
-        <span className="caption sm:order-1 pt-3 sm:p-0 flex-1">
+      <div className="container mx-auto flex max-w-(--breakpoint-xl) flex-col items-center justify-between sm:flex-row">
+        <Heart className="size-6 sm:order-2 sm:h-3 sm:w-3.25" color="pink" />
+        <span className="flex-1 pt-3 caption sm:order-1 sm:p-0">
           @ {new Date().getFullYear()} Kate Bromley. All rights reserved.
         </span>
-        <span className="caption sm:order-3 pt-3 sm:p-0 flex-1 sm:text-right">
+        <span className="flex-1 pt-3 caption sm:order-3 sm:p-0 sm:text-right">
           Site Design by Mission Control Design
         </span>
       </div>

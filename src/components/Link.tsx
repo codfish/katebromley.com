@@ -1,8 +1,8 @@
-"use client";
-import React, { PropsWithChildren } from 'react';
+'use client';
 import clsx from 'clsx';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
+import React, { PropsWithChildren } from 'react';
 
 export interface LinkProps {
   href: string | object;
@@ -10,7 +10,12 @@ export interface LinkProps {
   [key: string]: any;
 }
 
-export default function Link({ href, children, className: classNameProp = '', ...other }: PropsWithChildren<LinkProps>) {
+export default function Link({
+  href,
+  children,
+  className: classNameProp = '',
+  ...other
+}: PropsWithChildren<LinkProps>) {
   const currentPathname = usePathname?.() as string | null;
   const targetPathname = typeof href === 'string' ? href : (href as any)?.pathname;
   const className = clsx('transition-colors duration-300', classNameProp, {

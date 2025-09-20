@@ -1,6 +1,5 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import React from 'react';
 // Note: do not import Link at module scope; we import after mocking usePathname per test
 
 // Mock next/link to a plain anchor for testing
@@ -62,5 +61,3 @@ describe('Link', () => {
     expect(anchor.className).toMatch(/duration-300/);
   });
 });
-
-

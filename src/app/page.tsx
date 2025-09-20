@@ -1,23 +1,21 @@
-import React from 'react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import Image from 'next/image';
-import Section from '@/components/Section';
-import SubscribeSection from '@/components/SubscribeSection';
-import SocialSection from '@/components/SocialSection';
-import Link from '@/components/Link';
-import { isReleased, calcImageHeight } from '@/lib/utils';
-import { fetchKateBromley, fetchBooks } from '@/lib/contentful';
-import type { AboutKate, Book } from '@/lib/contentful';
 import type { Metadata } from 'next';
+import Image from 'next/image';
+import React from 'react';
+
+import Link from '@/components/Link';
+import Section from '@/components/Section';
+import SocialSection from '@/components/SocialSection';
+import SubscribeSection from '@/components/SubscribeSection';
+import type { AboutKate, Book } from '@/lib/contentful';
+import { fetchBooks, fetchKateBromley } from '@/lib/contentful';
+import { calcImageHeight, isReleased } from '@/lib/utils';
 
 export const dynamic = 'force-static';
 
 export async function generateMetadata(): Promise<Metadata> {
   // Try to use featured book cover as OG/Twitter image; fall back to logo
-  const [aboutKate, books] = await Promise.all([
-    fetchKateBromley(),
-    fetchBooks({ 'fields.featuredBook': true }),
-  ]);
+  const [, books] = await Promise.all([fetchKateBromley(), fetchBooks({ 'fields.featuredBook': true })]);
 
   const featured = books?.[0] as Book | undefined;
   const ogImage = featured?.coverImage?.url || '/logo.png';
@@ -48,10 +46,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 async function getData(): Promise<{ aboutKate: AboutKate; books: Book[] }> {
-  const [aboutKate, books] = await Promise.all([
-    fetchKateBromley(),
-    fetchBooks({ 'fields.featuredBook': true }),
-  ]);
+  const [aboutKate, books] = await Promise.all([fetchKateBromley(), fetchBooks({ 'fields.featuredBook': true })]);
   return { aboutKate, books };
 }
 
@@ -90,20 +85,22 @@ export default async function HomePage() {
 
         return (
           <Section backdrop={{ color: 'pink', position: index % 2 === 0 ? 'left' : 'right' }} key={book.slug}>
-            <div className="grid md:grid-cols-2 gap-10 md:gap-6">
-              <div className="flex justify-center items-center">
+            <div className="grid gap-10 md:grid-cols-2 md:gap-6">
+              <div className="flex items-center justify-center">
                 <div>
                   {index === 0 && (
-                    <h5 className="h5 text-pink uppercase mb-10">
+                    <h5 className="mb-10 h5 text-pink uppercase">
                       {isPreRelease ? `Available for Pre-order` : 'Latest Release'}
                     </h5>
                   )}
-                  <h2 className="book-title mb-4">
-                    <Link href={`/books/${book.slug}`} className="hover:text-teal-dark">{book.title}</Link>
+                  <h2 className="mb-4 book-title">
+                    <Link href={`/books/${book.slug}`} className="hover:text-teal-dark">
+                      {book.title}
+                    </Link>
                   </h2>
-                  <p className="body2 pb-10 md:w-10/12">{book.tagline}</p>
+                  <p className="pb-10 body2 md:w-10/12">{book.tagline}</p>
 
-                  <Link href={`/books/${book.slug}`} className="cta-link link block">
+                  <Link href={`/books/${book.slug}`} className="cta-link block link">
                     Fall Into the Story
                   </Link>
                 </div>
@@ -129,14 +126,14 @@ export default async function HomePage() {
       })}
 
       <Section backdrop={{ color: 'pink', position: books.length % 2 === 0 ? 'left' : 'right' }}>
-        <div className="grid md:grid-cols-2 gap-10 md:gap-6">
+        <div className="grid gap-10 md:grid-cols-2 md:gap-6">
           <div className="flex items-center">
             <div>
               <h2 className="h2 lg:h1">About Kate</h2>
 
-              {aboutKate.bio && <div className="body2 mt-4">{documentToReactComponents(aboutKate.bio)}</div>}
+              {aboutKate.bio && <div className="mt-4 body2">{documentToReactComponents(aboutKate.bio)}</div>}
 
-              <Link href="/about" className="cta-link link block mt-11">
+              <Link href="/about" className="cta-link mt-11 block link">
                 More about me
               </Link>
             </div>
@@ -159,5 +156,3 @@ export default async function HomePage() {
     </>
   );
 }
-
-

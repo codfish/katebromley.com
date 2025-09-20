@@ -21,8 +21,7 @@ export const formatDateStr = (
 /**
  * Checks if a books' release date is in the past.
  */
-export const isReleased = (releaseDate: string | Date): boolean => 
-  new Date(releaseDate) < new Date();
+export const isReleased = (releaseDate: string | Date): boolean => new Date(releaseDate) < new Date();
 
 /**
  * Calculate a proportional image height based on the desired width,
@@ -34,6 +33,5 @@ export const calcImageHeight = (desiredWidth: number, origWidth: number, origHei
 /**
  * Sort books by release date in descending order.
  */
-export const sortBooks = (books: Book[]): Book[] => books.sort(
-  (a, b) => Number(new Date(b.releaseDate)) - Number(new Date(a.releaseDate)),
-);
+export const sortBooks = (books: Book[]): Book[] =>
+  books.sort((a, b) => Number(new Date(b.releaseDate)) - Number(new Date(a.releaseDate)));
