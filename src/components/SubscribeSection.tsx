@@ -1,7 +1,8 @@
-import React from 'react';
 import clsx from 'clsx';
-import Section from '@/components/Section';
+import React from 'react';
+
 import Button from '@/components/Button';
+import Section from '@/components/Section';
 
 export interface SubscribeSectionProps {
   className?: string;
@@ -9,7 +10,14 @@ export interface SubscribeSectionProps {
 }
 
 const SubscribeSection = ({ className = '', ...other }: SubscribeSectionProps) => (
-  <Section color="teal" className={clsx('lg:bg-teal-light lg:bg-[url("/newsletter-background.jpg")] lg:bg-no-repeat lg:bg-center lg:bg-cover', className)} {...other}>
+  <Section
+    color="teal"
+    className={clsx(
+      'lg:bg-teal-light lg:bg-[url("/newsletter-background.jpg")] lg:bg-cover lg:bg-center lg:bg-no-repeat',
+      className,
+    )}
+    {...other}
+  >
     <div className="mb-10">
       <svg
         width="78px"
@@ -43,10 +51,11 @@ const SubscribeSection = ({ className = '', ...other }: SubscribeSectionProps) =
       </svg>
     </div>
 
-    <div className="w-full max-w-xl mx-auto">
-      <h3 className="h3 text-center mb-4">Subscribe to Kate&apos;s Newsletter</h3>
-      <p className="body3 text-center mb-12">
-        Get the latest news, updates, and exclusive content delivered straight to your inbox. Because let&apos;s just casually be bookish buddies forever!
+    <div className="mx-auto w-full max-w-xl">
+      <h3 className="mb-4 text-center h3">Subscribe to Kate&apos;s Newsletter</h3>
+      <p className="mb-12 text-center body3">
+        Get the latest news, updates, and exclusive content delivered straight to your inbox. Because let&apos;s just
+        casually be bookish buddies forever!
       </p>
 
       <form
@@ -57,7 +66,7 @@ const SubscribeSection = ({ className = '', ...other }: SubscribeSectionProps) =
         className="validate text-center"
         target="_blank"
       >
-        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+        {}
         <label htmlFor="mce-EMAIL" className="sr-only">
           Your Email
         </label>
@@ -68,20 +77,14 @@ const SubscribeSection = ({ className = '', ...other }: SubscribeSectionProps) =
           id="mce-EMAIL"
           required
           aria-required="true"
-          className="input mb-6"
+          className="mb-6 input"
         />
 
         <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
           <input type="text" name="b_3409d07d2655432fdaf750be0_1792a82a63" tabIndex={-1} />
         </div>
 
-        <Button
-          type="submit"
-          primary
-          className="sm:block sm:mx-auto"
-          name="subscribe"
-          id="mc-embedded-subscribe"
-        >
+        <Button type="submit" primary className="sm:mx-auto sm:block" name="subscribe" id="mc-embedded-subscribe">
           Subscribe
         </Button>
       </form>

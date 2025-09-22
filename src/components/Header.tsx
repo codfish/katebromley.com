@@ -1,11 +1,12 @@
-"use client";
-import React, { useState, useRef } from 'react';
+'use client';
 import clsx from 'clsx';
-import useClickOutside from '@/hooks/useClickOutside';
-import useBodyScrollLock from '@/hooks/useBodyScrollLock';
+import React, { useRef, useState } from 'react';
+import { BsList as HamburgerIcon, BsX as XIcon } from 'react-icons/bs';
+
 import Link from '@/components/Link';
 import Logo from '@/components/Logo';
-import { BsList as HamburgerIcon, BsX as XIcon } from 'react-icons/bs';
+import useBodyScrollLock from '@/hooks/useBodyScrollLock';
+import useClickOutside from '@/hooks/useClickOutside';
 
 export interface HeaderProps {
   className?: string;
@@ -16,7 +17,7 @@ export default function Header({ className = '', ...other }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const classNames = clsx(
     'h-20 lg:h-25',
-    'pl-6 lg:pr-0 flex justify-between items-center lg:block relative border-gray-border border-b',
+    'relative flex items-center justify-between border-b border-gray-border pl-6 lg:block lg:pr-0',
     className,
   );
 
@@ -35,29 +36,29 @@ export default function Header({ className = '', ...other }: HeaderProps) {
     <nav ref={navRef}>
       {/* top bar */}
       <div className={classNames} {...other}>
-        <div className="lg:absolute lg:top-1/2 lg:left-1/2 transform lg:-translate-y-1/2 lg:-translate-x-1/2 items-center inline-flex">
+        <div className="inline-flex items-center lg:absolute lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2">
           <Link href="/" className="inline-flex" onClick={hideMenu}>
-            <Logo className="w-60.25 h-8 lg:w-81.75 lg:h-10.5" heartColor="yellow" />
+            <Logo className="h-8 w-60.25 lg:h-10.5 lg:w-81.75" heartColor="yellow" />
           </Link>
         </div>
 
-        <div className="h-full hidden lg:flex lg:justify-between items-center">
-          <div className="pr-5 border-gray-border border-r h-full flex items-center">
+        <div className="hidden h-full items-center lg:flex lg:justify-between">
+          <div className="flex h-full items-center border-r border-gray-border pr-5">
             <Link
               href="/books"
-              className="nav-link h-full px-5 hover:text-teal-dark leading-25! align-middle transition-all duration-300"
+              className="h-full px-5 align-middle nav-link leading-25! transition-all duration-300 hover:text-teal-dark"
             >
               Books
             </Link>
             <Link
               href="/about"
-              className="nav-link h-full px-5 hover:text-teal-dark leading-25! align-middle transition-all duration-300"
+              className="h-full px-5 align-middle nav-link leading-25! transition-all duration-300 hover:text-teal-dark"
             >
               About
             </Link>
             <Link
               href="/contact"
-              className="nav-link h-full px-5 hover:text-teal-dark leading-25! align-middle transition-all duration-300"
+              className="h-full px-5 align-middle nav-link leading-25! transition-all duration-300 hover:text-teal-dark"
             >
               Contact
             </Link>
@@ -65,7 +66,7 @@ export default function Header({ className = '', ...other }: HeaderProps) {
 
           <Link
             href="/books/in-my-tudor-era"
-            className="nav-link p-10 border-gray-border border-l h-full hover:text-teal-dark hover:bg-gray-background transition-all duration-300"
+            className="h-full border-l border-gray-border p-10 nav-link transition-all duration-300 hover:bg-gray-background hover:text-teal-dark"
           >
             In My Tudor Era
           </Link>
@@ -73,7 +74,7 @@ export default function Header({ className = '', ...other }: HeaderProps) {
 
         <button
           type="button"
-          className="lg:hidden p-6"
+          className="p-6 lg:hidden"
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
           aria-controls="mobile-nav"
@@ -92,14 +93,14 @@ export default function Header({ className = '', ...other }: HeaderProps) {
         id="mobile-nav"
         data-testid="mobile-nav"
         className={clsx(
-          'h-[calc(100vh-5rem)] w-full absolute lg:hidden bg-white z-10 py-4 border-b-8 border-pink flex flex-col justify-center',
+          'absolute z-10 flex h-[calc(100vh-5rem)] w-full flex-col justify-center border-b-8 border-pink bg-white py-4 lg:hidden',
           { hidden: !menuOpen },
         )}
       >
         <Link
           href="/books/in-my-tudor-era"
           onClick={hideMenu}
-          className="mobile-nav-link text-center py-5 block w-full text-teal hover:text-teal-dark"
+          className="block w-full py-5 text-center mobile-nav-link text-teal hover:text-teal-dark"
         >
           In My Tudor Era
         </Link>
@@ -107,7 +108,7 @@ export default function Header({ className = '', ...other }: HeaderProps) {
         <Link
           href="/books"
           onClick={hideMenu}
-          className="mobile-nav-link text-center py-5 block w-full text-gray-dark hover:text-teal-dark"
+          className="block w-full py-5 text-center mobile-nav-link text-gray-dark hover:text-teal-dark"
         >
           Books
         </Link>
@@ -115,7 +116,7 @@ export default function Header({ className = '', ...other }: HeaderProps) {
         <Link
           href="/about"
           onClick={hideMenu}
-          className="mobile-nav-link text-center py-5 block w-full text-gray-dark hover:text-teal-dark"
+          className="block w-full py-5 text-center mobile-nav-link text-gray-dark hover:text-teal-dark"
         >
           About
         </Link>
@@ -123,7 +124,7 @@ export default function Header({ className = '', ...other }: HeaderProps) {
         <Link
           href="/contact"
           onClick={hideMenu}
-          className="mobile-nav-link text-center py-5 block w-full text-gray-dark hover:text-teal-dark"
+          className="block w-full py-5 text-center mobile-nav-link text-gray-dark hover:text-teal-dark"
         >
           Contact
         </Link>

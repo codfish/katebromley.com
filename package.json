@@ -2,13 +2,19 @@
   "name": "katebromley.com",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
-    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "fix": "eslint . --fix && npm run format",
+    "format": "prettier --write \"**/*.{json,css,md}\" --config ./prettier.config.js",
+    "check": "npm run lint && npm run format -- --check --no-write",
     "test": "jest --watch",
-    "test:ci": "jest --coverage --silent"
+    "test:ci": "jest --coverage --silent",
+    "typecheck": "tsc --noEmit",
+    "prepare": "husky"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^16.1.0",
@@ -20,6 +26,7 @@
     "react-icons": "^5.5.0"
   },
   "devDependencies": {
+    "@codfish/eslint-config": "^0.0.0-PR-124--5ec5040",
     "@contentful/rich-text-types": "^17.1.0",
     "@swc/jest": "^0.2.36",
     "@tailwindcss/forms": "^0.5.3",
@@ -32,14 +39,35 @@
     "@types/node": "^24.3.0",
     "@types/react": "19.1.10",
     "autoprefixer": "^10.2.6",
+    "doctoc": "^2.2.1",
+    "eslint": "^9.35.0",
+    "husky": "^9.1.7",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",
+    "lint-staged": "^16.1.6",
     "postcss": "^8.5.6",
     "postcss-preset-env": "^10.2.4",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.14",
     "stylelint-config-recommended": "^17.0.0",
     "tailwindcss": "^4.1.12",
+    "ts-node": "^10.9.2",
     "typescript": "5.9.2"
+  },
+  "commitlint": {
+    "extends": [
+      "./node_modules/@codfish/eslint-config/commitlint.js"
+    ]
+  },
+  "lint-staged": {
+    "*.{json,css}": [
+      "prettier --write --config ./prettier.config.js"
+    ],
+    "*.md": [
+      "prettier --write --config ./prettier.config.js",
+      "doctoc --title '## Table of Contents'"
+    ]
   },
   "volta": {
     "node": "22.18.0"

@@ -1,15 +1,16 @@
-import React from 'react';
-import Image from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { fetchBooks, fetchBookBySlug } from '@/lib/contentful';
-import type { Book } from '@/lib/contentful';
-import { formatDateStr, isReleased, calcImageHeight } from '@/lib/utils';
-import SubscribeSection from '@/components/SubscribeSection';
-import SocialSection from '@/components/SocialSection';
-import Section from '@/components/Section';
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import React from 'react';
+
 import Divider from '@/components/Divider';
 import Link from '@/components/Link';
-import type { Metadata } from 'next';
+import Section from '@/components/Section';
+import SocialSection from '@/components/SocialSection';
+import SubscribeSection from '@/components/SubscribeSection';
+import type { Book } from '@/lib/contentful';
+import { fetchBookBySlug, fetchBooks } from '@/lib/contentful';
+import { calcImageHeight, formatDateStr, isReleased } from '@/lib/utils';
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
@@ -80,9 +81,9 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
 
       <Section noBorder>
         {book.coverImage && (
-          <div className="text-center mb-10 lg:mb-16">
+          <div className="mb-10 text-center lg:mb-16">
             <Image
-              className='inline-block'
+              className="inline-block"
               src={book.coverImage.url}
               alt={book.coverImage.alternativeText || `Cover Art: ${book.title}`}
               width={384}
@@ -93,11 +94,11 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
           </div>
         )}
 
-        <h1 className="book-title text-center mb-12">
+        <h1 className="mb-12 text-center book-title">
           <Link href={`/books/${book.slug}`}>{book.title}</Link>
         </h1>
 
-        <h5 className="h6 uppercase text-center mb-5">
+        <h5 className="mb-5 text-center h6 uppercase">
           {isPreRelease ? 'Now Available for Pre-order' : 'Shop the Book'}
         </h5>
 
@@ -105,42 +106,42 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
           <ul className="flex flex-wrap justify-center">
             {book.amazonUrl && (
               <li className="my-2">
-                <a href={book.amazonUrl} className="link py-2 px-4">
+                <a href={book.amazonUrl} className="px-4 py-2 link">
                   Amazon
                 </a>
               </li>
             )}
             {book.barnesNobleUrl && (
               <li className="my-2 lg:border-l lg:border-gray-border lg:first:border-l-0">
-                <a href={book.barnesNobleUrl} className="link py-2 px-4">
+                <a href={book.barnesNobleUrl} className="px-4 py-2 link">
                   B&N
                 </a>
               </li>
             )}
             {book.appleBooksUrl && (
               <li className="my-2 lg:border-l lg:border-gray-border lg:first:border-l-0">
-                <a href={book.appleBooksUrl} className="link py-2 px-4">
+                <a href={book.appleBooksUrl} className="px-4 py-2 link">
                   Apple Books
                 </a>
               </li>
             )}
             {book.googlePlayUrl && (
               <li className="my-2 lg:border-l lg:border-gray-border lg:first:border-l-0">
-                <a href={book.googlePlayUrl} className="link py-2 px-4">
+                <a href={book.googlePlayUrl} className="px-4 py-2 link">
                   Google Play
                 </a>
               </li>
             )}
             {book.audibleUrl && (
               <li className="my-2 lg:border-l lg:border-gray-border lg:first:border-l-0">
-                <a href={book.audibleUrl} className="link py-2 px-4">
+                <a href={book.audibleUrl} className="px-4 py-2 link">
                   Audible
                 </a>
               </li>
             )}
             {book.targetUrl && (
               <li className="my-2 lg:border-l lg:border-gray-border lg:first:border-l-0">
-                <a href={book.targetUrl} className="link py-2 px-4">
+                <a href={book.targetUrl} className="px-4 py-2 link">
                   Target
                 </a>
               </li>
@@ -150,49 +151,49 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
           <ul className="flex flex-wrap justify-center md:mt-5">
             {book.walmartUrl && (
               <li className="my-2 lg:border-l lg:border-gray-border lg:first:border-l-0">
-                <a href={book.walmartUrl} className="link py-2 px-4">
+                <a href={book.walmartUrl} className="px-4 py-2 link">
                   Walmart
                 </a>
               </li>
             )}
             {book.indieboundUrl && (
               <li className="my-2 lg:border-l lg:border-gray-border lg:first:border-l-0">
-                <a href={book.indieboundUrl} className="link py-2 px-4">
+                <a href={book.indieboundUrl} className="px-4 py-2 link">
                   IndieBound
                 </a>
               </li>
             )}
             {book.indigoUrl && (
               <li className="my-2 lg:border-l lg:border-gray-border lg:first:border-l-0">
-                <a href={book.indigoUrl} className="link py-2 px-4">
+                <a href={book.indigoUrl} className="px-4 py-2 link">
                   Indigo
                 </a>
               </li>
             )}
             {book.koboUrl && (
               <li className="my-2 lg:border-l lg:border-gray-border lg:first:border-l-0">
-                <a href={book.koboUrl} className="link py-2 px-4">
+                <a href={book.koboUrl} className="px-4 py-2 link">
                   Kobo
                 </a>
               </li>
             )}
             {book.libroFmUrl && (
               <li className="my-2 lg:border-l lg:border-gray-border lg:first:border-l-0">
-                <a href={book.libroFmUrl} className="link py-2 px-4">
+                <a href={book.libroFmUrl} className="px-4 py-2 link">
                   Libro.fm
                 </a>
               </li>
             )}
             {book.chirpUrl && (
               <li className="my-2 lg:border-l lg:border-gray-border lg:first:border-l-0">
-                <a href={book.chirpUrl} className="link py-2 px-4">
+                <a href={book.chirpUrl} className="px-4 py-2 link">
                   Chirp
                 </a>
               </li>
             )}
             {book.bookshopUrl && (
               <li className="my-2 lg:border-l lg:border-gray-border lg:first:border-l-0">
-                <a href={book.bookshopUrl} className="link py-2 px-4">
+                <a href={book.bookshopUrl} className="px-4 py-2 link">
                   Bookshop
                 </a>
               </li>
@@ -200,16 +201,14 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
           </ul>
         </div>
 
-        {isPreRelease && (
-          <p className="body2 text-center mt-8">Coming {formatDateStr(book.releaseDate)}</p>
-        )}
+        {isPreRelease && <p className="mt-8 text-center body2">Coming {formatDateStr(book.releaseDate)}</p>}
       </Section>
 
       <Divider />
 
       <Section>
-        <div className="prose text-pretty mx-auto">
-          <p className="body1 mb-6">{book.tagline}</p>
+        <div className="mx-auto prose text-pretty">
+          <p className="mb-6 body1">{book.tagline}</p>
           {book.description && (
             <div className="body2 [&>p]:mb-6 [&>p:last-child]:mb-0">{documentToReactComponents(book.description)}</div>
           )}
@@ -217,28 +216,28 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
       </Section>
 
       {book.praise && (
-        <section
-          className='bg-gray-light px-10 py-10 md:py-14 md:px-32'
-        >
-            <h3 className="h5 uppercase text-pink md:mb-6 text-center">Praise & Press</h3>
+        <section className="bg-gray-light p-10 md:px-32 md:py-14">
+          <h3 className="text-center h5 text-pink uppercase md:mb-6">Praise & Press</h3>
 
-            {book.praise.map(praise => (
-              <figure className="py-8 md:px-14 text-center last-of-type:pb-0" key={praise.id}>
-                <blockquote className="text-lg font-body1 md:body1 mb-4" cite={praise.cite}>
-                  {documentToReactComponents(praise.quote)}
-                </blockquote>
-                <figcaption>
-                  <h4 className="text1 mb-2">
-                    {praise.cite || praise.sourceUrl ? (
-                      <Link href={praise.cite || praise.sourceUrl} target="_blank">{praise.sourceName}</Link>
-                    ) : (
-                      praise.sourceName
-                    )}
-                  </h4>
-                  <small className="text2">{praise.sourceDescription}</small>
-                </figcaption>
-              </figure>
-            ))}
+          {book.praise.map(praise => (
+            <figure className="py-8 text-center last-of-type:pb-0 md:px-14" key={praise.id}>
+              <blockquote className="mb-4 font-body1 text-lg md:body1" cite={praise.cite}>
+                {documentToReactComponents(praise.quote)}
+              </blockquote>
+              <figcaption>
+                <h4 className="mb-2 text1">
+                  {praise.cite || praise.sourceUrl ? (
+                    <Link href={praise.cite || praise.sourceUrl} target="_blank">
+                      {praise.sourceName}
+                    </Link>
+                  ) : (
+                    praise.sourceName
+                  )}
+                </h4>
+                <small className="text2">{praise.sourceDescription}</small>
+              </figcaption>
+            </figure>
+          ))}
         </section>
       )}
 
@@ -247,5 +246,3 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
     </article>
   );
 }
-
-

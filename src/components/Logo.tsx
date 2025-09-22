@@ -1,5 +1,5 @@
-import React from 'react';
 import clsx from 'clsx';
+import React from 'react';
 
 export interface LogoProps {
   heartColor?: 'pink' | 'teal' | 'yellow';
@@ -22,10 +22,7 @@ const Logo = ({ heartColor = 'yellow', width = '327px', height = '42px', classNa
   >
     <title>Primary Logo Dark</title>
     <defs>
-      <polygon
-        id="path-1"
-        points="0 0.168196948 45.0360762 0.168196948 45.0360762 47.0131304 0 47.0131304"
-      />
+      <polygon id="path-1" points="0 0.168196948 45.0360762 0.168196948 45.0360762 47.0131304 0 47.0131304" />
       <polygon
         id="path-3"
         points="0.508046849 0.411521739 15.5568124 0.411521739 15.5568124 47.2562596 0.508046849 47.2562596"

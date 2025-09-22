@@ -27,11 +27,16 @@ const config: Config = {
   testPathIgnorePatterns: ['/node_modules/', '/.next/'],
   moduleNameMapper: {
     '\\.css$': 'identity-obj-proxy',
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
-  collectCoverageFrom: ['lib/**/*.{ts,tsx}', 'pages/**/*.{ts,tsx}', 'hooks/**/*.{ts,tsx}', 'components/**/*.{ts,tsx}', '!**/__tests__/**'],
+  collectCoverageFrom: [
+    'lib/**/*.{ts,tsx}',
+    'pages/**/*.{ts,tsx}',
+    'hooks/**/*.{ts,tsx}',
+    'components/**/*.{ts,tsx}',
+    '!**/__tests__/**',
+  ],
   coverageReporters: ['lcov', 'text', 'text-summary'],
 };
 
 export default config;
-
-

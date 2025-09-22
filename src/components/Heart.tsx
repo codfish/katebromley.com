@@ -1,5 +1,5 @@
-import React from 'react';
 import clsx from 'clsx';
+import React from 'react';
 
 export interface HeartProps {
   color?: 'pink' | 'teal' | 'yellow';
@@ -9,7 +9,13 @@ export interface HeartProps {
   [key: string]: any;
 }
 
-const Heart = ({ color = 'yellow', width = '64px', height = '60px', className: classNameProp = '', ...other }: HeartProps) => {
+const Heart = ({
+  color = 'yellow',
+  width = '64px',
+  height = '60px',
+  className: classNameProp = '',
+  ...other
+}: HeartProps) => {
   const className = clsx('root', classNameProp);
 
   return (

@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React, { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import React, { useEffect } from 'react';
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
@@ -37,5 +37,3 @@ export default function GoogleAnalytics() {
     </>
   ) : null;
 }
-
-

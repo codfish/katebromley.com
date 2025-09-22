@@ -1,11 +1,12 @@
+import type { Metadata } from 'next';
 import React from 'react';
-import { FaInstagram, FaAmazon, FaGoodreads } from 'react-icons/fa';
+import { FaAmazon, FaGoodreads, FaInstagram } from 'react-icons/fa';
 import { SiLinktree } from 'react-icons/si';
+
+import Link from '@/components/Link';
 import PageHeader from '@/components/PageHeader';
 import Section from '@/components/Section';
 import SubscribeSection from '@/components/SubscribeSection';
-import Link from '@/components/Link';
-import type { Metadata } from 'next';
 
 export const dynamic = 'force-static';
 
@@ -47,25 +48,19 @@ export default function ContactPage() {
       <PageHeader>Contact</PageHeader>
 
       <Section noBorder maxWidth="lg">
-        <div className="prose mx-auto text-center">
-          <p className="text-body2 mb-4">
+        <div className="mx-auto prose text-center">
+          <p className="mb-4 text-body2">
             For agent inquiries, contact{' '}
-            <a
-              href="https://www.marsallyonliteraryagency.com/the-agents/kevan-lyon/"
-              className="link"
-            >
+            <a href="https://www.marsallyonliteraryagency.com/the-agents/kevan-lyon/" className="link">
               Kevan Lyon
             </a>{' '}
             at{' '}
-            <a
-              href="mailto:kevan@marsallyonliteraryagency.com"
-              className="underline hover:no-underline"
-            >
+            <a href="mailto:kevan@marsallyonliteraryagency.com" className="underline hover:no-underline">
               Kevan@MarsalLyonLiteraryAgency.com
             </a>
             .
           </p>
-          <p className="text-body2 mb-10">
+          <p className="mb-10 text-body2">
             For publicity inquiries, contact{' '}
             <a href="https://www.linkedin.com/in/justineisha/" className="link">
               Justine Sha
@@ -73,11 +68,12 @@ export default function ContactPage() {
             at{' '}
             <a href="mailto:justine.sha@harpercollins.com" className="underline hover:no-underline">
               Justine.Sha@HarperCollins.com
-            </a>.
+            </a>
+            .
           </p>
 
           <div className="flex flex-col justify-center text-center">
-            <h5 className="h5 text-pink mb-6 uppercase">Follow along on social media</h5>
+            <h5 className="mb-6 h5 text-pink uppercase">Follow along on social media</h5>
             <div className="flex items-center justify-center text-2xl">
               <Link href="https://www.instagram.com/katebromleywrites" className="mx-4">
                 <FaInstagram className="hover:text-pink" />
@@ -85,14 +81,11 @@ export default function ContactPage() {
               <Link href="https://www.amazon.com/Kate-Bromley/e/B08GYP6TNY" className="mx-4">
                 <FaAmazon className="hover:text-pink" />
               </Link>
-              <Link
-                href="https://www.goodreads.com/author/show/20590705.Kate_Bromley"
-                className="mx-4"
-              >
+              <Link href="https://www.goodreads.com/author/show/20590705.Kate_Bromley" className="mx-4">
                 <FaGoodreads className="hover:text-pink" />
               </Link>
               <Link href="https://linktr.ee/katebromley" className="mx-4">
-                <SiLinktree className="hover:text-pink size-5" />
+                <SiLinktree className="size-5 hover:text-pink" />
               </Link>
             </div>
           </div>
@@ -103,5 +96,3 @@ export default function ContactPage() {
     </>
   );
 }
-
-

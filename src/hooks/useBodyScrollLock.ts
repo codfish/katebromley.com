@@ -78,5 +78,3 @@ export default function useBodyScrollLock(isLocked: boolean): void {
     };
   }, [isLocked]);
 }
-
-
