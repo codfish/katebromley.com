@@ -1,31 +1,8 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+# AGENT.md
 
-## Table of Contents
+<!-- DOCTOC SKIP -->
 
-- [Semantic HTML and Accessibility](#semantic-html-and-accessibility)
-  - [CRITICAL: Navigation vs Actions](#critical-navigation-vs-actions)
-  - [Why This Matters](#why-this-matters)
-- [Next.js Guidelines](#nextjs-guidelines)
-  - [Link Component Migration (v15+)](#link-component-migration-v15)
-- [Component Patterns](#component-patterns)
-  - [Button Component](#button-component)
-  - [Link Component](#link-component)
-- [TypeScript Standards](#typescript-standards)
-  - [Component Development](#component-development)
-  - [Type Organization](#type-organization)
-  - [File Naming & Extensions](#file-naming--extensions)
-  - [Type Safety Best Practices](#type-safety-best-practices)
-  - [Development Scripts](#development-scripts)
-- [Code Quality](#code-quality)
-- [Testing Conventions](#testing-conventions)
-- [CSS Formatting Standards](#css-formatting-standards)
-- [Overlays, Menus, and Body Scroll Lock](#overlays-menus-and-body-scroll-lock)
-  - [Hook](#hook)
-  - [Usage](#usage)
-- [Tailwind Custom Variant: desktop-only](#tailwind-custom-variant-desktop-only)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+This file provides guidance to AI agents when working with code in this repository.
 
 ## Semantic HTML and Accessibility
 

@@ -1,19 +1,19 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-## Table of Contents
-
-- [katebromley.com](#katebromleycom)
-  - [Getting Started](#getting-started)
-  - [Staging Environment](#staging-environment)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # katebromley.com
 
 > Personal author site.
 
 [Website](https://www.katebromley.com)
+
+<!-- prettier-ignore-start -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+## Table of Contents
+
+- [Getting Started](#getting-started)
+- [Staging Environment](#staging-environment)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- prettier-ignore-end -->
 
 ## Getting Started
 
