@@ -27,6 +27,7 @@ const config: Config = {
   testPathIgnorePatterns: ['/node_modules/', '/.next/'],
   moduleNameMapper: {
     '\\.css$': 'identity-obj-proxy',
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
   collectCoverageFrom: [
     'lib/**/*.{ts,tsx}',
