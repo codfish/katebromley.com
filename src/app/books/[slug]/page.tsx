@@ -12,13 +12,13 @@ import type { Book } from '@/lib/contentful';
 import { fetchBookBySlug, fetchBooks } from '@/lib/contentful';
 import { calcImageHeight, formatDateStr, isReleased } from '@/lib/utils';
 
-export const dynamic = 'force-static';
-export const dynamicParams = false;
+export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
 
-export async function generateStaticParams() {
-  const books = await fetchBooks();
-  return books.map(book => ({ slug: book.slug }));
-}
+// export async function generateStaticParams() {
+//   const books = await fetchBooks();
+//   return books.map(book => ({ slug: book.slug }));
+// }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;

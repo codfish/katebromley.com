@@ -12,7 +12,7 @@ import type { Book } from '@/lib/contentful';
 import { fetchBooks } from '@/lib/contentful';
 import { calcImageHeight, isReleased } from '@/lib/utils';
 
-export const dynamic = 'force-static';
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
