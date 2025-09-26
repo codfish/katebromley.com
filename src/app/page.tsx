@@ -11,7 +11,7 @@ import type { AboutKate, Book } from '@/lib/contentful';
 import { fetchBooks, fetchKateBromley } from '@/lib/contentful';
 import { calcImageHeight, isReleased } from '@/lib/utils';
 
-export const dynamic = 'force-dynamic';
+export const dynamic = 'force-static';
 
 export async function generateMetadata(): Promise<Metadata> {
   // Try to use featured book cover as OG/Twitter image; fall back to logo

@@ -8,7 +8,7 @@ import PageHeader from '@/components/PageHeader';
 import Section from '@/components/Section';
 import SubscribeSection from '@/components/SubscribeSection';
 
-export const dynamic = 'force-dynamic';
+export const dynamic = 'force-static';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
