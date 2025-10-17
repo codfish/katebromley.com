@@ -1,4 +1,6 @@
 import '@/styles/app.css';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata, Viewport } from 'next';
 import React, { PropsWithChildren } from 'react';
 
@@ -22,6 +24,8 @@ export default function RootLayout({ children }: PropsWithChildren<Record<string
   return (
     <html lang="en">
       <body>
+        <SpeedInsights />
+        <Analytics />
         <GoogleAnalytics />
         <Header />
         <main>{children}</main>
