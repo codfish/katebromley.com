@@ -1,9 +1,11 @@
 import '@/styles/app.css';
+import { GoogleAnalytics } from '@next/third-parties/google';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata, Viewport } from 'next';
 import React, { PropsWithChildren } from 'react';
 
 import Footer from '@/components/Footer';
-import GoogleAnalytics from '@/components/GoogleAnalytics';
 import Header from '@/components/Header';
 
 export const metadata: Metadata = {
@@ -22,7 +24,9 @@ export default function RootLayout({ children }: PropsWithChildren<Record<string
   return (
     <html lang="en">
       <body>
-        <GoogleAnalytics />
+        <SpeedInsights />
+        <Analytics />
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
         <Header />
         <main>{children}</main>
         <Footer />
