@@ -7,6 +7,7 @@ import React, { PropsWithChildren } from 'react';
 
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import { WebVitals } from './_components/web-vitals';
 
 export const metadata: Metadata = {
   title: 'Kate Bromley',
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: PropsWithChildren<Record<string
         <SpeedInsights />
         <Analytics />
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+        <WebVitals />
         <Header />
         <main>{children}</main>
         <Footer />
