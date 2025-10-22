@@ -88,6 +88,9 @@ export default async function BooksPage() {
                   width={384}
                   height={calcImageHeight(384, latestRelease.coverImage.width, latestRelease.coverImage.height)}
                   quality={90}
+                  loading="eager"
+                  fetchPriority="high"
+                  preload
                 />
               </Link>
             </div>

@@ -1,4 +1,5 @@
 {
+  "settingSources": ["project"],
   "permissions": {
     "allow": [
       "WebFetch(domain:docs.anthropic.com)",
@@ -10,8 +11,11 @@
       "Bash(git mv:*)",
       "Bash(npm uninstall:*)",
       "Bash(npm run typecheck:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(npm view:*)",
+      "WebFetch(domain:nextjs.org)"
     ],
-    "deny": []
+    "deny": [],
+    "enabledMcpjsonServers": ["next-devtools"]
   }
 }
