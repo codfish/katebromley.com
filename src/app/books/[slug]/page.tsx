@@ -88,8 +88,10 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
               alt={book.coverImage.alternativeText || `Cover Art: ${book.title}`}
               width={384}
               height={calcImageHeight(384, book.coverImage.width, book.coverImage.height)}
-              quality={90}
-              priority
+              quality={100}
+              loading="eager"
+              fetchPriority="high"
+              preload
             />
           </div>
         )}

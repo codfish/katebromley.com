@@ -3,7 +3,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata, Viewport } from 'next';
-import React, { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
@@ -21,7 +21,7 @@ export const viewport: Viewport = {
   themeColor: '#ED6D90',
 };
 
-export default function RootLayout({ children }: PropsWithChildren<Record<string, never>>) {
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <body>

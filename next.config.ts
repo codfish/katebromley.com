@@ -1,5 +1,8 @@
-export default () => ({
+import type { NextConfig } from 'next';
+
+const config: NextConfig = {
   images: {
+    qualities: [75, 90, 100],
     remotePatterns: [
       {
         protocol: 'https',
@@ -34,4 +37,6 @@ export default () => ({
       },
     ];
   },
-});
+};
+
+export default config;

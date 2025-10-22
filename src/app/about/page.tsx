@@ -68,6 +68,10 @@ export default async function AboutPage() {
               alt="Kate Bromley Author Headshot"
               width={384}
               height={calcImageHeight(384, aboutKate.headshot.width, aboutKate.headshot.height)}
+              quality={90}
+              loading="eager"
+              fetchPriority="high"
+              preload
             />
           </div>
 

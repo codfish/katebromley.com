@@ -9,4 +9,8 @@ export default defineConfig([
       '@typescript-eslint/no-explicit-any': 'off',
     },
   },
+
+  {
+    ignores: ['.next/dev/types/**/*.ts', '.next/types/**/*.ts', 'next-env.d.ts'],
+  },
 ]);

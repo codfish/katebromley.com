@@ -115,7 +115,10 @@ export default async function HomePage() {
                       className="inline-block"
                       width={384}
                       height={calcImageHeight(384, book.coverImage.width, book.coverImage.height)}
-                      quality={90}
+                      quality={index === 0 ? 90 : 75}
+                      loading={index === 0 ? 'eager' : 'lazy'}
+                      fetchPriority={index === 0 ? 'high' : 'auto'}
+                      preload={index === 0}
                     />
                   </Link>
                 </div>
