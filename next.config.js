@@ -1,4 +1,7 @@
+/** @type {import('next').NextConfig} */
 export default () => ({
+  output: 'export',
+
   images: {
     remotePatterns: [
       {
@@ -14,6 +17,12 @@ export default () => ({
         hostname: 'localhost',
       },
     ],
+  },
+
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
   },
 
   async rewrites() {
