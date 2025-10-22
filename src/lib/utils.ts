@@ -28,7 +28,7 @@ export const isReleased = (releaseDate: string | Date): boolean => new Date(rele
  * original height and original width.
  */
 export const calcImageHeight = (desiredWidth: number, origWidth: number, origHeight: number): number =>
-  (desiredWidth * origHeight) / origWidth;
+  Math.round((desiredWidth * origHeight) / origWidth);
 
 /**
  * Sort books by release date in descending order.
