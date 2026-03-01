@@ -1,20 +1,18 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import React from 'react';
 
 import Divider from '@/components/Divider';
 import PageHeader from '@/components/PageHeader';
 import Section from '@/components/Section';
 import SocialSection from '@/components/SocialSection';
 import SubscribeSection from '@/components/SubscribeSection';
-import type { AboutKate, FAQ } from '@/lib/contentful';
-import { fetchFaqs, fetchKateBromley } from '@/lib/contentful';
+import { type AboutKate, type FAQ, fetchFaqs, fetchKateBromley } from '@/lib/contentful';
 import { calcImageHeight } from '@/lib/utils';
 
 export const dynamic = 'force-static';
 
-export async function generateMetadata(): Promise<Metadata> {
+export function generateMetadata(): Metadata {
   return {
     title: 'About Kate Bromley',
     description:

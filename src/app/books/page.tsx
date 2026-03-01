@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import React from 'react';
 
 import Divider from '@/components/Divider';
 import Link from '@/components/Link';
@@ -8,13 +7,12 @@ import PageHeader from '@/components/PageHeader';
 import Section from '@/components/Section';
 import SocialSection from '@/components/SocialSection';
 import SubscribeSection from '@/components/SubscribeSection';
-import type { Book } from '@/lib/contentful';
-import { fetchBooks } from '@/lib/contentful';
+import { type Book, fetchBooks } from '@/lib/contentful';
 import { calcImageHeight, isReleased } from '@/lib/utils';
 
 export const dynamic = 'force-static';
 
-export async function generateMetadata(): Promise<Metadata> {
+export function generateMetadata(): Metadata {
   return {
     title: 'Books by Kate Bromley',
     description: 'A list of books written by Kate Bromley',
