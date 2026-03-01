@@ -1,15 +1,13 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import React from 'react';
 
 import Divider from '@/components/Divider';
 import Link from '@/components/Link';
 import Section from '@/components/Section';
 import SocialSection from '@/components/SocialSection';
 import SubscribeSection from '@/components/SubscribeSection';
-import type { Book } from '@/lib/contentful';
-import { fetchBookBySlug, fetchBooks } from '@/lib/contentful';
+import { type Book, fetchBookBySlug, fetchBooks } from '@/lib/contentful';
 import { calcImageHeight, formatDateStr, isReleased } from '@/lib/utils';
 
 export const dynamic = 'force-static';

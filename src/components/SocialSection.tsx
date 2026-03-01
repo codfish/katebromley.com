@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaAmazon, FaGoodreads, FaInstagram } from 'react-icons/fa';
 import { SiLinktree } from 'react-icons/si';
 

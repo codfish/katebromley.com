@@ -1,5 +1,4 @@
-import type { Metadata } from 'next';
-import React from 'react';
+import { type Metadata } from 'next';
 import { FaAmazon, FaGoodreads, FaInstagram } from 'react-icons/fa';
 import { SiLinktree } from 'react-icons/si';
 
@@ -10,7 +9,7 @@ import SubscribeSection from '@/components/SubscribeSection';
 
 export const dynamic = 'force-static';
 
-export async function generateMetadata(): Promise<Metadata> {
+export function generateMetadata(): Metadata {
   return {
     title: 'Contact Kate Bromley',
     description: 'Contact Kate Bromley',

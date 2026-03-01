@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
-import React from 'react';
+
 // Note: do not import Link at module scope; we import after mocking usePathname per test
 
 // Mock next/link to a plain anchor for testing
 jest.mock('next/link', () => {
-  return ({ children, href, ...props }: any) => {
+  const MockLink = ({ children, href, ...props }: any) => {
     const path = typeof href === 'string' ? href : href?.pathname || '';
     return (
       <a href={path} {...props}>
@@ -12,6 +12,8 @@ jest.mock('next/link', () => {
       </a>
     );
   };
+  MockLink.displayName = 'MockLink';
+  return MockLink;
 });
 
 // Helper to mock usePathname
