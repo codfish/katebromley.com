@@ -1,0 +1,89 @@
+BRAND OVERVIEW
+- Tone: Whimsical, romantic, literary, slightly playful with a polished/elevated feel
+- Audience: Primarily women readers of contemporary romance and historical-inspired fiction
+- Comparable authors/sites: Emily Henry, Christina Lauren, Ali Hazelwood (modern romance tone with strong personality branding)
+
+COLORS
+- Sapphire Ink: #2f3a73
+- Emerald Parlour: #1f6f63
+- Golden Topaz: #e8b44f
+- Antique Rose Quartz: #e2a3b4
+- Garnet Desire: #7b1e3b
+- Parchment Ivory (Background): #f4efe8 Likely light/cream or soft neutral for readability
+- Text: Dark neutral (charcoal or deep brown instead of pure black)
+- Notes: Expect a balance of soft + editorial tones rather than high-saturation palettes
+
+TYPOGRAPHY
+- Headings: Elegant serif
+  - Use for: Headlines, section titles, book titles
+  - Feel: Editorial, refined, slightly historical
+- Body: (a clean sans-serif for readability - you choose)
+  - Use for: Paragraphs, long-form content
+- Accent/Decorative: “Bluselle” (Whimsical script)
+  - Use for: Logo, highlights, decorative moments (not body text)
+
+LOGOS
+- Variations:
+  - Primary wordmark (script-based, Bluselle)
+  - Serif-based supporting lockup (with Rollgates Luxury)
+  - Monogram (initials-based)
+
+LOGOS (Wordmark and stacked) Usage Notes
+  - Perfect for your website / social media banners or newsletter
+  - Up to two color application
+  - Use interchangeably with your sparkle version and with or without tagline
+
+LOGOS (Monogram) Usage Notes
+  - Perfect for your email newsletter, bookplates, stamps or in your books
+  - Up to two color application
+  - Use in instances where your brand is already very clear (e.g. book cover promos)
+  - Generally one color application only (disco ball up to two)
+  - Generally one color application only (disco ball up to two)
+
+LAYOUT / DESIGN DIRECTION
+- Overall feel: Editorial, bookish, romantic with a modern polish
+- Spacing: Airy and breathable (not dense)
+- Border radius: Slightly soft (not overly rounded)
+- Shadows: Minimal to none (lean toward flat/editorial)
+- Grid style: Structured but relaxed (editorial magazine-inspired)
+
+COMPONENT STYLING
+- Buttons:
+  - Likely solid or outlined with elegant hover states
+  - Subtle transitions (no aggressive animations)
+- Links:
+  - Understated, possibly underline-on-hover
+- Cards:
+  - Clean, possibly image-forward (book covers)
+  - Light borders or subtle separation
+- Forms:
+  - Minimal, clean, typography-led
+
+IMAGERY / ART DIRECTION
+- Photography style:
+  - Warm, lifestyle-oriented, author-centric
+  - Possibly soft lighting, natural tones
+- Illustration style:
+  - Minimal or none, unless used decoratively
+- Textures/patterns:
+  - Possible subtle paper, grain, or vintage-inspired textures
+
+WEBSITE GOALS
+- Primary goal:
+  - Promote and sell books (especially new release: *In My Tudor Era*)
+- Secondary goals:
+  - Build author brand
+  - Drive newsletter/email list
+- Key pages:
+  - Homepage
+  - Book detail pages
+  - About the author
+  - Newsletter/signup
+
+EXISTING SITE NOTES (ASSUMED — YOU SHOULD EDIT)
+- Likely too generic or not aligned with new brand identity
+- Opportunity to:
+  - Elevate typography
+  - Improve visual hierarchy
+  - Make book promotion more prominent
+
